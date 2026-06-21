@@ -1404,7 +1404,7 @@ class DataChain:
                             keep_columns.append(col)
                         schema_partition_by.append(col)
             elif isinstance(col, Function):
-                label = col.col_label
+                label = col.config.col_label
                 if not label:
                     label = f"gr_{partition_counter}"
                     partition_counter += 1
