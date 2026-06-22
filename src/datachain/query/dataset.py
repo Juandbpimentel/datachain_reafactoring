@@ -627,18 +627,22 @@ def get_generated_callback(is_generator: bool = False) -> Callback:
 
 
 @frozen
+class UDFExecutionConfig:
+    cache: bool = False
+    parallel: int | None = None
+    workers: bool | int = False
+    min_task_size: int | None = None
+    batch_size: int | None = None
+
+
+@frozen
 class UDFStep(Step, ABC):
     udf: "UDFAdapter"
     session: "Session"
     partition_by: PartitionByType | None = None
     is_generator = False
     is_aggregator = False
-    # Parameters from Settings
-    cache: bool = False
-    parallel: int | None = None
-    workers: bool | int = False
-    min_task_size: int | None = None
-    batch_size: int | None = None
+    execution: UDFExecutionConfig = UDFExecutionConfig()
 
     @property
     def is_single_partition_aggregator(self) -> bool:
@@ -764,15 +768,15 @@ class UDFStep(Step, ABC):
             get_udf_distributor_class,
         )
 
-        workers = determine_workers(self.workers, rows_total=rows_to_process)
-        processes = determine_processes(self.parallel, rows_total=rows_to_process)
+        workers = determine_workers(self.execution.workers, rows_total=rows_to_process)
+        processes = determine_processes(self.execution.parallel, rows_total=rows_to_process)
         logger.debug(
             "UDF(%s): Processing %d rows (workers=%s, processes=%s, batch_size=%s)",
             self._udf_name,
             rows_to_process,
             workers,
             processes,
-            self.batch_size,
+            self.execution.batch_size,
         )
 
         use_partitioning = self.partition_by is not None
@@ -781,7 +785,7 @@ class UDFStep(Step, ABC):
         udf_distributor_class = get_udf_distributor_class()
 
         prefetch = self.udf.prefetch
-        with _get_cache(catalog.cache, prefetch, use_cache=self.cache) as _cache:
+        with _get_cache(catalog.cache, prefetch, use_cache=self.execution.cache) as _cache:
             catalog = clone_catalog_with_cache(catalog, _cache)
 
             try:
@@ -798,10 +802,10 @@ class UDFStep(Step, ABC):
                         udf_fields=udf_fields,
                         rows_to_process=rows_to_process,
                         rows_total=rows_total,
-                        use_cache=self.cache,
+                        use_cache=self.execution.cache,
                         is_generator=self.is_generator,
-                        min_task_size=self.min_task_size,
-                        batch_size=self.batch_size,
+                        min_task_size=self.execution.min_task_size,
+                        batch_size=self.execution.batch_size,
                         continued=continued,
                         rows_reused=rows_reused,
                         output_rows_reused=output_rows_reused,
@@ -839,9 +843,9 @@ class UDFStep(Step, ABC):
                         batching=batching,
                         processes=processes,
                         is_generator=self.is_generator,
-                        cache=self.cache,
+                        cache=self.execution.cache,
                         rows_total=rows_to_process,
-                        batch_size=self.batch_size,
+                        batch_size=self.execution.batch_size,
                     )
 
                     # Run the UDFDispatcher in another process to avoid needing
@@ -887,7 +891,7 @@ class UDFStep(Step, ABC):
                             udf_fields,
                             udf_inputs,
                             catalog,
-                            self.cache,
+                            self.execution.cache,
                             download_cb,
                             processed_cb,
                         )
@@ -898,7 +902,7 @@ class UDFStep(Step, ABC):
                                 udf_results,
                                 self.udf,
                                 cb=generated_cb,
-                                batch_size=self.batch_size,
+                                batch_size=self.execution.batch_size,
                             )
                     finally:
                         download_cb.close()
@@ -971,10 +975,7 @@ class UDFStep(Step, ABC):
                 self.udf,
                 self.session,
                 partition_by=partition_by,
-                parallel=self.parallel,
-                workers=self.workers,
-                min_task_size=self.min_task_size,
-                batch_size=self.batch_size,
+                execution=self.execution,
             )
         return self.__class__(self.udf, self.session)
 
@@ -1674,16 +1675,6 @@ class UDFStep(Step, ABC):
 
 @frozen
 class UDFSignal(UDFStep):
-    udf: "UDFAdapter"
-    session: "Session"
-    partition_by: PartitionByType | None = None
-    is_generator = False
-    # Parameters from Settings
-    cache: bool = False
-    parallel: int | None = None
-    workers: bool | int = False
-    min_task_size: int | None = None
-    batch_size: int | None = None
 
     @property
     def _step_type(self) -> CheckpointStepType:
@@ -1784,17 +1775,8 @@ class UDFSignal(UDFStep):
 class RowGenerator(UDFStep):
     """Extend dataset with new rows."""
 
-    udf: "UDFAdapter"
-    session: "Session"
-    partition_by: PartitionByType | None = None
     is_generator = True
     is_aggregator: bool = False
-    # Parameters from Settings
-    cache: bool = False
-    parallel: int | None = None
-    workers: bool | int = False
-    min_task_size: int | None = None
-    batch_size: int | None = None
 
     @property
     def _step_type(self) -> CheckpointStepType:
@@ -3230,11 +3212,13 @@ class DatasetQuery:
                 udf,
                 self.session,
                 partition_by=partition_by,
-                parallel=parallel,
-                workers=workers,
-                min_task_size=min_task_size,
-                cache=cache,
-                batch_size=batch_size,
+                execution=UDFExecutionConfig(
+                    cache=cache,
+                    parallel=parallel,
+                    workers=workers,
+                    min_task_size=min_task_size,
+                    batch_size=batch_size,
+                ),
             )
         )
         return query
@@ -3271,11 +3255,13 @@ class DatasetQuery:
                 self.session,
                 partition_by=partition_by,
                 is_aggregator=is_aggregator,
-                parallel=parallel,
-                workers=workers,
-                min_task_size=min_task_size,
-                cache=cache,
-                batch_size=batch_size,
+                execution=UDFExecutionConfig(
+                    cache=cache,
+                    parallel=parallel,
+                    workers=workers,
+                    min_task_size=min_task_size,
+                    batch_size=batch_size,
+                ),
             )
         )
         return query
