@@ -3471,31 +3471,26 @@ class DatasetQuery:
             query.cleanup()
         return query
 
-    def save(
+    def _resolve_job(
         self,
-        name: str | None = None,
-        version: str | None = None,
-        project: Project | None = None,
-        feature_schema: dict | None = None,
-        dependencies: list[DatasetDependency] | None = None,
-        description: str | None = None,
-        attrs: list[str] | None = None,
-        update_version: str | None = "patch",
-        query_script: str | None = None,
-        **kwargs,
-    ) -> "Self":
-        """Save the query as a dataset."""
+        query_script: str | None,
+        kwargs: dict,
+    ) -> tuple[str | None, str]:
         if kwargs.get("listing"):
-            # Listing saves are internal — use existing job if present,
-            # but don't create one (e.g. Studio backend `datachain ls`).
             job = self.session.get_job()
         else:
             job = self.session.get_or_create_job()
         job_id = job.id if job else None
         if query_script is None:
             query_script = job.query if job else ""
+        return job_id, query_script
 
-        project = project or self.catalog.metastore.default_project
+    def _validate_save_version(
+        self,
+        name: str | None,
+        version: str | None,
+        project: Project,
+    ) -> None:
         try:
             if (
                 name
@@ -3511,6 +3506,45 @@ class DatasetQuery:
                 raise RuntimeError(f"Dataset {name} already has version {version}")
         except DatasetNotFoundError:
             pass
+
+    def _process_dependencies(
+        self,
+        dependencies: list["DatasetDependency"] | None,
+    ) -> None:
+        if dependencies:
+            self._pipeline.dependencies = set()
+            for dep in dependencies:
+                self._pipeline.dependencies.add(
+                    (
+                        self.catalog.get_dataset(
+                            dep.name,
+                            namespace_name=dep.namespace,
+                            project_name=dep.project,
+                            versions=[dep.version],
+                            include_incomplete=False,
+                        ),
+                        dep.version,
+                    )
+                )
+
+    def save(
+        self,
+        name: str | None = None,
+        version: str | None = None,
+        project: Project | None = None,
+        feature_schema: dict | None = None,
+        dependencies: list[DatasetDependency] | None = None,
+        description: str | None = None,
+        attrs: list[str] | None = None,
+        update_version: str | None = "patch",
+        query_script: str | None = None,
+        **kwargs,
+    ) -> "Self":
+        """Save the query as a dataset."""
+        job_id, query_script = self._resolve_job(query_script, kwargs)
+        project = project or self.catalog.metastore.default_project
+        self._validate_save_version(name, version, project)
+
         if not name and version:
             raise RuntimeError("Cannot set version for temporary datasets")
 
@@ -3531,8 +3565,6 @@ class DatasetQuery:
                 )
 
             # Phase 1: Create a temp staging table and populate it.
-            # If the process dies here, only an orphaned tmp_ table remains,
-            # cleaned up by 'datachain gc'.
             temp_table_name: str = self.catalog.warehouse.temp_table_name()
             self.catalog.warehouse.create_dataset_rows_table(
                 temp_table_name, columns=columns
@@ -3575,22 +3607,7 @@ class DatasetQuery:
                     dataset.get_version(version).id, job_id, is_creator=True
                 )
 
-            if dependencies:
-                self._pipeline.dependencies = set()
-                for dep in dependencies:
-                    self._pipeline.dependencies.add(
-                        (
-                            self.catalog.get_dataset(
-                                dep.name,
-                                namespace_name=dep.namespace,
-                                project_name=dep.project,
-                                versions=[dep.version],
-                                include_incomplete=False,
-                            ),
-                            dep.version,
-                        )
-                    )
-
+            self._process_dependencies(dependencies)
             self._add_dependencies(dataset, version)  # type: ignore [arg-type]
 
             if kwargs.get("listing"):
