@@ -109,19 +109,8 @@ class UDFDispatcher:
     done_queue: MultiprocessQueue | None = None
 
     def __init__(self, udf_info: UdfInfo, buffer_size: int = DEFAULT_BATCH_SIZE):
-        self.udf_data = udf_info["udf_data"]
-        self.catalog_init_params = udf_info["catalog_init"]
-        self.metastore_clone_params = udf_info["metastore_clone_params"]
-        self.warehouse_clone_params = udf_info["warehouse_clone_params"]
-        self.query = udf_info["query"]
-        self.table = udf_info["table"]
-        self.udf_fields = udf_info["udf_fields"]
-        self.cache = udf_info["cache"]
-        self.is_generator = udf_info["is_generator"]
+        self.udf_info = udf_info
         self.is_batching = udf_info["batching"].is_batching
-        self.processes = udf_info["processes"]
-        self.rows_total = udf_info["rows_total"]
-        self.batch_size = udf_info["batch_size"]
         self.buffer_size = buffer_size
         self.task_queue = None
         self.done_queue = None
@@ -130,15 +119,15 @@ class UDFDispatcher:
     @property
     def catalog(self) -> "Catalog":
         if not self._catalog:
-            ms_cls, ms_args, ms_kwargs = self.metastore_clone_params
+            ms_cls, ms_args, ms_kwargs = self.udf_info["metastore_clone_params"]
             metastore: AbstractMetastore = ms_cls(*ms_args, **ms_kwargs)
-            ws_cls, ws_args, ws_kwargs = self.warehouse_clone_params
+            ws_cls, ws_args, ws_kwargs = self.udf_info["warehouse_clone_params"]
             warehouse: AbstractWarehouse = ws_cls(*ws_args, **ws_kwargs)
-            self._catalog = Catalog(metastore, warehouse, **self.catalog_init_params)
+            self._catalog = Catalog(metastore, warehouse, **self.udf_info["catalog_init"])
         return self._catalog
 
     def _create_worker(self) -> "UDFWorker":
-        udf: UDFAdapter = loads(self.udf_data)
+        udf: UDFAdapter = loads(self.udf_info["udf_data"])
         # Ensure all registered DataModels have rebuilt schemas in worker processes.
         ModelStore.rebuild_all()
         return UDFWorker(
@@ -146,12 +135,12 @@ class UDFDispatcher:
             udf,
             self.task_queue,
             self.done_queue,
-            self.query,
-            self.table,
-            self.cache,
+            self.udf_info["query"],
+            self.udf_info["table"],
+            self.udf_info["cache"],
             self.is_batching,
-            self.batch_size,
-            self.udf_fields,
+            self.udf_info["batch_size"],
+            self.udf_info["udf_fields"],
         )
 
     def _run_worker(self) -> None:
@@ -182,7 +171,7 @@ class UDFDispatcher:
         processed_cb: Callback = DEFAULT_CALLBACK,
         generated_cb: Callback = DEFAULT_CALLBACK,
     ) -> None:
-        n_workers = self.processes
+        n_workers = self.udf_info["processes"]
         if n_workers is True:
             n_workers = None  # Use default number of CPUs (cores)
         elif not n_workers or n_workers < 1:
@@ -210,7 +199,7 @@ class UDFDispatcher:
         processed_cb: Callback = DEFAULT_CALLBACK,
         generated_cb: Callback = DEFAULT_CALLBACK,
     ) -> None:
-        udf: UDFAdapter = loads(self.udf_data)
+        udf: UDFAdapter = loads(self.udf_info["udf_data"])
         # Rebuild schemas in single process too for consistency (cheap, idempotent).
         ModelStore.rebuild_all()
 
@@ -221,31 +210,31 @@ class UDFDispatcher:
             warehouse = self.catalog.warehouse.clone()
             for ids in batched(input_rows, DEFAULT_BATCH_SIZE):
                 yield from warehouse.dataset_rows_select_from_ids(
-                    self.query, ids, self.is_batching
+                    self.udf_info["query"], ids, self.is_batching
                 )
 
         prefetch = udf.prefetch
-        with _get_cache(self.catalog.cache, prefetch, use_cache=self.cache) as _cache:
+        with _get_cache(self.catalog.cache, prefetch, use_cache=self.udf_info["cache"]) as _cache:
             udf_results = udf.run(
-                self.udf_fields,
+                self.udf_info["udf_fields"],
                 get_inputs(),
                 self.catalog,
-                self.cache,
+                self.udf_info["cache"],
                 download_cb=download_cb,
                 processed_cb=processed_cb,
             )
             with safe_closing(udf_results):
                 process_udf_outputs(
                     self.catalog.warehouse.clone(),
-                    self.table,
+                    self.udf_info["table"],
                     udf_results,
                     udf,
                     cb=generated_cb,
-                    batch_size=self.batch_size,
+                    batch_size=self.udf_info["batch_size"],
                 )
 
     def input_batch_size(self, n_workers: int) -> int:
-        input_batch_size = self.rows_total // n_workers
+        input_batch_size = self.udf_info["rows_total"] // n_workers
         if input_batch_size == 0:
             input_batch_size = 1
         elif input_batch_size > DEFAULT_BATCH_SIZE:
