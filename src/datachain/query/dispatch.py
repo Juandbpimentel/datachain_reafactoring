@@ -241,7 +241,7 @@ class UDFDispatcher:
             input_batch_size = DEFAULT_BATCH_SIZE
         return input_batch_size
 
-    def run_udf_parallel(  # noqa: C901, PLR0912
+    def run_udf_parallel(
         self,
         n_workers: int,
         input_rows: Iterable["RowsOutput"],
@@ -260,71 +260,107 @@ class UDFDispatcher:
             p.start()
 
         try:
-            # Will be set to True when the input is exhausted
-            input_finished = False
+            input_data = self._prepare_input_data(n_workers, input_rows)
+            input_finished = self._fill_initial_buffer(input_data)
+            self._process_loop(
+                pool, n_workers, input_data, input_finished,
+                download_cb, processed_cb, generated_cb,
+            )
+        finally:
+            self._shutdown_workers(pool)
 
-            input_rows = batched(
-                input_rows if self.is_batching else flatten(input_rows),
-                self.input_batch_size(n_workers),
+    def _prepare_input_data(
+        self, n_workers: int, input_rows: Iterable["RowsOutput"]
+    ) -> Iterable:
+        input_rows = batched(
+            input_rows if self.is_batching else flatten(input_rows),
+            self.input_batch_size(n_workers),
+        )
+        return chain(input_rows, [STOP_SIGNAL] * n_workers)
+
+    def _fill_initial_buffer(self, input_data: Iterable) -> bool:
+        input_finished = False
+        for _ in range(self.buffer_size):
+            try:
+                put_into_queue(self.task_queue, next(input_data))
+            except StopIteration:
+                input_finished = True
+                break
+        return input_finished
+
+    def _process_loop(
+        self,
+        pool: list[Process],
+        n_workers: int,
+        input_data: Iterable,
+        input_finished: bool,
+        download_cb: Callback = DEFAULT_CALLBACK,
+        processed_cb: Callback = DEFAULT_CALLBACK,
+        generated_cb: Callback = DEFAULT_CALLBACK,
+    ) -> None:
+        while n_workers > 0:
+            result = self._get_result_from_queue(pool)
+            self._update_callbacks(result, download_cb, processed_cb, generated_cb)
+            n_workers, input_finished = self._handle_result(
+                result, n_workers, input_finished, input_data
             )
 
-            # Stop all workers after the input rows have finished processing
-            input_data = chain(input_rows, [STOP_SIGNAL] * n_workers)
+    def _get_result_from_queue(self, pool: list[Process]) -> dict:
+        while True:
+            try:
+                return self.done_queue.get_nowait()
+            except Empty:
+                for p in pool:
+                    exitcode = p.exitcode
+                    if exitcode not in (None, 0):
+                        message = (
+                            f"Worker {p.name} exited unexpectedly with "
+                            f"code {exitcode}"
+                        )
+                        raise RuntimeError(message) from None
+                sleep(0.01)
 
-            # Add initial buffer of tasks
-            for _ in range(self.buffer_size):
+    def _update_callbacks(
+        self,
+        result: dict,
+        download_cb: Callback = DEFAULT_CALLBACK,
+        processed_cb: Callback = DEFAULT_CALLBACK,
+        generated_cb: Callback = DEFAULT_CALLBACK,
+    ) -> None:
+        if bytes_downloaded := result.get("bytes_downloaded"):
+            download_cb.relative_update(bytes_downloaded)
+        if downloaded := result.get("downloaded"):
+            download_cb.increment_file_count(downloaded)
+        if processed := result.get("processed"):
+            processed_cb.relative_update(processed)
+        if generated := result.get("generated"):
+            generated_cb.relative_update(generated)
+
+    def _handle_result(
+        self,
+        result: dict,
+        n_workers: int,
+        input_finished: bool,
+        input_data: Iterable,
+    ) -> tuple[int, bool]:
+        status = result["status"]
+        if status in (OK_STATUS, NOTIFY_STATUS):
+            if status == OK_STATUS and not input_finished:
                 try:
                     put_into_queue(self.task_queue, next(input_data))
                 except StopIteration:
                     input_finished = True
-                    break
+        elif status == FINISHED_STATUS:
+            n_workers -= 1
+        else:  # Failed / error
+            n_workers -= 1
+            if exc := result.get("exception"):
+                if isinstance(exc, KeyboardInterrupt):
+                    raise exc
+                raise UdfRunError(exc, stacktrace=result.get("stacktrace"))
+            raise RuntimeError("Internal error: Parallel UDF execution failed")
 
-            # Process all tasks
-            while n_workers > 0:
-                while True:
-                    try:
-                        result = self.done_queue.get_nowait()
-                        break
-                    except Empty:
-                        for p in pool:
-                            exitcode = p.exitcode
-                            if exitcode not in (None, 0):
-                                message = (
-                                    f"Worker {p.name} exited unexpectedly with "
-                                    f"code {exitcode}"
-                                )
-                                raise RuntimeError(message) from None
-                        sleep(0.01)
-
-                if bytes_downloaded := result.get("bytes_downloaded"):
-                    download_cb.relative_update(bytes_downloaded)
-                if downloaded := result.get("downloaded"):
-                    download_cb.increment_file_count(downloaded)
-                if processed := result.get("processed"):
-                    processed_cb.relative_update(processed)
-                if generated := result.get("generated"):
-                    generated_cb.relative_update(generated)
-
-                status = result["status"]
-                if status in (OK_STATUS, NOTIFY_STATUS):
-                    pass  # Do nothing here
-                elif status == FINISHED_STATUS:
-                    n_workers -= 1  # Worker finished
-                else:  # Failed / error
-                    n_workers -= 1
-                    if exc := result.get("exception"):
-                        if isinstance(exc, KeyboardInterrupt):
-                            raise exc
-                        raise UdfRunError(exc, stacktrace=result.get("stacktrace"))
-                    raise RuntimeError("Internal error: Parallel UDF execution failed")
-
-                if status == OK_STATUS and not input_finished:
-                    try:
-                        put_into_queue(self.task_queue, next(input_data))
-                    except StopIteration:
-                        input_finished = True
-        finally:
-            self._shutdown_workers(pool)
+        return n_workers, input_finished
 
     def _shutdown_workers(self, pool: list[Process]) -> None:
         self._terminate_pool(pool)
