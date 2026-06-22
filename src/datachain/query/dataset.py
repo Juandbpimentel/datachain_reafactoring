@@ -741,7 +741,110 @@ class UDFStep(Step, ABC):
         to select
         """
 
-    def populate_udf_output_table(  # noqa: PLR0915
+    def _process_parallel_udf(
+        self,
+        udf_table: "Table",
+        query: Select,
+        catalog: "Catalog",
+        batching,
+        udf_fields: list[str],
+        processes: bool | int,
+        rows_to_process: int,
+    ) -> None:
+        from datachain.catalog import (
+            QUERY_SCRIPT_ABORTED_EXIT_CODE,
+            QUERY_SCRIPT_CANCELED_EXIT_CODE,
+        )
+
+        if catalog.in_memory:
+            raise RuntimeError(
+                "In-memory databases cannot be used "
+                "with parallel processing."
+            )
+
+        udf_info = UdfInfo(
+            udf_data=filtered_cloudpickle_dumps(self.udf),
+            catalog_init=catalog.get_init_params(),
+            metastore_clone_params=catalog.metastore.clone_params(),
+            warehouse_clone_params=catalog.warehouse.clone_params(),
+            table=udf_table,
+            query=query,
+            udf_fields=udf_fields,
+            batching=batching,
+            processes=processes,
+            is_generator=self.is_generator,
+            cache=self.execution.cache,
+            rows_total=rows_to_process,
+            batch_size=self.execution.batch_size,
+        )
+
+        exec_cmd = get_datachain_executable()
+        cmd = [*exec_cmd, "internal-run-udf"]
+        envs = dict(os.environ)
+        envs["PYTHONPATH"] = os.getcwd()
+        process_data = filtered_cloudpickle_dumps(udf_info)
+
+        with subprocess.Popen(  # noqa: S603
+            cmd, env=envs, stdin=subprocess.PIPE
+        ) as process:
+            try:
+                process.communicate(process_data)
+            except KeyboardInterrupt:
+                raise QueryScriptCancelError(
+                    "UDF execution was canceled by the user."
+                ) from None
+            if retval := process.poll():
+                if retval == QUERY_SCRIPT_CANCELED_EXIT_CODE:
+                    raise QueryScriptCancelError(
+                        "UDF execution was canceled by the user."
+                    )
+                if retval == QUERY_SCRIPT_ABORTED_EXIT_CODE:
+                    raise QueryScriptAbortError(
+                        "UDF execution aborted: job already terminated."
+                    )
+                raise RuntimeError(
+                    f"UDF Execution Failed! Exit code: {retval}"
+                )
+
+    def _process_single_threaded_udf(
+        self,
+        udf_table: "Table",
+        query: Select,
+        catalog: "Catalog",
+        batching,
+        udf_fields: list[str],
+    ) -> None:
+        warehouse = catalog.warehouse
+
+        udf_inputs = batching(warehouse.dataset_select_paginated, query)
+        download_cb = get_download_callback()
+        processed_cb = get_processed_callback()
+        generated_cb = get_generated_callback(self.is_generator)
+
+        try:
+            udf_results = self.udf.run(
+                udf_fields,
+                udf_inputs,
+                catalog,
+                self.execution.cache,
+                download_cb,
+                processed_cb,
+            )
+            with safe_closing(udf_results):
+                process_udf_outputs(
+                    warehouse,
+                    udf_table,
+                    udf_results,
+                    self.udf,
+                    cb=generated_cb,
+                    batch_size=self.execution.batch_size,
+                )
+        finally:
+            download_cb.close()
+            processed_cb.close()
+            generated_cb.close()
+
+    def populate_udf_output_table(
         self,
         udf_table: "Table",
         query: Select,
@@ -790,7 +893,6 @@ class UDFStep(Step, ABC):
 
             try:
                 if udf_distributor_class and not catalog.in_memory:
-                    # Use the UDF distributor if available (running in SaaS)
                     udf_distributor = udf_distributor_class(
                         catalog=catalog,
                         table=udf_table,
@@ -819,95 +921,20 @@ class UDFStep(Step, ABC):
                             "In-memory databases cannot be used with "
                             "distributed processing."
                         )
-
                     raise RuntimeError(
                         f"{DISTRIBUTED_IMPORT_PATH} import path is required "
                         "for distributed UDF processing."
                     )
+
                 if processes:
-                    # Parallel processing (faster for more CPU-heavy UDFs)
-                    if catalog.in_memory:
-                        raise RuntimeError(
-                            "In-memory databases cannot be used "
-                            "with parallel processing."
-                        )
-
-                    udf_info = UdfInfo(
-                        udf_data=filtered_cloudpickle_dumps(self.udf),
-                        catalog_init=catalog.get_init_params(),
-                        metastore_clone_params=catalog.metastore.clone_params(),
-                        warehouse_clone_params=catalog.warehouse.clone_params(),
-                        table=udf_table,
-                        query=query,
-                        udf_fields=udf_fields,
-                        batching=batching,
-                        processes=processes,
-                        is_generator=self.is_generator,
-                        cache=self.execution.cache,
-                        rows_total=rows_to_process,
-                        batch_size=self.execution.batch_size,
+                    self._process_parallel_udf(
+                        udf_table, query, catalog, batching,
+                        udf_fields, processes, rows_to_process,
                     )
-
-                    # Run the UDFDispatcher in another process to avoid needing
-                    # if __name__ == '__main__': in user scripts
-                    exec_cmd = get_datachain_executable()
-                    cmd = [*exec_cmd, "internal-run-udf"]
-                    envs = dict(os.environ)
-                    envs["PYTHONPATH"] = os.getcwd()
-                    process_data = filtered_cloudpickle_dumps(udf_info)
-
-                    with subprocess.Popen(  # noqa: S603
-                        cmd, env=envs, stdin=subprocess.PIPE
-                    ) as process:
-                        try:
-                            process.communicate(process_data)
-                        except KeyboardInterrupt:
-                            raise QueryScriptCancelError(
-                                "UDF execution was canceled by the user."
-                            ) from None
-                        if retval := process.poll():
-                            if retval == QUERY_SCRIPT_CANCELED_EXIT_CODE:
-                                raise QueryScriptCancelError(
-                                    "UDF execution was canceled by the user."
-                                )
-                            if retval == QUERY_SCRIPT_ABORTED_EXIT_CODE:
-                                raise QueryScriptAbortError(
-                                    "UDF execution aborted: job already terminated."
-                                )
-                            raise RuntimeError(
-                                f"UDF Execution Failed! Exit code: {retval}"
-                            )
                 else:
-                    # Otherwise process single-threaded (faster for smaller UDFs)
-                    warehouse = catalog.warehouse
-
-                    udf_inputs = batching(warehouse.dataset_select_paginated, query)
-                    download_cb = get_download_callback()
-                    processed_cb = get_processed_callback()
-                    generated_cb = get_generated_callback(self.is_generator)
-
-                    try:
-                        udf_results = self.udf.run(
-                            udf_fields,
-                            udf_inputs,
-                            catalog,
-                            self.execution.cache,
-                            download_cb,
-                            processed_cb,
-                        )
-                        with safe_closing(udf_results):
-                            process_udf_outputs(
-                                warehouse,
-                                udf_table,
-                                udf_results,
-                                self.udf,
-                                cb=generated_cb,
-                                batch_size=self.execution.batch_size,
-                            )
-                    finally:
-                        download_cb.close()
-                        processed_cb.close()
-                        generated_cb.close()
+                    self._process_single_threaded_udf(
+                        udf_table, query, catalog, batching, udf_fields,
+                    )
 
             except QueryScriptAbortError:
                 catalog.warehouse.close()
@@ -916,7 +943,6 @@ class UDFStep(Step, ABC):
                 catalog.warehouse.close()
                 sys.exit(QUERY_SCRIPT_CANCELED_EXIT_CODE)
             except (Exception, KeyboardInterrupt):
-                # Close any open database connections if an error is encountered
                 catalog.warehouse.close()
                 raise
 
