@@ -1432,7 +1432,12 @@ class DataChain:
 
         if "." in col:
             self._process_partition_by_str_nested(
-                col, columns, schema_fields, keep_columns, partial_fields, schema_partition_by,
+                col,
+                columns,
+                schema_fields,
+                keep_columns,
+                partial_fields,
+                schema_partition_by,
             )
         else:
             self._process_partition_by_str_simple(
