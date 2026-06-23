@@ -33,6 +33,52 @@ class UdfSignature:  # noqa: PLW1641
         output: DataType | Sequence[str] | dict[str, DataType] | None = None,
         is_generator: bool = True,
     ) -> "UdfSignature":
+        udf_func, signal_name = cls._resolve_func(chain, signal_map, func)
+
+        if not isinstance(udf_func, UDFBase) and not callable(udf_func):
+            raise UdfSignatureError(
+                chain,
+                f"UDF '{callable_name(udf_func)}' is not callable",
+            )
+
+        func_params_map_sign, func_outs_sign, is_iterator, has_return_annotation = (
+            cls._func_signature(chain, udf_func)
+        )
+
+        if is_generator and has_return_annotation and not is_iterator:
+            raise UdfSignatureError(
+                chain,
+                (
+                    f"function '{callable_name(udf_func)}' cannot be used in "
+                    "generator/aggregator because it returns a type that is "
+                    "not Iterator/Generator. "
+                    f"Instead, it returns '{func_outs_sign}'"
+                ),
+            )
+
+        udf_params = cls._resolve_params(params, func_params_map_sign)
+
+        if output:
+            udf_output_map = cls._validate_output(
+                chain, signal_name, udf_func, func_outs_sign, output
+            )
+        else:
+            udf_output_map = cls._resolve_output_fallback(
+                chain, signal_name, udf_func, func_outs_sign
+            )
+
+        return cls(
+            func=udf_func,
+            params=udf_params,
+            output_schema=SignalSchema(udf_output_map),
+        )
+
+    @staticmethod
+    def _resolve_func(
+        chain: str,
+        signal_map: dict[str, Callable],
+        func: UDFBase | Callable | None,
+    ) -> tuple[UDFBase | Callable, str | None]:
         keys = ", ".join(signal_map.keys())
         if len(signal_map) > 1:
             raise UdfSignatureError(
@@ -42,7 +88,6 @@ class UdfSignature:  # noqa: PLW1641
                     " Chain multiple processors instead.",
                 ),
             )
-        udf_func: UDFBase | Callable
         if len(signal_map) == 1:
             if func is not None:
                 raise UdfSignatureError(
@@ -59,78 +104,53 @@ class UdfSignature:  # noqa: PLW1641
 
             udf_func = func
             signal_name = None
+        return udf_func, signal_name
 
-        if not isinstance(udf_func, UDFBase) and not callable(udf_func):
-            raise UdfSignatureError(
-                chain,
-                f"UDF '{callable_name(udf_func)}' is not callable",
-            )
-
-        func_params_map_sign, func_outs_sign, is_iterator, has_return_annotation = (
-            cls._func_signature(chain, udf_func)
-        )
-
-        # For generators/aggregators, users must return an Iterator/Generator.
-        # Previously, this validation only happened when `output` was not explicitly
-        # provided, which allowed easy-to-miss return-shape bugs (e.g. returning a
-        # tuple row instead of yielding it).
-        if is_generator and has_return_annotation and not is_iterator:
-            raise UdfSignatureError(
-                chain,
-                (
-                    f"function '{callable_name(udf_func)}' cannot be used in "
-                    "generator/aggregator because it returns a type that is "
-                    "not Iterator/Generator. "
-                    f"Instead, it returns '{func_outs_sign}'"
-                ),
-            )
-
-        udf_params: dict[str, DataType | Any] = {}
+    @staticmethod
+    def _resolve_params(
+        params: str | Sequence[str] | None,
+        func_params_map_sign: dict[str, type],
+    ) -> dict[str, DataType | Any]:
         if params:
-            udf_params = (
-                {params: Any} if isinstance(params, str) else dict.fromkeys(params, Any)
+            return (
+                {params: Any}
+                if isinstance(params, str)
+                else dict.fromkeys(params, Any)
             )
-        elif func_params_map_sign:
-            udf_params = {
+        if func_params_map_sign:
+            return {
                 param: (
                     param_type if param_type is not inspect.Parameter.empty else Any
                 )
                 for param, param_type in func_params_map_sign.items()
             }
+        return {}
 
-        if output:
-            # Use the actual resolved function (udf_func) for clearer error messages
-            udf_output_map = UdfSignature._validate_output(
-                chain, signal_name, udf_func, func_outs_sign, output
+    @staticmethod
+    def _resolve_output_fallback(
+        chain: str,
+        signal_name: str | None,
+        func: Callable | UDFBase,
+        func_outs_sign: Sequence[type],
+    ) -> dict[str, type]:
+        if not func_outs_sign:
+            raise UdfSignatureError(
+                chain,
+                f"outputs are not defined in function '{callable_name(func)}'"
+                " hints or 'output'",
             )
-        else:
-            if not func_outs_sign:
-                raise UdfSignatureError(
-                    chain,
-                    f"outputs are not defined in function '{callable_name(udf_func)}'"
-                    " hints or 'output'",
-                )
-
-            if not signal_name:
-                raise UdfSignatureError(
-                    chain,
-                    "signal name is not specified."
-                    " Define it as signal name 's1=func() or in 'output'",
-                )
-
-            if isinstance(func_outs_sign, tuple):
-                udf_output_map = {
-                    signal_name + f"_{num}": typ
-                    for num, typ in enumerate(func_outs_sign)
-                }
-            else:
-                udf_output_map = {signal_name: func_outs_sign[0]}
-
-        return cls(
-            func=udf_func,
-            params=udf_params,
-            output_schema=SignalSchema(udf_output_map),
-        )
+        if not signal_name:
+            raise UdfSignatureError(
+                chain,
+                "signal name is not specified."
+                " Define it as signal name 's1=func() or in 'output'",
+            )
+        if isinstance(func_outs_sign, tuple):
+            return {
+                signal_name + f"_{num}": typ
+                for num, typ in enumerate(func_outs_sign)
+            }
+        return {signal_name: func_outs_sign[0]}
 
     @staticmethod
     def _validate_output(chain, signal_name, func, func_outs_sign, output):
