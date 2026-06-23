@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
 import attrs
+from transformers import dataclass
 
 from datachain.dataset import StorageURI
 from datachain.lib.file import File
@@ -45,19 +46,22 @@ class DirTypeGroup:
     DIR = (DirType.DIR,)
     SUBOBJ_FILE = (DirType.FILE,)
     SUBOBJ_DIR = (DirType.DIR, DirType.TAR_ARCHIVE)
-
-
-@attrs.define
-class Node:
-    sys__id: int = 0
-    sys__rand: int = 0
-    path: str = ""
+    
+@dataclass
+class FileMetadata:
     etag: str = ""
     version: str | None = None
     is_latest: bool = True
     last_modified: datetime | None = None
     size: int = 0
     location: str | None = None
+
+@attrs.define
+class Node:
+    sys__id: int = 0
+    sys__rand: int = 0
+    path: str = ""
+    meta: FileMetadata = attrs.field(factory=FileMetadata)
     source: StorageURI = StorageURI("")  # noqa: RUF009
     dir_type: int = DirType.FILE
 
@@ -75,13 +79,13 @@ class Node:
 
     def append_to_file(self, fd, path: str):
         fd.write(f"- name: {path}\n")
-        fd.write(f"  etag: {self.etag}\n")
-        version = self.version
+        fd.write(f"  etag: {self.meta.etag}\n")
+        version = self.meta.version
         if version:
-            fd.write(f"  version: {self.version}\n")
-        fd.write(f"  last_modified: '{time_to_str(self.last_modified)}'\n")
-        size = self.size
-        fd.write(f"  size: {self.size}\n")
+            fd.write(f"  version: {self.meta.version}\n")
+        fd.write(f"  last_modified: '{time_to_str(self.meta.last_modified)}'\n")
+        size = self.meta.size
+        fd.write(f"  size: {self.meta.size}\n")
         return size
 
     @property
@@ -96,12 +100,12 @@ class Node:
         return File(
             source=source,
             path=self.path,
-            size=self.size,
-            version=self.version or "",
-            etag=self.etag,
-            is_latest=self.is_latest,
-            location=self.location,
-            last_modified=self.last_modified or TIME_ZERO,
+            size=self.meta.size,
+            version=self.meta.version or "",
+            etag=self.meta.etag,
+            is_latest=self.meta.is_latest,
+            location=self.meta.location,
+            last_modified=self.meta.last_modified or TIME_ZERO,
         )
 
     @classmethod
@@ -109,12 +113,12 @@ class Node:
         return cls(
             source=StorageURI(f.source),
             path=f.path,
-            etag=f.etag,
-            is_latest=f.is_latest,
-            size=f.size,
-            last_modified=f.last_modified,
-            version=f.version,
-            location=str(f.location) if f.location else None,
+            etag=f.meta.etag,
+            is_latest=f.meta.is_latest,
+            size=f.meta.size,
+            last_modified=f.meta.last_modified,
+            version=f.meta.version,
+            location=str(f.meta.location) if f.meta.location else None,
             dir_type=DirType.FILE,
         )
 
@@ -128,12 +132,14 @@ class Node:
             sys__rand=d["sys__rand"],
             source=_dval("source"),
             path=_dval("path"),
-            etag=_dval("etag"),
-            is_latest=_dval("is_latest"),
-            size=_dval("size"),
-            last_modified=_dval("last_modified"),
-            version=_dval("version"),
-            location=_dval("location"),
+            meta=FileMetadata(
+                etag=_dval("etag"),
+                is_latest=_dval("is_latest"),
+                size=_dval("size"),
+                last_modified=_dval("last_modified"),
+                version=_dval("version"),
+                location=_dval("location"),
+            ),
             dir_type=DirType.FILE,
         )
 
