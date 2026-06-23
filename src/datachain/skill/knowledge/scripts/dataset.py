@@ -68,7 +68,7 @@ def fetch_version_data(name_version: str) -> dict:  # noqa: C901, PLR0912, PLR09
                 if version is None:
                     version = resolved_ver
                 dv = dataset.get_version(resolved_ver)
-                query_script = dv.query_script or None
+                query_script = dv.execution.query_script or None
                 uuid = getattr(dv, "uuid", None)
                 sorted_vers = sorted(dataset.versions, key=lambda v: v.version_value)
                 idx = next(
@@ -79,7 +79,7 @@ def fetch_version_data(name_version: str) -> dict:  # noqa: C901, PLR0912, PLR09
                     p = sorted_vers[idx - 1]
                     _prev_version_info = (
                         p.version,
-                        p.query_script or None,
+                        p.execution.query_script or None,
                     )
         except Exception as e:  # noqa: BLE001
             _warn(f"Studio dataset_info({name}): {e}")
@@ -116,7 +116,7 @@ def fetch_version_data(name_version: str) -> dict:  # noqa: C901, PLR0912, PLR09
                 description = dataset.description
                 resolved_ver = version or dataset.latest_version
                 dv = dataset.get_version(resolved_ver)
-                query_script = dv.query_script or None
+                query_script = dv.execution.query_script or None
                 uuid = getattr(dv, "uuid", None)
                 sorted_vers = sorted(dataset.versions, key=lambda v: v.version_value)
                 idx = next(
@@ -127,7 +127,7 @@ def fetch_version_data(name_version: str) -> dict:  # noqa: C901, PLR0912, PLR09
                     p = sorted_vers[idx - 1]
                     _prev_version_info = (
                         p.version,
-                        p.query_script or None,
+                        p.execution.query_script or None,
                     )
         except Exception as e:  # noqa: BLE001
             _warn(f"local catalog metadata for {_bare_name}: {e}")
