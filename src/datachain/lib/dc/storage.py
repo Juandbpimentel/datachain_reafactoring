@@ -177,7 +177,7 @@ def read_storage(
         validate_cloud_bucket_name(str(single_uri))
 
     probe_config = client_config or (
-        session.catalog.client_config if session is not None else None
+        session.catalog.config.client_config if session is not None else None
     )
 
     if (
@@ -192,7 +192,7 @@ def read_storage(
     session = Session.get(session, client_config=client_config, in_memory=in_memory)
     catalog = session.catalog
     cache = catalog.cache
-    client_config = session.catalog.client_config
+    client_config = session.catalog.config.client_config
     if anon is not None:
         # Session.get discards our client_config when an existing session is
         # passed. Re-apply anon locally for the listing path without mutating
