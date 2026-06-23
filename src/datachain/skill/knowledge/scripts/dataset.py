@@ -13,7 +13,7 @@ def _warn(msg: str) -> None:
     print(f"[dc-knowledge warning] {msg}", file=sys.stderr)
 
 
-def _try_read_chain(dc, name_version: str):
+def _read_chain(dc, name_version: str):
     try:
         return dc.read_dataset(name_version)
     except Exception as e:
@@ -21,69 +21,59 @@ def _try_read_chain(dc, name_version: str):
         return None
 
 
-def _try_extract_schema(chain, name):
-    if chain is None:
-        return {}
-    try:
-        return extract_schema(chain)
-    except Exception as e:
-        _warn(f"extract_schema({name}): {e}")
-        return {}
+def _extract_schema_preview(chain, dataset_name: str):
+    schema = {}
+    if chain is not None:
+        try:
+            schema = extract_schema(chain)
+        except Exception as e:
+            _warn(f"extract_schema({dataset_name}): {e}")
+    preview = None
+    if chain is not None:
+        preview = extract_preview(chain)
+    return schema, preview
 
 
-def _try_extract_preview(chain):
-    if chain is None:
-        return None
-    return extract_preview(chain)
-
-
-def _fetch_studio_meta(namespace, project, bare_name, version):
+def _fetch_studio_metadata(namespace, project, bare_name, version):
+    """Fetch metadata from Studio API."""
+    attrs = []
+    description = None
+    query_script = None
+    uuid = None
+    prev_version_info = None
     try:
         from datachain.dataset import DatasetRecord
         from datachain.remote.studio import StudioClient
 
-        client = StudioClient()
-        response = client.dataset_info(namespace, project, bare_name)
+        response = StudioClient().dataset_info(namespace, project, bare_name)
         if response.ok and response.data:
             dataset = DatasetRecord.from_dict(response.data)
             attrs = list(dataset.attrs or [])
             description = dataset.description
-            resolved_ver = version or dataset.latest_version
             if version is None:
-                version = resolved_ver
-            dv = dataset.get_version(resolved_ver)
-            query_script = dv.query_script or None
-            uuid = getattr(dv, "uuid", None)
-            sorted_vers = sorted(dataset.versions, key=lambda v: v.version_value)
-            idx = next(
-                (i for i, v in enumerate(sorted_vers) if v.version == resolved_ver),
-                None,
+                version = dataset.latest_version
+            query_script = dataset.get_version(version).query_script or None
+            uuid = getattr(dataset.get_version(version), "uuid", None)
+            prev_version = max(
+                (
+                    v
+                    for v in dataset.versions
+                    if v.version_value < dataset.get_version(version).version_value
+                ),
+                key=lambda x: x.version_value,
+                default=None,
             )
-            prev_version_info = None
-            if idx is not None and idx > 0:
-                p = sorted_vers[idx - 1]
-                prev_version_info = (
-                    p.version,
-                    p.query_script or None,
-                )
-            return {
-                "query_script": query_script,
-                "uuid": uuid,
-                "attrs": attrs,
-                "description": description,
-                "version": version,
-                "prev_version_info": prev_version_info,
-            }
+            if prev_version is not None:
+                prev_version_info = (prev_version.version, prev_version.query_script or None)
     except Exception as e:
         _warn(f"Studio dataset_info({namespace}.{project}.{bare_name}): {e}")
-
     return {
-        "query_script": None,
-        "uuid": None,
-        "attrs": [],
-        "description": None,
+        "attrs": attrs,
+        "description": description,
         "version": version,
-        "prev_version_info": None,
+        "query_script": query_script,
+        "uuid": uuid,
+        "prev_version_info": prev_version_info,
     }
 
 
@@ -99,7 +89,7 @@ def _resolve_catalog(chain):
     return catalog
 
 
-def _resolve_local_version(dc, catalog, bare_name, version):
+def _resolve_version(dc, catalog, bare_name, version):
     if version is None and catalog is not None:
         try:
             ds = catalog.get_dataset(bare_name, include_incomplete=False)
@@ -115,103 +105,96 @@ def _resolve_local_version(dc, catalog, bare_name, version):
     return version
 
 
-def _fetch_local_dataset_info(catalog, bare_name, version):
+def _fetch_local_metadata(dc, chain, bare_name, version):
+    """Fetch metadata from local catalog."""
+    catalog = _resolve_catalog(chain)
+    version = _resolve_version(dc, catalog, bare_name, version)
+
+    attrs = []
+    description = None
     query_script = None
     uuid = None
-    attrs: list[str] = []
-    description: str | None = None
     prev_version_info = None
     try:
         if catalog is not None:
             dataset = catalog.get_dataset(bare_name, include_incomplete=False)
             attrs = list(dataset.attrs or [])
             description = dataset.description
-            resolved_ver = version or dataset.latest_version
-            dv = dataset.get_version(resolved_ver)
-            query_script = dv.query_script or None
-            uuid = getattr(dv, "uuid", None)
-            sorted_vers = sorted(dataset.versions, key=lambda v: v.version_value)
-            idx = next(
-                (i for i, v in enumerate(sorted_vers) if v.version == resolved_ver),
-                None,
+            if version is None:
+                version = dataset.latest_version
+            query_script = dataset.get_version(version).query_script or None
+            uuid = getattr(dataset.get_version(version), "uuid", None)
+            prev_version = max(
+                (
+                    v
+                    for v in dataset.versions
+                    if v.version_value < dataset.get_version(version).version_value
+                ),
+                key=lambda x: x.version_value,
+                default=None,
             )
-            if idx is not None and idx > 0:
-                p = sorted_vers[idx - 1]
-                prev_version_info = (
-                    p.version,
-                    p.query_script or None,
-                )
+            if prev_version is not None:
+                prev_version_info = (prev_version.version, prev_version.query_script or None)
     except Exception as e:
         _warn(f"local catalog metadata for {bare_name}: {e}")
 
+    dependencies = []
+    try:
+        if catalog is not None and version:
+            dependencies = [
+                dep_to_dict(d)
+                for d in (catalog.get_dataset_dependencies(
+                    name=bare_name, version=version, indirect=True
+                ) or [])
+                if d
+            ]
+    except Exception as e:
+        _warn(f"dependencies for {bare_name}@{version}: {e}")
+
     return {
-        "query_script": query_script,
-        "uuid": uuid,
+        "catalog": catalog,
         "attrs": attrs,
         "description": description,
         "version": version,
+        "query_script": query_script,
+        "uuid": uuid,
         "prev_version_info": prev_version_info,
+        "dependencies": dependencies,
     }
 
 
-def _fetch_local_dependencies(catalog, bare_name, version):
-    dependencies: list = []
-    try:
-        if catalog is not None and version:
-            deps = catalog.get_dataset_dependencies(
-                name=bare_name, version=version, indirect=True
-            )
-            for dep in deps or []:
-                if not dep:
-                    continue
-                dependencies.append(dep_to_dict(dep))
-    except Exception as e:
-        _warn(f"dependencies for {bare_name}@{version}: {e}")
-    return dependencies
-
-
-def _compute_version_changes(
-    prev_version_info, query_script, dependencies,
-    is_studio_dataset, catalog, bare_name,
-):
+def _compute_changes(query_script, prev_version_info, dependencies, catalog, bare_name):
     changes = None
     if prev_version_info is not None:
         prev_version_str, prev_script = prev_version_info
         prev_deps = []
-        if not is_studio_dataset:
+        if catalog is not None:
             try:
-                if catalog is not None:
-                    prev_deps_raw = (
-                        catalog.get_dataset_dependencies(
-                            name=bare_name,
-                            version=prev_version_str,
-                            indirect=True,
-                        )
-                        or []
-                    )
-                    prev_deps = [dep_to_dict(d) for d in prev_deps_raw if d]
+                prev_deps_raw = catalog.get_dataset_dependencies(
+                    name=bare_name,
+                    version=prev_version_str,
+                    indirect=True,
+                ) or []
+                prev_deps = [dep_to_dict(d) for d in prev_deps_raw if d]
             except Exception as e:
                 _warn(f"prev dependencies for {bare_name}@{prev_version_str}: {e}")
-            changes = build_changes(
-                query_script,
-                prev_version_str,
-                prev_script,
-                dependencies,
-                prev_deps,
-                catalog=catalog,
-            )
-        else:
-            changes = build_changes(
-                query_script,
-                prev_version_str,
-                prev_script,
-                dependencies,
-                [],
-            )
+        changes = build_changes(
+            query_script,
+            prev_version_str,
+            prev_script,
+            dependencies,
+            prev_deps,
+            catalog=catalog,
+        )
     return changes
 
 
 def fetch_version_data(name_version: str) -> dict:
+    """Fetch schema, preview, query_script, changes, and deps.
+
+    Returns a dict with keys:
+    name, schema, preview, query_script, changes, dependencies.
+    """
     dc = dc_import()
     from datachain.dataset import parse_dataset_with_version
 
@@ -219,41 +202,21 @@ def fetch_version_data(name_version: str) -> dict:
     _namespace, _project, _bare_name = parse_dataset_name(name)
     is_studio_dataset = bool(_namespace and _project)
 
-    chain = _try_read_chain(dc, name_version)
-    schema = _try_extract_schema(chain, name)
-    preview = _try_extract_preview(chain)
+    chain = _read_chain(dc, name_version)
+    schema, preview = _extract_schema_preview(chain, name)
 
-    query_script = None
-    uuid = None
-    attrs: list[str] = []
-    description: str | None = None
-    prev_version_info = None
-    dependencies: list = []
-    catalog = None
+    meta = (
+        _fetch_studio_metadata(_namespace, _project, _bare_name, version)
+        if is_studio_dataset
+        else _fetch_local_metadata(dc, chain, _bare_name, version)
+    )
 
-    if is_studio_dataset:
-        meta = _fetch_studio_meta(_namespace, _project, _bare_name, version)
-        query_script = meta["query_script"]
-        uuid = meta["uuid"]
-        attrs = meta["attrs"]
-        description = meta["description"]
-        version = meta["version"]
-        prev_version_info = meta["prev_version_info"]
-    else:
-        catalog = _resolve_catalog(chain)
-        version = _resolve_local_version(dc, catalog, _bare_name, version)
-        meta = _fetch_local_dataset_info(catalog, _bare_name, version)
-        query_script = meta["query_script"]
-        uuid = meta["uuid"]
-        attrs = meta["attrs"]
-        description = meta["description"]
-        version = meta["version"]
-        prev_version_info = meta["prev_version_info"]
-        dependencies = _fetch_local_dependencies(catalog, _bare_name, version)
-
-    changes = _compute_version_changes(
-        prev_version_info, query_script, dependencies,
-        is_studio_dataset, catalog, _bare_name,
+    changes = _compute_changes(
+        meta.get("query_script"),
+        meta.get("prev_version_info"),
+        meta.get("dependencies", []),
+        meta.get("catalog"),
+        _bare_name,
     )
 
     output_name = (
@@ -262,14 +225,14 @@ def fetch_version_data(name_version: str) -> dict:
 
     return {
         "name": output_name,
-        "uuid": uuid,
-        "attrs": attrs,
-        "description": description,
+        "uuid": meta.get("uuid"),
+        "attrs": meta.get("attrs", []),
+        "description": meta.get("description"),
         "schema": schema,
         "preview": preview,
-        "query_script": query_script,
+        "query_script": meta.get("query_script"),
         "changes": changes,
-        "dependencies": dependencies,
+        "dependencies": meta.get("dependencies", []),
     }
 
 
