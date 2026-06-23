@@ -9,24 +9,49 @@ J = TypeVar("J", bound="Job")
 
 
 @dataclass
-class Job:
+class JobIdentity:
     id: str
     name: str
     status: int
+
+
+@dataclass
+class JobExecution:
     created_at: datetime
+    finished_at: datetime | None = None
+    python_version: str | None = None
+    is_remote_execution: bool = False
+
+
+@dataclass
+class JobQuery:
     query: str
     query_type: int
     workers: int
     params: dict[str, str]
     metrics: dict[str, Any]
-    finished_at: datetime | None = None
-    python_version: str | None = None
-    error_message: str = ""
-    error_stack: str = ""
+
+
+@dataclass
+class JobRelations:
     parent_job_id: str | None = None
     rerun_from_job_id: str | None = None
     run_group_id: str | None = None
-    is_remote_execution: bool = False
+
+
+@dataclass
+class JobError:
+    error_message: str = ""
+    error_stack: str = ""
+
+
+@dataclass
+class Job:
+    identity: JobIdentity
+    execution: JobExecution
+    query_data: JobQuery
+    relations: JobRelations
+    error: JobError
 
     @classmethod
     def parse(  # noqa: PLR0913
@@ -50,21 +75,33 @@ class Job:
         is_remote_execution: bool = False,
     ) -> "Job":
         return cls(
-            str(id),
-            name,
-            status,
-            created_at,
-            query,
-            query_type,
-            workers,
-            json.loads(params),
-            json.loads(metrics),
-            finished_at,
-            python_version,
-            error_message,
-            error_stack,
-            str(parent_job_id) if parent_job_id else None,
-            str(rerun_from_job_id) if rerun_from_job_id else None,
-            str(run_group_id) if run_group_id else None,
-            is_remote_execution,
+            identity=JobIdentity(
+                id=str(id),
+                name=name,
+                status=status,
+            ),
+            execution=JobExecution(
+                created_at=created_at,
+                finished_at=finished_at,
+                python_version=python_version,
+                is_remote_execution=is_remote_execution,
+            ),
+            query_data=JobQuery(
+                query=query,
+                query_type=query_type,
+                workers=workers,
+                params=json.loads(params),
+                metrics=json.loads(metrics),
+            ),
+            relations=JobRelations(
+                parent_job_id=str(parent_job_id) if parent_job_id else None,
+                rerun_from_job_id=str(rerun_from_job_id)
+                if rerun_from_job_id
+                else None,
+                run_group_id=str(run_group_id) if run_group_id else None,
+            ),
+            error=JobError(
+                error_message=error_message,
+                error_stack=error_stack,
+            ),
         )
