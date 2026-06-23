@@ -4,6 +4,9 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import MagicMock, patch
+
+import pytest
 
 # Insert the scripts directory so bare imports work (matches runtime behavior).
 SCRIPTS_DIR = str(
@@ -32,6 +35,8 @@ from utils import (  # noqa: E402
     source_to_https,
     split_frontmatter,
 )
+
+import dataset_all  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # utils.py
@@ -650,3 +655,263 @@ def test_render_index_escapes_pipe_in_table_cell(tmp_path, monkeypatch):
     assert "Columns a \\| b \\| c split by pipes." in result
     assert "Columns a | b | c" not in result
     assert "a \\| b" in result
+
+
+# ---------------------------------------------------------------------------
+# dataset_all.py
+# ---------------------------------------------------------------------------
+
+
+def test_merge_versions_adds_and_sorts():
+    existing = [{"version": "1.0.0"}, {"version": "3.0.0"}]
+    new_versions = [{"version": "2.0.0"}]
+    result = dataset_all._merge_versions(existing, new_versions, ["2.0.0"])
+    assert [v["version"] for v in result] == ["1.0.0", "2.0.0", "3.0.0"]
+
+
+def test_merge_versions_replaces_existing():
+    existing = [{"version": "1.0.0"}, {"version": "2.0.0", "old": True}]
+    new_versions = [{"version": "2.0.0", "new": True}]
+    result = dataset_all._merge_versions(existing, new_versions, ["2.0.0"])
+    assert result[1] == {"version": "2.0.0", "new": True}
+
+
+def test_merge_versions_keeps_unfetched():
+    existing = [{"version": "1.0.0"}, {"version": "2.0.0"}]
+    new_versions = [{"version": "3.0.0"}]
+    result = dataset_all._merge_versions(existing, new_versions, ["3.0.0"])
+    assert len(result) == 3
+
+
+class TestBuildVersionEntries:
+    def test_normal(self):
+        dc = MagicMock()
+        dc.read_dataset.return_value = MagicMock()
+        version_entries = [
+            {"version": "1.0.0", "records": 10, "updated": "2024-01-01"},
+            {"version": "2.0.0", "records": 20, "updated": "2024-02-01"},
+        ]
+        versions_sorted = ["1.0.0", "2.0.0"]
+
+        fake_data = {
+            "uuid": "uuid1",
+            "attrs": ["col1"],
+            "description": "desc",
+            "schema": {},
+            "preview": None,
+            "query_script": "SELECT 1",
+            "changes": None,
+            "dependencies": [],
+        }
+
+        with patch("dataset_all.fetch_version_data") as mock_fvd:
+            mock_fvd.return_value = fake_data
+            with patch("summary.dataset_summary_from_chain") as mock_summary:
+                mock_summary.return_value = "summary"
+                warnings: list[str] = []
+                versions_out, attrs, desc = dataset_all._build_version_entries(
+                    "ds", version_entries, versions_sorted, dc, warnings,
+                )
+        assert len(versions_out) == 2
+        assert attrs == ["col1"]
+        assert desc == "desc"
+        assert versions_out[0]["version"] == "1.0.0"
+        assert versions_out[1]["version"] == "2.0.0"
+        assert versions_out[1]["summary"] == "summary"
+        assert versions_out[0]["summary"] is None
+        assert warnings == []
+
+    def test_summary_error_appends_warning(self):
+        dc = MagicMock()
+        dc.read_dataset.side_effect = Exception("boom")
+        version_entries = [
+            {"version": "1.0.0", "records": 10, "updated": "2024-01-01"},
+        ]
+        versions_sorted = ["1.0.0"]
+
+        with patch("dataset_all.fetch_version_data") as mock_fvd:
+            mock_fvd.return_value = {
+                "uuid": "uuid1",
+                "attrs": [],
+                "description": None,
+                "schema": {},
+                "preview": None,
+                "query_script": None,
+                "changes": None,
+                "dependencies": [],
+            }
+            warnings: list[str] = []
+            dataset_all._build_version_entries(
+                "ds", version_entries, versions_sorted, dc, warnings,
+            )
+        assert warnings == ["summary: boom"]
+
+
+class TestFetchStudioVersions:
+    def test_found(self):
+        dc = MagicMock()
+        with patch("dataset_all.collect_datasets") as mock_cd:
+            mock_cd.return_value = [
+                {"name": "org.ns.ds", "version": "1.0.0", "records": 10, "updated": "2024-01-01"},
+                {"name": "org.ns.ds", "version": "2.0.0", "records": 20, "updated": "2024-02-01"},
+            ]
+            with patch("dataset_all._build_version_entries") as mock_bve:
+                mock_bve.return_value = (
+                    [{"version": "1.0.0"}, {"version": "2.0.0"}],
+                    ["col1"],
+                    "desc",
+                )
+                result = dataset_all._fetch_studio_versions("org.ns.ds", "studio", dc)
+        assert result["name"] == "org.ns.ds"
+        assert result["source"] == "studio"
+        assert result["attrs"] == ["col1"]
+        assert len(result["versions"]) == 2
+
+    def test_not_found_exits(self):
+        dc = MagicMock()
+        with patch("dataset_all.collect_datasets") as mock_cd:
+            mock_cd.return_value = [{"name": "other", "version": "1.0.0"}]
+            with pytest.raises(SystemExit):
+                dataset_all._fetch_studio_versions("org.ns.ds", "studio", dc)
+
+
+class TestFetchLocalCatalogVersions:
+    def test_normal(self):
+        catalog = MagicMock()
+        dc = MagicMock()
+        dc.read_dataset.return_value = MagicMock()
+
+        ver1 = MagicMock()
+        ver1.version = "1.0.0"
+        ver1.query_script = "SELECT 1"
+        ver1.num_objects = 10
+        ver1.finished_at = None
+        ver1.created_at = MagicMock()
+        ver1.created_at.isoformat.return_value = "2024-01-01T00:00:00"
+        setattr(ver1, "uuid", "uuid1")
+
+        ver2 = MagicMock()
+        ver2.version = "2.0.0"
+        ver2.query_script = "SELECT 2"
+        ver2.num_objects = 20
+        ver2.finished_at = None
+        ver2.created_at = MagicMock()
+        ver2.created_at.isoformat.return_value = "2024-02-01T00:00:00"
+        setattr(ver2, "uuid", "uuid2")
+
+        versions_sorted = [ver1, ver2]
+        catalog.get_dataset_dependencies.return_value = []
+
+        with (
+            patch("dataset_all.extract_schema") as mock_schema,
+            patch("dataset_all.extract_preview") as mock_preview,
+            patch("dataset_all.dep_to_dict") as mock_dtd,
+            patch("dataset_all.build_changes") as mock_bc,
+            patch("summary.dataset_summary_from_chain") as mock_summary,
+        ):
+            mock_schema.return_value = {"columns": ["col1"]}
+            mock_preview.return_value = "preview"
+            mock_summary.return_value = "summary"
+            mock_dtd.side_effect = lambda d: d
+            mock_bc.return_value = "changes"
+
+            warnings: list[str] = []
+            result = dataset_all._fetch_local_catalog_versions(
+                "ds", "local", catalog, versions_sorted,
+                ["col1"], "desc", dc, warnings,
+            )
+        assert result["name"] == "ds"
+        assert result["source"] == "local"
+        assert result["attrs"] == ["col1"]
+        assert len(result["versions"]) == 2
+        assert result["versions"][1]["schema"] == {"columns": ["col1"]}
+        assert result["versions"][0]["schema"] == {}
+
+    def test_warnings_collected(self):
+        catalog = MagicMock()
+        dc = MagicMock()
+        dc.read_dataset.side_effect = Exception("read failed")
+
+        ver = MagicMock()
+        ver.version = "1.0.0"
+        ver.query_script = "SELECT 1"
+        ver.num_objects = 10
+        ver.finished_at = None
+        ver.created_at = MagicMock()
+        ver.created_at.isoformat.return_value = "2024-01-01T00:00:00"
+        setattr(ver, "uuid", "uuid1")
+
+        catalog.get_dataset_dependencies.return_value = []
+
+        warnings: list[str] = []
+        with (
+            patch("dataset_all.extract_schema"),
+            patch("dataset_all.extract_preview"),
+            patch("dataset_all.dep_to_dict"),
+            patch("dataset_all.build_changes"),
+        ):
+            dataset_all._fetch_local_catalog_versions(
+                "ds", "local", catalog, [ver], [], None, dc, warnings,
+            )
+        assert any("read failed" in w for w in warnings)
+
+
+class TestFetchLocalVersions:
+    def test_catalog_ok(self):
+        dc = MagicMock()
+        with patch("dataset_all.get_catalog") as mock_gc:
+            catalog = MagicMock()
+            mock_gc.return_value = catalog
+            dataset_record = MagicMock()
+            dataset_record.attrs = ["col1"]
+            dataset_record.description = "desc"
+            ver = MagicMock()
+            ver.version_value = "1.0.0"
+            dataset_record.versions = [ver]
+            catalog.get_dataset.return_value = dataset_record
+            with patch("dataset_all._fetch_local_catalog_versions") as mock_flcv:
+                mock_flcv.return_value = {"name": "ds", "versions": []}
+                result = dataset_all._fetch_local_versions("ds", "local", dc)
+        assert result["name"] == "ds"
+
+    def test_catalog_fails_fallback(self):
+        dc = MagicMock()
+        with patch("dataset_all.get_catalog") as mock_gc:
+            mock_gc.side_effect = Exception("catalog fail")
+            with patch("dataset_all.collect_datasets") as mock_cd:
+                mock_cd.return_value = [
+                    {"name": "ds", "version": "1.0.0", "records": 10, "updated": "2024-01-01"},
+                ]
+                with patch("dataset_all._build_version_entries") as mock_bve:
+                    mock_bve.return_value = (
+                        [{"version": "1.0.0"}], ["col1"], "desc",
+                    )
+                    result = dataset_all._fetch_local_versions("ds", "local", dc)
+        assert result["source"] == "local"
+        assert len(result["versions"]) == 1
+        assert any("catalog fail" in w for w in result.get("warnings", []))
+
+    def test_not_found_exits(self):
+        dc = MagicMock()
+        with patch("dataset_all.get_catalog") as mock_gc:
+            mock_gc.side_effect = Exception("catalog fail")
+            with patch("dataset_all.collect_datasets") as mock_cd:
+                mock_cd.return_value = [{"name": "other", "version": "1.0.0"}]
+                with pytest.raises(SystemExit):
+                    dataset_all._fetch_local_versions("ds", "local", dc)
+
+
+class TestFetchAllVersions:
+    def test_studio_dispatched(self):
+        with patch("dataset_all.dc_import") as mock_dc:
+            with patch("dataset_all._fetch_studio_versions") as mock_fsv:
+                mock_fsv.return_value = {"name": "org.ns.ds", "source": "studio"}
+                result = dataset_all._fetch_all_versions("org.ns.ds")
+        assert result["source"] == "studio"
+
+    def test_local_dispatched(self):
+        with patch("dataset_all.dc_import") as mock_dc:
+            with patch("dataset_all._fetch_local_versions") as mock_flv:
+                mock_flv.return_value = {"name": "ds", "source": "local"}
+                result = dataset_all._fetch_all_versions("ds")
+        assert result["source"] == "local"
