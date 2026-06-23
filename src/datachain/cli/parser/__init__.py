@@ -21,11 +21,10 @@ from .utils import (
 from .utils import CustomArgumentParser as ArgumentParser
 
 
-def get_parser() -> ArgumentParser:  # noqa: PLR0915
+def get_parser() -> ArgumentParser:
     try:
         __version__ = version("datachain")
     except PackageNotFoundError:
-        # package is not installed
         __version__ = "unknown"
 
     parser = ArgumentParser(
@@ -35,6 +34,35 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     )
     parser.add_argument("-V", "--version", action="version", version=__version__)
 
+    parent_parser = _create_parent_parser()
+
+    subp = parser.add_subparsers(
+        title="Available Commands",
+        metavar="command",
+        dest="command",
+        help=f"Use `{parser.prog} command --help` for command-specific help",
+    )
+    _add_all_subparsers(subp, parent_parser)
+    return parser
+
+
+def add_completion_parser(subparsers, parents):
+    parser = subparsers.add_parser(
+        "completion",
+        parents=parents,
+        description="Output shell completion script.",
+        formatter_class=CustomHelpFormatter,
+    )
+    parser.add_argument(
+        "-s",
+        "--shell",
+        help="Shell syntax for completions",
+        default="bash",
+        choices=shtab.SUPPORTED_SHELLS,
+    )
+
+
+def _create_parent_parser():
     parent_parser = ArgumentParser(add_help=False, formatter_class=CustomHelpFormatter)
     parent_parser.add_argument(
         "-v", "--verbose", action="count", default=0, help="Be verbose"
@@ -42,7 +70,6 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     parent_parser.add_argument(
         "-q", "--quiet", action="count", default=0, help="Be quiet"
     )
-
     parent_parser.add_argument(
         "--debug-sql",
         action="store_true",
@@ -55,13 +82,10 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         default=False,
         help=argparse.SUPPRESS,
     )
+    return parent_parser
 
-    subp = parser.add_subparsers(
-        title="Available Commands",
-        metavar="command",
-        dest="command",
-        help=f"Use `{parser.prog} command --help` for command-specific help",
-    )
+
+def _add_cp_parser(subp, parent_parser):
     parse_cp = subp.add_parser(
         "cp",
         parents=[parent_parser],
@@ -69,6 +93,12 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         formatter_class=CustomHelpFormatter,
     )
     add_sources_arg(parse_cp).complete = shtab.DIR  # type: ignore[attr-defined]
+    _add_cp_args(parse_cp)
+    add_anon_arg(parse_cp)
+    add_update_arg(parse_cp)
+
+
+def _add_cp_args(parse_cp):
     parse_cp.add_argument(
         "output", type=str, help="Path to a directory or file to put data to"
     )
@@ -93,9 +123,9 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         action="store_true",
         help="Do not expand globs (such as * or ?)",
     )
-    add_anon_arg(parse_cp)
-    add_update_arg(parse_cp)
 
+
+def _add_clone_parser(subp, parent_parser):
     parse_clone = subp.add_parser(
         "clone",
         parents=[parent_parser],
@@ -103,6 +133,12 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         formatter_class=CustomHelpFormatter,
     )
     add_sources_arg(parse_clone).complete = shtab.DIR  # type: ignore[attr-defined]
+    _add_clone_args(parse_clone)
+    add_anon_arg(parse_clone)
+    add_update_arg(parse_clone)
+
+
+def _add_clone_args(parse_clone):
     parse_clone.add_argument(
         "output", type=str, help="Path to a directory or file to put data to"
     )
@@ -133,14 +169,9 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         action="store_true",
         help="Do not copy files, just create a dataset",
     )
-    add_anon_arg(parse_clone)
-    add_update_arg(parse_clone)
 
-    add_auth_parser(subp, parent_parser)
-    add_jobs_parser(subp, parent_parser)
-    add_pipeline_parser(subp, parent_parser)
-    add_skill_parser(subp, parent_parser)
 
+def _add_dataset_parser(subp, parent_parser):
     datasets_parser = subp.add_parser(
         "dataset",
         aliases=["ds"],
@@ -153,8 +184,14 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         dest="datasets_cmd",
         help="Use `datachain dataset CMD --help` to display command-specific help",
     )
+    _add_dataset_pull(datasets_subparser, parent_parser)
+    _add_dataset_edit(datasets_subparser, parent_parser)
+    _add_dataset_ls(datasets_subparser, parent_parser)
+    _add_dataset_rm(datasets_subparser, parent_parser)
 
-    parse_pull = datasets_subparser.add_parser(
+
+def _add_dataset_pull(subp, parent_parser):
+    parse_pull = subp.add_parser(
         "pull",
         parents=[parent_parser],
         description="Pull specific dataset version from Studio.",
@@ -166,6 +203,10 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="Name and version of remote dataset created in Studio",
     )
     parse_pull.add_argument("-o", "--output", type=str, help="Output")
+    _add_dataset_pull_args(parse_pull)
+
+
+def _add_dataset_pull_args(parse_pull):
     parse_pull.add_argument(
         "-f",
         "--force",
@@ -187,7 +228,6 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         action="store_true",
         help="Copy actual files after pulling remote dataset into local DB",
     )
-
     parse_pull.add_argument(
         "--local-name",
         action="store",
@@ -201,7 +241,9 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="Version of the local dataset",
     )
 
-    parse_edit_dataset = datasets_subparser.add_parser(
+
+def _add_dataset_edit(subp, parent_parser):
+    parse_edit_dataset = subp.add_parser(
         "edit",
         parents=[parent_parser],
         description="Edit dataset metadata.",
@@ -230,7 +272,9 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="The team to edit a dataset. By default, it will use team from config",
     )
 
-    datasets_ls_parser = datasets_subparser.add_parser(
+
+def _add_dataset_ls(subp, parent_parser):
+    datasets_ls_parser = subp.add_parser(
         "ls",
         parents=[parent_parser],
         description="List datasets.",
@@ -272,7 +316,9 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="The team to list datasets for. By default, it will use team from config",
     )
 
-    rm_dataset_parser = datasets_subparser.add_parser(
+
+def _add_dataset_rm(subp, parent_parser):
+    rm_dataset_parser = subp.add_parser(
         "rm",
         parents=[parent_parser],
         description="Remove dataset.",
@@ -306,6 +352,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="The team to delete a dataset. By default, it will use team from config",
     )
 
+
+def _add_ls_parser(subp, parent_parser):
     parse_ls = subp.add_parser(
         "ls",
         parents=[parent_parser],
@@ -315,6 +363,10 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     add_anon_arg(parse_ls)
     add_update_arg(parse_ls)
     add_sources_arg(parse_ls, nargs="*")
+    _add_ls_args(parse_ls)
+
+
+def _add_ls_args(parse_ls):
     parse_ls.add_argument(
         "-l",
         "--long",
@@ -349,6 +401,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="The team to list datasets for. By default, it will use team from config",
     )
 
+
+def _add_du_parser(subp, parent_parser):
     parse_du = subp.add_parser(
         "du",
         parents=[parent_parser],
@@ -358,6 +412,10 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     add_sources_arg(parse_du)
     add_anon_arg(parse_du)
     add_update_arg(parse_du)
+    _add_du_args(parse_du)
+
+
+def _add_du_args(parse_du):
     parse_du.add_argument(
         "-b",
         "--bytes",
@@ -384,6 +442,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="Display sizes using powers of 1000 not 1024",
     )
 
+
+def _add_find_parser(subp, parent_parser):
     parse_find = subp.add_parser(
         "find",
         parents=[parent_parser],
@@ -393,6 +453,10 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     add_anon_arg(parse_find)
     add_update_arg(parse_find)
     add_sources_arg(parse_find)
+    _add_find_args(parse_find)
+
+
+def _add_find_args(parse_find):
     parse_find.add_argument(
         "--name",
         type=str,
@@ -442,6 +506,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         ),
     )
 
+
+def _add_index_parser(subp, parent_parser):
     parse_index = subp.add_parser(
         "index",
         parents=[parent_parser],
@@ -452,6 +518,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     add_update_arg(parse_index)
     add_sources_arg(parse_index)
 
+
+def _add_show_parser(subp, parent_parser):
     show_parser = subp.add_parser(
         "show",
         parents=[parent_parser],
@@ -474,6 +542,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     )
     add_show_args(show_parser)
 
+
+def _add_clear_cache_parser(subp, parent_parser):
     parse_clear_cache = subp.add_parser(
         "clear-cache",
         parents=[parent_parser],
@@ -482,6 +552,8 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     )
     add_anon_arg(parse_clear_cache)
 
+
+def _add_gc_parser(subp, parent_parser):
     parse_gc = subp.add_parser(
         "gc",
         parents=[parent_parser],
@@ -503,9 +575,13 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
     )
     add_anon_arg(parse_gc)
 
+
+def _add_internal_parsers(subp, parent_parser):
     subp.add_parser("internal-run-udf", parents=[parent_parser])
     subp.add_parser("internal-run-udf-worker", parents=[parent_parser])
 
+
+def _add_bucket_parser(subp, parent_parser):
     parse_bucket = subp.add_parser(
         "bucket",
         parents=[parent_parser],
@@ -516,7 +592,6 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         dest="bucket_cmd",
         help="Use `datachain bucket CMD --help` for command-specific help",
     )
-
     parse_bucket_status = bucket_subparsers.add_parser(
         "status",
         parents=[parent_parser],
@@ -541,21 +616,34 @@ def get_parser() -> ArgumentParser:  # noqa: PLR0915
         help="Azure storage account name (required for anonymous access detection).",
     )
 
+
+def _add_group_1(subp, parent_parser):
+    _add_cp_parser(subp, parent_parser)
+    _add_clone_parser(subp, parent_parser)
+    add_auth_parser(subp, parent_parser)
+    add_jobs_parser(subp, parent_parser)
+    add_pipeline_parser(subp, parent_parser)
+    add_skill_parser(subp, parent_parser)
+    _add_dataset_parser(subp, parent_parser)
+
+
+def _add_group_2(subp, parent_parser):
+    _add_ls_parser(subp, parent_parser)
+    _add_du_parser(subp, parent_parser)
+    _add_find_parser(subp, parent_parser)
+    _add_index_parser(subp, parent_parser)
+    _add_show_parser(subp, parent_parser)
+    _add_clear_cache_parser(subp, parent_parser)
+    _add_gc_parser(subp, parent_parser)
+
+
+def _add_group_3(subp, parent_parser):
+    _add_internal_parsers(subp, parent_parser)
+    _add_bucket_parser(subp, parent_parser)
     add_completion_parser(subp, [parent_parser])
-    return parser
 
 
-def add_completion_parser(subparsers, parents):
-    parser = subparsers.add_parser(
-        "completion",
-        parents=parents,
-        description="Output shell completion script.",
-        formatter_class=CustomHelpFormatter,
-    )
-    parser.add_argument(
-        "-s",
-        "--shell",
-        help="Shell syntax for completions",
-        default="bash",
-        choices=shtab.SUPPORTED_SHELLS,
-    )
+def _add_all_subparsers(subp, parent_parser):
+    _add_group_1(subp, parent_parser)
+    _add_group_2(subp, parent_parser)
+    _add_group_3(subp, parent_parser)
