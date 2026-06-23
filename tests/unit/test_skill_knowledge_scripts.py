@@ -480,6 +480,167 @@ def test_parse_dataset_name_slash_separated():
 
 
 # ---------------------------------------------------------------------------
+# plan.py
+# ---------------------------------------------------------------------------
+
+
+import plan as _plan
+
+
+def test_is_calibration_by_name():
+    assert _plan._is_calibration({"name": "calib_test", "version": "1.0.0"})
+    assert _plan._is_calibration({"name": "pilot_test", "version": "1.0.0"})
+
+
+def test_is_calibration_by_subname():
+    assert _plan._is_calibration({"name": "ds.calib_test", "version": "1.0.0"})
+
+
+def test_is_calibration_by_attrs():
+    assert _plan._is_calibration({"name": "ds", "attrs": ["scope:calibration"]})
+    assert _plan._is_calibration({"name": "ds", "attrs": ["scope:pilot"]})
+
+
+def test_is_calibration_false():
+    assert not _plan._is_calibration({"name": "normal_ds", "version": "1.0.0"})
+
+
+def test_is_calibration_empty():
+    assert not _plan._is_calibration({})
+
+
+def test_plan_datasets_up_to_date(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "2024-01-01T00:00:00Z"})
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert result == []
+    assert up_to_date is True
+
+
+def test_plan_datasets_empty(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [])
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert result == []
+    assert up_to_date is False
+
+
+def test_plan_datasets_all_new(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": "1.0.0", "source": "local", "records": 100, "updated": "2024-01-01"},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: "datasets/ds1")
+    monkeypatch.setattr("os.path.exists", lambda p: False)
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["name"] == "ds1"
+    assert result[0]["status"] == "new"
+    assert result[0]["versions_to_fetch"] == ["1.0.0"]
+    assert result[0]["history_complete"] is True
+    assert up_to_date is False
+
+
+def test_plan_datasets_stale(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": "1.0.0", "source": "local", "records": 100, "updated": "2024-01-01"},
+        {"name": "ds1", "version": "2.0.0", "source": "local", "records": 200, "updated": "2024-02-01"},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: "datasets/ds1")
+    monkeypatch.setattr(_plan, "read_json_versions", lambda p: ["1.0.0"])
+    monkeypatch.setattr(_plan, "read_json_metadata", lambda p: {"last_version": "1.0.0", "records": "100"})
+    monkeypatch.setattr("os.path.exists", lambda p: p.endswith(".json"))
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["status"] == "stale"
+    assert result[0]["versions_to_fetch"] == ["2.0.0"]
+    assert result[0]["last_version"] == "2.0.0"
+
+
+def test_plan_datasets_ok(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": "1.0.0", "source": "local", "records": 100, "updated": "2024-01-01"},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: "datasets/ds1")
+    monkeypatch.setattr(_plan, "read_json_versions", lambda p: ["1.0.0"])
+    monkeypatch.setattr(_plan, "read_json_metadata", lambda p: {"last_version": "1.0.0", "records": "100"})
+    monkeypatch.setattr("os.path.exists", lambda p: p.endswith(".json"))
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["status"] == "ok"
+    assert result[0]["versions_to_fetch"] == []
+
+
+def test_plan_datasets_latest_mismatch(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": "2.0.0", "source": "local", "records": 200, "updated": "2024-02-01"},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: "datasets/ds1")
+    monkeypatch.setattr(_plan, "read_json_versions", lambda p: ["2.0.0"])
+    monkeypatch.setattr(_plan, "read_json_metadata", lambda p: {"last_version": "1.0.0", "records": "100"})
+    monkeypatch.setattr("os.path.exists", lambda p: p.endswith(".json"))
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["status"] == "stale"
+    assert result[0]["versions_to_fetch"] == ["2.0.0"]
+
+
+def test_plan_datasets_md_fallback(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": "1.0.0", "source": "local", "records": 100, "updated": "2024-01-01"},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: "datasets/ds1")
+    monkeypatch.setattr(_plan, "read_md_versions", lambda p: ["1.0.0"])
+    monkeypatch.setattr(_plan, "read_md_metadata", lambda p: {"last_version": "1.0.0", "records": "100"})
+    monkeypatch.setattr("os.path.exists", lambda p: p.endswith(".md") and not p.endswith(".json"))
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["status"] == "ok"
+
+
+def test_plan_datasets_studio_merge(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    local_ds = [{"name": "ds1", "version": "1.0.0", "source": "local", "records": 100, "updated": "2024-01-01"}]
+    studio_ds = [
+        {"name": "ds1", "version": "1.0.0", "source": "studio", "records": 100, "updated": "2024-01-01"},
+        {"name": "ds2", "version": "1.0.0", "source": "studio", "records": 50, "updated": "2024-03-01"},
+    ]
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: local_ds if not studio else studio_ds)
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: f"datasets/{n}")
+    monkeypatch.setattr("os.path.exists", lambda p: False)
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z", studio=True)
+    assert len(result) == 2
+    names = {d["name"] for d in result}
+    assert names == {"ds1", "ds2"}
+
+
+def test_plan_datasets_calibration_filtered(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "calib_xyz", "version": "1.0.0", "source": "local", "records": 10},
+        {"name": "normal_ds", "version": "1.0.0", "source": "local", "records": 100},
+    ])
+    monkeypatch.setattr(_plan, "dataset_file_path", lambda n, s: f"datasets/{n}")
+    monkeypatch.setattr("os.path.exists", lambda p: False)
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert len(result) == 1
+    assert result[0]["name"] == "normal_ds"
+
+
+def test_plan_datasets_no_versions(monkeypatch):
+    monkeypatch.setattr(_plan, "read_frontmatter", lambda _: {"db_last_updated": "old"})
+    monkeypatch.setattr(_plan, "collect_datasets", lambda dc, studio=False: [
+        {"name": "ds1", "version": None, "source": "local"},
+    ])
+    monkeypatch.setattr("os.path.exists", lambda p: False)
+    result, up_to_date = _plan.plan_datasets(None, "2024-01-01T00:00:00Z")
+    assert result == []
+
+
+# ---------------------------------------------------------------------------
 # render_index.py
 # ---------------------------------------------------------------------------
 
