@@ -44,6 +44,10 @@ from datachain.checkpoint import Checkpoint, CheckpointStatus
 from datachain.checkpoint_event import (
     CheckpointEvent,
     CheckpointEventType,
+    CheckpointHashes,
+    CheckpointIdentity,
+    CheckpointMetadata,
+    CheckpointRows,
     CheckpointStepType,
 )
 from datachain.data_storage import JobQueryType, JobStatus
@@ -701,6 +705,16 @@ class AbstractMetastore(ABC, Serializable):
         """
 
 
+_SKIPPABLE_DATASET_FIELDS = frozenset({"id", "created_at"})
+_NON_NULL_DATASET_FIELDS = frozenset({"name", "status", "sources", "query_script"})
+
+_SKIPPABLE_VERSION_FIELDS = frozenset({"id", "created_at"})
+_NON_NULL_VERSION_FIELDS = frozenset({
+    "status", "sources", "query_script", "error_message",
+    "error_stack", "script_output", "uuid",
+})
+
+
 class AbstractDBMetastore(AbstractMetastore):
     """
     Abstract Database Metastore class, to be implemented
@@ -813,7 +827,7 @@ class AbstractDBMetastore(AbstractMetastore):
             c.name
             for c in self._datasets_columns()
             if isinstance(c, Column)
-            and c.name in self.dataset_list_class.__dataclass_fields__
+            and c.name in self.dataset_list_class._db_fields
         ]
 
     @classmethod
@@ -865,7 +879,7 @@ class AbstractDBMetastore(AbstractMetastore):
             c.name  # type: ignore [attr-defined]
             for c in self._datasets_versions_columns()
             if c.name  # type: ignore [attr-defined]
-            in self.dataset_list_version_class.__dataclass_fields__
+            in self.dataset_list_version_class._db_fields
         ]
 
     @classmethod
@@ -1344,54 +1358,81 @@ class AbstractDBMetastore(AbstractMetastore):
             self.remove_dataset_dependants(dataset)
             self.db.execute(self._datasets_delete().where(d.c.id == dataset.id))
 
+    def _validate_dataset_field(self, field, value):
+        if field in _SKIPPABLE_DATASET_FIELDS or field not in self._dataset_fields:
+            return False
+        if value is None and field in _NON_NULL_DATASET_FIELDS:
+            raise ValueError(f"Field {field} cannot be None")
+        if field == "name" and not value:
+            raise ValueError("name cannot be empty")
+        return True
+
+    def _serialize_dataset_field(self, field, value):
+        if field == "attrs":
+            return (json.dumps(value) if value is not None else None), {field: value}
+        if field == "schema":
+            return (json.dumps(value) if value else None), {
+                field: (parse_schema(value) if value else None)
+            }
+        if field == "project_id":
+            if not value:
+                raise ValueError("Cannot set empty project_id for dataset")
+            return value, {"project": self.get_project_by_id(value)}
+        return value, {field: value}
+
     def update_dataset(self, dataset: DatasetRecord, **kwargs) -> DatasetRecord:
         """Updates dataset fields."""
         values: dict[str, Any] = {}
         dataset_values: dict[str, Any] = {}
         for field, value in kwargs.items():
-            if field in ("id", "created_at") or field not in self._dataset_fields:
-                continue  # these fields are read-only or not applicable
-
-            if value is None and field in ("name", "status", "sources", "query_script"):
-                raise ValueError(f"Field {field} cannot be None")
-            if field == "name" and not value:
-                raise ValueError("name cannot be empty")
-
-            if field == "attrs":
-                if value is None:
-                    values[field] = None
-                else:
-                    values[field] = json.dumps(value)
-                dataset_values[field] = value
-            elif field == "schema":
-                if value is None:
-                    values[field] = None
-                    dataset_values[field] = None
-                else:
-                    values[field] = json.dumps(value)
-                    dataset_values[field] = parse_schema(value)
-            elif field == "project_id":
-                if not value:
-                    raise ValueError("Cannot set empty project_id for dataset")
-                dataset_values["project"] = self.get_project_by_id(value)
-                values[field] = value
-            else:
-                values[field] = value
-                dataset_values[field] = value
+            if not self._validate_dataset_field(field, value):
+                continue
+            v, extra = self._serialize_dataset_field(field, value)
+            values[field] = v
+            dataset_values.update(extra)
 
         if not values:
-            return dataset  # nothing to update
+            return dataset
 
         d = self._datasets
         self.db.execute(
             self._datasets_update()
             .where(d.c.name == dataset.name, d.c.project_id == dataset.project.id)
             .values(values),
-        )  # type: ignore [attr-defined]
+        )
 
         result_ds = copy.deepcopy(dataset)
         result_ds.update(**dataset_values)
         return result_ds
+
+    def _validate_dataset_version_field(self, field, value):
+        if field in _SKIPPABLE_VERSION_FIELDS or field not in (
+            self._dataset_version_fields
+        ):
+            return False
+        if value is None and field in _NON_NULL_VERSION_FIELDS:
+            raise ValueError(f"Field {field} cannot be None")
+        return True
+
+    def _serialize_dataset_version_field(self, field, value):
+        if field == "schema":
+            return (json.dumps(value) if value else None), {
+                field: (parse_schema(value) if value else None)
+            }
+        if field == "feature_schema":
+            return (json.dumps(value) if value is not None else None), {field: value}
+        if field == "preview":
+            if value is None:
+                return None, {"_preview_data": None, "_preview_loaded": True}
+            if not isinstance(value, list):
+                raise ValueError(
+                    f"Field '{field}' must be a list, got {type(value).__name__}"
+                )
+            return json.dumps(value, serialize_bytes=True), {
+                "_preview_data": value,
+                "_preview_loaded": True,
+            }
+        return value, {field: value}
 
     def update_dataset_version(
         self, dataset: DatasetRecord, version: str, **kwargs
@@ -1412,46 +1453,11 @@ class AbstractDBMetastore(AbstractMetastore):
         values: dict[str, Any] = {}
         version_values: dict[str, Any] = {}
         for field, value in kwargs.items():
-            if (
-                field in ("id", "created_at")
-                or field not in self._dataset_version_fields
-            ):
-                continue  # these fields are read-only or not applicable
-
-            if value is None and field in (
-                "status",
-                "sources",
-                "query_script",
-                "error_message",
-                "error_stack",
-                "script_output",
-                "uuid",
-            ):
-                raise ValueError(f"Field {field} cannot be None")
-
-            if field == "schema":
-                values[field] = json.dumps(value) if value else None
-                version_values[field] = parse_schema(value) if value else None
-            elif field == "feature_schema":
-                if value is None:
-                    values[field] = None
-                else:
-                    values[field] = json.dumps(value)
-                version_values[field] = value
-            elif field == "preview":
-                if value is None:
-                    values[field] = None
-                elif not isinstance(value, list):
-                    raise ValueError(
-                        f"Field '{field}' must be a list, got {type(value).__name__}"
-                    )
-                else:
-                    values[field] = json.dumps(value, serialize_bytes=True)
-                version_values["_preview_data"] = value
-                version_values["_preview_loaded"] = True
-            else:
-                values[field] = value
-                version_values[field] = value
+            if not self._validate_dataset_version_field(field, value):
+                continue
+            v, vv = self._serialize_dataset_version_field(field, value)
+            values[field] = v
+            version_values.update(vv)
 
         dataset_version = dataset.get_version(version)
 
@@ -1474,7 +1480,7 @@ class AbstractDBMetastore(AbstractMetastore):
             self._datasets_versions_update()
             .where(dv.c.dataset_id == dataset.id, dv.c.version == version)
             .values(values),
-        )  # type: ignore [attr-defined]
+        )
 
         dataset_version.update(**version_values)
         logger.debug(
@@ -1482,8 +1488,8 @@ class AbstractDBMetastore(AbstractMetastore):
             "final_num_objects=%s, final_size=%s, has_preview=%s",
             dataset.name,
             version,
-            dataset_version.num_objects,
-            dataset_version.size,
+            dataset_version.stats.num_objects,
+            dataset_version.stats.size,
             bool(getattr(dataset_version, "_preview_data", None)),
         )
         return dataset_version
@@ -2674,25 +2680,33 @@ class AbstractDBMetastore(AbstractMetastore):
         self.db.execute(query)
 
         return CheckpointEvent(
-            id=event_id,
-            job_id=job_id,
-            run_group_id=run_group_id,
+            identity=CheckpointIdentity(
+                id=event_id,
+                job_id=job_id,
+                run_group_id=run_group_id,
+            ),
             timestamp=timestamp,
             event_type=event_type,
             step_type=step_type,
-            udf_name=udf_name,
-            dataset_name=dataset_name,
-            checkpoint_hash=checkpoint_hash,
-            hash_partial=hash_partial,
-            hash_input=hash_input,
-            hash_output=hash_output,
-            rows_input=rows_input,
-            rows_processed=rows_processed,
-            rows_output=rows_output,
-            rows_input_reused=rows_input_reused,
-            rows_output_reused=rows_output_reused,
-            rerun_from_job_id=rerun_from_job_id,
-            details=details,
+            hashes=CheckpointHashes(
+                checkpoint_hash=checkpoint_hash,
+                hash_partial=hash_partial,
+                hash_input=hash_input,
+                hash_output=hash_output,
+            ),
+            rows=CheckpointRows(
+                rows_input=rows_input,
+                rows_processed=rows_processed,
+                rows_output=rows_output,
+                rows_input_reused=rows_input_reused,
+                rows_output_reused=rows_output_reused,
+            ),
+            metadata=CheckpointMetadata(
+                udf_name=udf_name,
+                dataset_name=dataset_name,
+                rerun_from_job_id=rerun_from_job_id,
+                details=details,
+            ),
         )
 
     def get_checkpoint_events(
