@@ -79,22 +79,27 @@ def _skills_src() -> Path:
     return Path(str(files("datachain.skill")))
 
 
-def _transform_cursor_mdc(skill_md_path: Path) -> str:
-    """Read SKILL.md and transform its frontmatter to Cursor .mdc format."""
-    text = skill_md_path.read_text()
+def _extract_description(frontmatter: str) -> str:
+    for line in frontmatter.splitlines():
+        if line.startswith("description:"):
+            return line.split(":", 1)[1].strip()
+    return ""
 
-    # Extract description from existing frontmatter
+
+def _parse_frontmatter(text: str) -> tuple[str, str]:
     description = ""
     fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
     if fm_match:
-        for line in fm_match.group(1).splitlines():
-            if line.startswith("description:"):
-                description = line.split(":", 1)[1].strip()
-                break
+        description = _extract_description(fm_match.group(1))
         body = text[fm_match.end() :]
     else:
         body = text
+    return description, body
 
+
+def _transform_cursor_mdc(skill_md_path: Path) -> str:
+    text = skill_md_path.read_text()
+    description, body = _parse_frontmatter(text)
     return f"---\ndescription: {description}\nglobs:\nalwaysApply: true\n---\n{body}"
 
 
@@ -112,159 +117,218 @@ def _transform_copilot_instructions(skill_md_path: Path) -> str:
     return f"---\napplyTo: '**/*.py'\n---\n{body}"
 
 
+class _ResolvedLayout(TypedDict):
+    skills_dir: Path
+    commands_dir: Path | None
+    command_ext: str | None
+    write_commands: bool
+
+
+def _parse_skills(skills: str | None) -> list[str]:
+    if not skills:
+        return list(SKILLS)
+    requested = [s.strip() for s in skills.split(",")]
+    invalid = [s for s in requested if s not in SKILLS]
+    if invalid:
+        raise ValueError(
+            f"Unknown skill(s): {', '.join(invalid)}. Valid skills: {', '.join(SKILLS)}"
+        )
+    return requested
+
+
+def _resolve_layout(layout: _TargetLayout, local: bool, base: Path) -> _ResolvedLayout:
+    skills_dir_rel = (
+        layout["skills_dir_local"]
+        if (local and layout["skills_dir_local"] is not None)
+        else layout["skills_dir"]
+    )
+    commands_dir_rel = (
+        layout["commands_dir_local"]
+        if (local and layout["commands_dir_local"] is not None)
+        else layout["commands_dir"]
+    )
+    write_commands = (
+        commands_dir_rel is not None
+        and layout["command_ext"] is not None
+        and (local or not layout["commands_local_only"])
+    )
+    commands_dir = (
+        base / commands_dir_rel if write_commands and commands_dir_rel else None
+    )
+    return {
+        "skills_dir": base / skills_dir_rel,
+        "commands_dir": commands_dir,
+        "command_ext": layout["command_ext"],
+        "write_commands": write_commands,
+    }
+
+
+def _get_skill_content(skill_md: Path, command_ext: str) -> str:
+    if command_ext == ".mdc":
+        return _transform_cursor_mdc(skill_md)
+    if command_ext == ".instructions.md":
+        return _transform_copilot_instructions(skill_md)
+    return skill_md.read_text()
+
+
+def _install_command_file(
+    src: Path,
+    skill_dest: Path,
+    commands_dir: Path,
+    command_ext: str,
+    skill_name: str,
+) -> None:
+    commands_dir.mkdir(parents=True, exist_ok=True)
+    skill_md = src / "SKILL.md"
+    if not skill_md.exists():
+        return
+    content = _get_skill_content(skill_md, command_ext)
+    cmd_dest = commands_dir / f"datachain-{skill_name}{command_ext}"
+    cmd_dest.write_text(content.replace("{skill_dir}", str(skill_dest.resolve())))
+
+
+def _remove_command_file(
+    commands_dir: Path | None,
+    command_ext: str | None,
+    skill_name: str,
+) -> bool:
+    if not (commands_dir and command_ext):
+        return False
+    cmd_dest = commands_dir / f"datachain-{skill_name}{command_ext}"
+    if not cmd_dest.exists():
+        return False
+    cmd_dest.unlink()
+    return True
+
+
+def _remove_skill(
+    skill_name: str,
+    skills_dir: Path,
+    commands_dir: Path | None,
+    command_ext: str | None,
+) -> bool:
+    skill_dest = skills_dir / skill_name
+    found = False
+    if skill_dest.exists():
+        shutil.rmtree(skill_dest)
+        found = True
+    found = _remove_command_file(commands_dir, command_ext, skill_name) or found
+    return found
+
+
+def _check_skill_source(
+    skill_name: str, missing: list[str]
+) -> Path | None:
+    src = _skills_src() / skill_name
+    if not src.exists():
+        print(f"Warning: skill source not found: {src}", file=sys.stderr)
+        missing.append(skill_name)
+        return None
+    return src
+
+
+def _install_skill_files(
+    src: Path,
+    dest: Path,
+    commands_dir: Path | None,
+    command_ext: str | None,
+    skill_name: str,
+) -> None:
+    dest.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(src, dest, dirs_exist_ok=True, ignore=_COPYTREE_IGNORE)
+    skill_md_dest = dest / "SKILL.md"
+    if skill_md_dest.exists():
+        resolved = skill_md_dest.read_text().replace(
+            "{skill_dir}", str(dest.resolve())
+        )
+        skill_md_dest.write_text(resolved)
+    commands_dir and command_ext and _install_command_file(
+        src, dest, commands_dir, command_ext, skill_name
+    )
+
+
+def _install_or_record(
+    skill_name: str,
+    resolved: _ResolvedLayout,
+    installed: list[str],
+    missing: list[str],
+) -> None:
+    src = _check_skill_source(skill_name, missing)
+    if not src:
+        return
+    dest = resolved["skills_dir"] / skill_name
+    _install_skill_files(
+        src, dest, resolved["commands_dir"], resolved["command_ext"], skill_name
+    )
+    installed.append(f"  {skill_name} → {dest}")
+
+
+def _install_all(
+    skills_to_install: list[str], resolved: _ResolvedLayout
+) -> tuple[list[str], list[str]]:
+    installed: list[str] = []
+    missing: list[str] = []
+    for skill_name in skills_to_install:
+        _install_or_record(skill_name, resolved, installed, missing)
+    return installed, missing
+
+
+def _print_install_report(
+    installed: list[str],
+    missing: list[str],
+    local: bool,
+    target: str,
+) -> None:
+    if not installed:
+        print("No skills installed.")
+        return
+    scope = "local" if local else "global"
+    print(f"Installed skills ({scope}, target={target}):")
+    for line in installed:
+        print(line)
+
+
 def install_skills(skills: str | None, target: str, local: bool) -> int:
     layout = TARGET_LAYOUT[target]
     base = Path.cwd() if local else Path.home()
+    resolved = _resolve_layout(layout, local, base)
+    skills_to_install = _parse_skills(skills)
+    installed, missing = _install_all(skills_to_install, resolved)
+    _print_install_report(installed, missing, local, target)
+    return 1 if missing else 0
 
-    if skills:
-        requested = [s.strip() for s in skills.split(",")]
-        invalid = [s for s in requested if s not in SKILLS]
-        if invalid:
-            valid = ", ".join(SKILLS)
-            raise ValueError(
-                f"Unknown skill(s): {', '.join(invalid)}. Valid skills: {valid}"
-            )
-        skills_to_install = requested
+
+def _uninstall_or_record(
+    skill_name: str,
+    resolved: _ResolvedLayout,
+    removed: list[str],
+    not_found: list[str],
+) -> None:
+    skills_dir = resolved["skills_dir"]
+    commands_dir = resolved["commands_dir"]
+    command_ext = resolved["command_ext"]
+    if _remove_skill(skill_name, skills_dir, commands_dir, command_ext):
+        removed.append(f"  {skill_name}")
     else:
-        skills_to_install = list(SKILLS)
-
-    # Per-mode overrides — when installing --local some targets (e.g. copilot)
-    # write to a different directory layout than the user-level default.
-    skills_dir_rel = (
-        layout["skills_dir_local"]
-        if (local and layout["skills_dir_local"] is not None)
-        else layout["skills_dir"]
-    )
-    commands_dir_rel = (
-        layout["commands_dir_local"]
-        if (local and layout["commands_dir_local"] is not None)
-        else layout["commands_dir"]
-    )
-    skills_dir = base / skills_dir_rel
-
-    # Determine whether to write command/rule files
-    write_commands = (
-        commands_dir_rel is not None
-        and layout["command_ext"] is not None
-        and (local or not layout["commands_local_only"])
-    )
-    commands_dir = (
-        base / commands_dir_rel if write_commands and commands_dir_rel else None
-    )
-    command_ext = layout["command_ext"]
-
-    installed = []
-    missing = []
-    for skill_name in skills_to_install:
-        src = _skills_src() / skill_name
-        if not src.exists():
-            print(f"Warning: skill source not found: {src}", file=sys.stderr)
-            missing.append(skill_name)
-            continue
-
-        dest = skills_dir / skill_name
-        dest.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(src, dest, dirs_exist_ok=True, ignore=_COPYTREE_IGNORE)
-
-        # Resolve {skill_dir} placeholder in installed SKILL.md so the agent
-        # doesn't have to probe the filesystem to find its own scripts.
-        installed_skill_md = dest / "SKILL.md"
-        if installed_skill_md.exists():
-            resolved = installed_skill_md.read_text().replace(
-                "{skill_dir}", str(dest.resolve())
-            )
-            installed_skill_md.write_text(resolved)
-
-        if commands_dir is not None and command_ext is not None:
-            commands_dir.mkdir(parents=True, exist_ok=True)
-            skill_md = src / "SKILL.md"
-            if skill_md.exists():
-                cmd_dest = commands_dir / f"datachain-{skill_name}{command_ext}"
-                skill_dir_resolved = str(dest.resolve())
-                if command_ext == ".mdc":
-                    content = _transform_cursor_mdc(skill_md)
-                elif command_ext == ".instructions.md":
-                    content = _transform_copilot_instructions(skill_md)
-                else:
-                    content = skill_md.read_text()
-                cmd_dest.write_text(content.replace("{skill_dir}", skill_dir_resolved))
-
-        installed.append(f"  {skill_name} → {dest}")
-
-    if installed:
-        scope = "local" if local else "global"
-        print(f"Installed skills ({scope}, target={target}):")
-        for line in installed:
-            print(line)
-    else:
-        print("No skills installed.")
-
-    if missing:
-        return 1
-    return 0
+        not_found.append(skill_name)
 
 
-def uninstall_skills(skills: str | None, target: str, local: bool) -> int:
-    layout = TARGET_LAYOUT[target]
-    base = Path.cwd() if local else Path.home()
-
-    if skills:
-        requested = [s.strip() for s in skills.split(",")]
-        invalid = [s for s in requested if s not in SKILLS]
-        if invalid:
-            valid = ", ".join(SKILLS)
-            raise ValueError(
-                f"Unknown skill(s): {', '.join(invalid)}. Valid skills: {valid}"
-            )
-        skills_to_uninstall = requested
-    else:
-        skills_to_uninstall = list(SKILLS)
-
-    skills_dir_rel = (
-        layout["skills_dir_local"]
-        if (local and layout["skills_dir_local"] is not None)
-        else layout["skills_dir"]
-    )
-    commands_dir_rel = (
-        layout["commands_dir_local"]
-        if (local and layout["commands_dir_local"] is not None)
-        else layout["commands_dir"]
-    )
-    skills_dir = base / skills_dir_rel
-
-    write_commands = (
-        commands_dir_rel is not None
-        and layout["command_ext"] is not None
-        and (local or not layout["commands_local_only"])
-    )
-    commands_dir = (
-        base / commands_dir_rel if write_commands and commands_dir_rel else None
-    )
-    command_ext = layout["command_ext"]
-
-    removed = []
-    not_found = []
+def _uninstall_all(
+    skills_to_uninstall: list[str], resolved: _ResolvedLayout
+) -> tuple[list[str], list[str]]:
+    removed: list[str] = []
+    not_found: list[str] = []
     for skill_name in skills_to_uninstall:
-        skill_dest = skills_dir / skill_name
-        cmd_dest = (
-            commands_dir / f"datachain-{skill_name}{command_ext}"
-            if commands_dir and command_ext
-            else None
-        )
+        _uninstall_or_record(skill_name, resolved, removed, not_found)
+    return removed, not_found
 
-        found = False
-        if skill_dest.exists():
-            shutil.rmtree(skill_dest)
-            found = True
-        if cmd_dest and cmd_dest.exists():
-            cmd_dest.unlink()
-            found = True
 
-        if found:
-            removed.append(f"  {skill_name}")
-        else:
-            not_found.append(skill_name)
-
+def _print_uninstall_report(
+    removed: list[str],
+    not_found: list[str],
+    local: bool,
+    target: str,
+) -> None:
     if removed:
         scope = "local" if local else "global"
         print(f"Uninstalled skills ({scope}, target={target}):")
@@ -273,6 +337,14 @@ def uninstall_skills(skills: str | None, target: str, local: bool) -> int:
     if not_found:
         print(f"Not found (already uninstalled): {', '.join(not_found)}")
 
+
+def uninstall_skills(skills: str | None, target: str, local: bool) -> int:
+    layout = TARGET_LAYOUT[target]
+    base = Path.cwd() if local else Path.home()
+    skills_to_uninstall = _parse_skills(skills)
+    resolved = _resolve_layout(layout, local, base)
+    removed, not_found = _uninstall_all(skills_to_uninstall, resolved)
+    _print_uninstall_report(removed, not_found, local, target)
     return 0
 
 

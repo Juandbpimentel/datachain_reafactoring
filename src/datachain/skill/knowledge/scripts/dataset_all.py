@@ -213,7 +213,7 @@ def _fetch_all_versions(name: str) -> dict:  # noqa: C901, PLR0912, PLR0915
     versions_out = []
     for i, ver_obj in enumerate(versions_sorted_obj):
         v_str = ver_obj.version
-        query_script = ver_obj.query_script or None
+        query_script = ver_obj.execution.query_script or None
         ver_deps = deps_by_version.get(v_str, [])
 
         # Changes vs previous version — reuse cached deps, no extra queries.
@@ -221,7 +221,7 @@ def _fetch_all_versions(name: str) -> dict:  # noqa: C901, PLR0912, PLR0915
         if i > 0:
             prev_ver_obj = versions_sorted_obj[i - 1]
             prev_v_str = prev_ver_obj.version
-            prev_script = prev_ver_obj.query_script or None
+            prev_script = prev_ver_obj.execution.query_script or None
             prev_deps = deps_by_version.get(prev_v_str, [])
             changes = build_changes(
                 query_script,
@@ -237,8 +237,10 @@ def _fetch_all_versions(name: str) -> dict:  # noqa: C901, PLR0912, PLR0915
             {
                 "version": v_str,
                 "uuid": getattr(ver_obj, "uuid", None),
-                "records": ver_obj.num_objects,
-                "updated": (ver_obj.finished_at or ver_obj.created_at).isoformat(),
+                "records": ver_obj.stats.num_objects,
+                "updated": (
+                    ver_obj.timestamps.finished_at or ver_obj.timestamps.created_at
+                ).isoformat(),
                 "schema": schema if is_latest else {},
                 "preview": preview if is_latest else None,
                 "summary": summary if is_latest else None,
