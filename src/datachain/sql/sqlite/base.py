@@ -87,6 +87,14 @@ def setup():
     register_type_defaults("sqlite", TypeDefaults())
     register_db_defaults("sqlite", DBDefaults())
 
+    _register_compilation_functions()
+    _register_usearch_functions()
+
+    register_user_defined_sql_functions()
+    setup_is_complete = True
+
+
+def _register_compilation_functions():
     compiles(sql_path.parent, "sqlite")(compile_path_parent)
     compiles(sql_path.name, "sqlite")(compile_path_name)
     compiles(sql_path.file_stem, "sqlite")(compile_path_file_stem)
@@ -120,6 +128,8 @@ def setup():
     compiles(string.string_hash, "sqlite")(compile_string_hash)
     compiles(aggregate.xor_agg, "sqlite")(compile_xor_agg)
 
+
+def _register_usearch_functions():
     with closing(sqlite3.connect(":memory:")) as _usearch_conn:
         usearch_available = load_usearch_extension(_usearch_conn)
 
@@ -129,9 +139,6 @@ def setup():
     else:
         compiles(array.cosine_distance, "sqlite")(compile_cosine_distance)
         compiles(array.euclidean_distance, "sqlite")(compile_euclidean_distance)
-
-    register_user_defined_sql_functions()
-    setup_is_complete = True
 
 
 def run_compiler_hook(name):
