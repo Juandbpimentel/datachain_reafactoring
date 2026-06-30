@@ -1,0 +1,1112 @@
+[
+  {
+    "arquivo": "src\\datachain\\query\\dataset.py",
+    "convention": 105,
+    "total": 183,
+    "warning": 42,
+    "refactor": 34,
+    "error": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\types.py",
+    "convention": 114,
+    "total": 171,
+    "refactor": 15,
+    "warning": 42
+  },
+  {
+    "arquivo": "src\\datachain\\catalog\\catalog.py",
+    "convention": 82,
+    "total": 133,
+    "refactor": 36,
+    "warning": 12,
+    "error": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\file.py",
+    "convention": 45,
+    "total": 90,
+    "refactor": 5,
+    "warning": 37,
+    "error": 3
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\metastore.py",
+    "convention": 25,
+    "total": 78,
+    "warning": 6,
+    "refactor": 42,
+    "error": 5
+  },
+  {
+    "arquivo": "src\\datachain\\dataset.py",
+    "convention": 44,
+    "total": 76,
+    "warning": 10,
+    "refactor": 21,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\sqlite\\base.py",
+    "convention": 63,
+    "total": 72,
+    "warning": 4,
+    "error": 5
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\datachain.py",
+    "convention": 25,
+    "total": 66,
+    "refactor": 23,
+    "warning": 18
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\warehouse.py",
+    "convention": 36,
+    "total": 59,
+    "warning": 8,
+    "refactor": 10,
+    "error": 5
+  },
+  {
+    "arquivo": "src\\datachain\\studio.py",
+    "convention": 30,
+    "total": 52,
+    "warning": 10,
+    "refactor": 12
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\signal_schema.py",
+    "convention": 33,
+    "total": 50,
+    "warning": 6,
+    "refactor": 11
+  },
+  {
+    "arquivo": "src\\datachain\\remote\\studio.py",
+    "warning": 6,
+    "total": 49,
+    "convention": 36,
+    "refactor": 7
+  },
+  {
+    "arquivo": "src\\datachain\\client\\fsspec.py",
+    "convention": 37,
+    "total": 45,
+    "refactor": 2,
+    "warning": 6
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\arrow.py",
+    "convention": 8,
+    "total": 39,
+    "error": 22,
+    "warning": 7,
+    "refactor": 1,
+    "info": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\settings.py",
+    "convention": 15,
+    "total": 37,
+    "refactor": 4,
+    "warning": 18
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\bucket_scan.py",
+    "error": 4,
+    "total": 37,
+    "convention": 15,
+    "warning": 15,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\utils.py",
+    "convention": 31,
+    "total": 36,
+    "warning": 4,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\udf.py",
+    "convention": 13,
+    "total": 33,
+    "refactor": 13,
+    "warning": 7
+  },
+  {
+    "arquivo": "src\\datachain\\torch\\__init__.py",
+    "convention": 1,
+    "total": 32,
+    "refactor": 31
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\schema.py",
+    "convention": 26,
+    "total": 31,
+    "refactor": 4,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\listing.py",
+    "convention": 23,
+    "total": 30,
+    "refactor": 6,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\__init__.py",
+    "convention": 24,
+    "total": 29,
+    "warning": 5
+  },
+  {
+    "arquivo": "src\\datachain\\client\\hf.py",
+    "convention": 12,
+    "total": 27,
+    "refactor": 1,
+    "warning": 13,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\query\\schema.py",
+    "warning": 15,
+    "total": 27,
+    "convention": 11,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\error.py",
+    "convention": 26,
+    "total": 26
+  },
+  {
+    "arquivo": "src\\datachain\\node.py",
+    "convention": 23,
+    "total": 25,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\dataset_all.py",
+    "error": 6,
+    "total": 23,
+    "refactor": 5,
+    "warning": 9,
+    "convention": 3
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\sqlite.py",
+    "convention": 12,
+    "total": 21,
+    "warning": 5,
+    "error": 1,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\video.py",
+    "convention": 1,
+    "total": 21,
+    "refactor": 8,
+    "info": 1,
+    "warning": 11
+  },
+  {
+    "arquivo": "src\\datachain\\query\\dispatch.py",
+    "convention": 17,
+    "total": 21,
+    "error": 1,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\numeric.py",
+    "convention": 13,
+    "total": 20,
+    "refactor": 7
+  },
+  {
+    "arquivo": "src\\datachain\\config.py",
+    "convention": 13,
+    "total": 19,
+    "warning": 6
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\datasets.py",
+    "convention": 11,
+    "total": 19,
+    "refactor": 7,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\meta_formats.py",
+    "warning": 7,
+    "total": 19,
+    "convention": 9,
+    "error": 1,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\webdataset.py",
+    "convention": 16,
+    "total": 19,
+    "refactor": 2,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\hf.py",
+    "convention": 11,
+    "total": 18,
+    "warning": 5,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\array.py",
+    "convention": 9,
+    "total": 18,
+    "warning": 1,
+    "refactor": 8
+  },
+  {
+    "arquivo": "src\\datachain\\asyn.py",
+    "convention": 14,
+    "total": 17,
+    "refactor": 1,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\cache.py",
+    "convention": 17,
+    "total": 17
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\datasets.py",
+    "convention": 5,
+    "total": 17,
+    "refactor": 10,
+    "error": 2
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\ls.py",
+    "convention": 12,
+    "total": 16,
+    "refactor": 2,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\database.py",
+    "convention": 8,
+    "total": 16,
+    "refactor": 6,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\db_engine.py",
+    "convention": 15,
+    "total": 15
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\dataset.py",
+    "error": 3,
+    "total": 15,
+    "warning": 8,
+    "convention": 4
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\summary.py",
+    "error": 2,
+    "total": 15,
+    "convention": 3,
+    "refactor": 4,
+    "warning": 6
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\utils.py",
+    "warning": 12,
+    "total": 15,
+    "convention": 3
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\sqlite\\types.py",
+    "convention": 13,
+    "total": 15,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\query\\session.py",
+    "convention": 8,
+    "total": 14,
+    "warning": 6
+  },
+  {
+    "arquivo": "src\\datachain\\delta.py",
+    "convention": 3,
+    "total": 13,
+    "warning": 5,
+    "refactor": 5
+  },
+  {
+    "arquivo": "src\\datachain\\job.py",
+    "convention": 9,
+    "total": 13,
+    "refactor": 3,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\client\\gcs.py",
+    "convention": 3,
+    "total": 13,
+    "warning": 9,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\listing.py",
+    "convention": 11,
+    "total": 13,
+    "refactor": 1,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\zarr.py",
+    "convention": 5,
+    "total": 13,
+    "warning": 8
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\storage.py",
+    "convention": 4,
+    "total": 13,
+    "refactor": 5,
+    "warning": 4
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\string.py",
+    "convention": 7,
+    "total": 13,
+    "refactor": 6
+  },
+  {
+    "arquivo": "src\\datachain\\func\\func.py",
+    "convention": 9,
+    "total": 12,
+    "refactor": 2,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\audio.py",
+    "convention": 4,
+    "total": 12,
+    "warning": 5,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\model_store.py",
+    "convention": 10,
+    "total": 12,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\csv.py",
+    "convention": 6,
+    "total": 12,
+    "refactor": 3,
+    "warning": 1,
+    "error": 2
+  },
+  {
+    "arquivo": "src\\datachain\\checkpoint_event.py",
+    "convention": 7,
+    "total": 11,
+    "refactor": 3,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\nodes_thread_pool.py",
+    "convention": 10,
+    "total": 11,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\catalog\\loader.py",
+    "convention": 11,
+    "total": 11
+  },
+  {
+    "arquivo": "src\\datachain\\diff\\__init__.py",
+    "convention": 4,
+    "total": 11,
+    "refactor": 7
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\utils.py",
+    "convention": 8,
+    "total": 11,
+    "warning": 1,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\jobs\\scripts\\jobs.py",
+    "warning": 6,
+    "total": 11,
+    "convention": 5
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\aggregate.py",
+    "convention": 6,
+    "total": 11,
+    "refactor": 5
+  },
+  {
+    "arquivo": "src\\datachain\\fs\\reference.py",
+    "convention": 3,
+    "total": 10,
+    "warning": 7
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\bucket_overview.py",
+    "convention": 8,
+    "total": 10,
+    "error": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\selectable.py",
+    "convention": 7,
+    "total": 10,
+    "warning": 2,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\project.py",
+    "convention": 5,
+    "total": 9,
+    "refactor": 2,
+    "error": 1,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\script_meta.py",
+    "convention": 7,
+    "total": 9,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\catalog\\datasource.py",
+    "convention": 9,
+    "total": 9
+  },
+  {
+    "arquivo": "src\\datachain\\catalog\\dependency.py",
+    "convention": 5,
+    "total": 9,
+    "refactor": 2,
+    "warning": 1,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\utils.py",
+    "convention": 4,
+    "total": 9,
+    "refactor": 2,
+    "warning": 3
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\utils.py",
+    "convention": 9,
+    "total": 9
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\pytorch.py",
+    "convention": 6,
+    "total": 9,
+    "warning": 1,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\namespace.py",
+    "convention": 6,
+    "total": 8,
+    "warning": 1,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\serializer.py",
+    "convention": 6,
+    "total": 8,
+    "warning": 1,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dataset_info.py",
+    "convention": 8,
+    "total": 8
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\schema.py",
+    "error": 1,
+    "total": 8,
+    "convention": 5,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\path.py",
+    "convention": 4,
+    "total": 8,
+    "refactor": 4
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\show.py",
+    "convention": 4,
+    "total": 7,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\skill.py",
+    "convention": 5,
+    "total": 7,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\client\\s3.py",
+    "convention": 3,
+    "total": 7,
+    "warning": 4
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\clip.py",
+    "convention": 3,
+    "total": 7,
+    "warning": 1,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\image.py",
+    "convention": 3,
+    "total": 7,
+    "refactor": 4
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\listing_info.py",
+    "warning": 1,
+    "total": 7,
+    "convention": 6
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\json.py",
+    "convention": 3,
+    "total": 7,
+    "refactor": 2,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\records.py",
+    "convention": 4,
+    "total": 7,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\query\\udf.py",
+    "convention": 4,
+    "total": 7,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\changes.py",
+    "error": 1,
+    "total": 7,
+    "warning": 2,
+    "convention": 1,
+    "refactor": 3
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\render_index.py",
+    "error": 1,
+    "total": 7,
+    "warning": 4,
+    "refactor": 1,
+    "convention": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\conditional.py",
+    "convention": 5,
+    "total": 7,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\json.py",
+    "convention": 2,
+    "total": 6,
+    "info": 4
+  },
+  {
+    "arquivo": "src\\datachain\\progress.py",
+    "convention": 5,
+    "total": 6,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\client\\http.py",
+    "convention": 5,
+    "total": 6,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\udf_signature.py",
+    "convention": 4,
+    "total": 6,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\webdataset_laion.py",
+    "convention": 6,
+    "total": 6
+  },
+  {
+    "arquivo": "src\\datachain\\query\\batch.py",
+    "convention": 2,
+    "total": 6,
+    "refactor": 4
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\plan.py",
+    "error": 1,
+    "total": 6,
+    "refactor": 2,
+    "warning": 1,
+    "convention": 2
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\misc.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\client\\azure.py",
+    "convention": 2,
+    "total": 5,
+    "warning": 3
+  },
+  {
+    "arquivo": "src\\datachain\\client\\local.py",
+    "convention": 3,
+    "total": 5,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\func\\aggregate.py",
+    "convention": 1,
+    "total": 5,
+    "warning": 3,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\data_model.py",
+    "convention": 4,
+    "total": 5,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\convert\\flatten.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\convert\\python_to_sql.py",
+    "convention": 4,
+    "total": 5,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\hf.py",
+    "convention": 3,
+    "total": 5,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\listings.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\model\\bbox.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\model\\pose.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\model\\ultralytics\\bbox.py",
+    "convention": 5,
+    "total": 5
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\conversion.py",
+    "convention": 4,
+    "total": 5,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\checkpoint.py",
+    "convention": 3,
+    "total": 4,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\hash_utils.py",
+    "convention": 2,
+    "total": 4,
+    "refactor": 1,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\nodes_fetcher.py",
+    "convention": 3,
+    "total": 4,
+    "error": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\studio.py",
+    "convention": 3,
+    "total": 4,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\buffer.py",
+    "convention": 4,
+    "total": 4
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\job.py",
+    "convention": 4,
+    "total": 4
+  },
+  {
+    "arquivo": "src\\datachain\\func\\base.py",
+    "convention": 3,
+    "total": 4,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\__init__.py",
+    "convention": 1,
+    "total": 4,
+    "warning": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\convert\\unflatten.py",
+    "convention": 4,
+    "total": 4
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\convert\\values_to_tuples.py",
+    "warning": 1,
+    "total": 4,
+    "convention": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\pandas.py",
+    "convention": 2,
+    "total": 4,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\parquet.py",
+    "convention": 2,
+    "total": 4,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\utils.py",
+    "convention": 1,
+    "total": 4,
+    "warning": 2,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\zarr.py",
+    "convention": 4,
+    "total": 4
+  },
+  {
+    "arquivo": "src\\datachain\\model\\ultralytics\\pose.py",
+    "convention": 3,
+    "total": 4,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\utils.py",
+    "convention": 2,
+    "total": 4,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\default\\base.py",
+    "convention": 3,
+    "total": 4,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\functions\\random.py",
+    "convention": 3,
+    "total": 4,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\plugins.py",
+    "convention": 2,
+    "total": 3,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\job.py",
+    "convention": 2,
+    "total": 3,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\pipeline.py",
+    "convention": 2,
+    "total": 3,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\__init__.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\func\\array.py",
+    "convention": 1,
+    "total": 3,
+    "warning": 2
+  },
+  {
+    "arquivo": "src\\datachain\\func\\conditional.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\namespaces.py",
+    "convention": 2,
+    "total": 3,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\tar.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\storage_pattern.py",
+    "convention": 2,
+    "total": 3,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\dc\\values.py",
+    "convention": 1,
+    "total": 3,
+    "refactor": 2
+  },
+  {
+    "arquivo": "src\\datachain\\model\\segment.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\model\\ultralytics\\segment.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\query\\metrics.py",
+    "convention": 2,
+    "total": 3,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\query\\params.py",
+    "convention": 2,
+    "total": 3,
+    "warning": 1
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\list_datasets.py",
+    "error": 1,
+    "total": 3,
+    "convention": 2
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\sqlite\\vector.py",
+    "convention": 3,
+    "total": 3
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\du.py",
+    "convention": 2,
+    "total": 2
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\index.py",
+    "convention": 2,
+    "total": 2
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\parser\\skill.py",
+    "convention": 2,
+    "total": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\projects.py",
+    "convention": 2,
+    "total": 2
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\convert\\sql_to_python.py",
+    "convention": 2,
+    "total": 2
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\cleanup_json.py",
+    "warning": 1,
+    "total": 2,
+    "convention": 1
+  },
+  {
+    "arquivo": "src\\datachain\\skill\\knowledge\\scripts\\db_mtime.py",
+    "error": 1,
+    "total": 2,
+    "convention": 1
+  },
+  {
+    "arquivo": "src\\datachain\\toolkit\\split.py",
+    "convention": 1,
+    "total": 2,
+    "refactor": 1
+  },
+  {
+    "arquivo": "src\\datachain\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\semver.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\telemetry.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\__main__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\catalog\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\bucket.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\cli\\commands\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\client\\fileslice.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\client\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\data_storage\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\fs\\utils.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\numeric.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\path.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\random.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\string.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\func\\window.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\lib\\text.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\model\\utils.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\model\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\query\\queue.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\query\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\default\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\sql\\sqlite\\__init__.py",
+    "convention": 1,
+    "total": 1
+  },
+  {
+    "arquivo": "src\\datachain\\toolkit\\__init__.py",
+    "convention": 1,
+    "total": 1
+  }
+]

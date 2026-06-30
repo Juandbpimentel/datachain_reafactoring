@@ -1,0 +1,82 @@
+[
+  {
+    "simbolo": "too-many-arguments",
+    "ocorrencias": 116
+  },
+  {
+    "simbolo": "too-many-positional-arguments",
+    "ocorrencias": 102
+  },
+  {
+    "simbolo": "too-many-locals",
+    "ocorrencias": 79
+  },
+  {
+    "simbolo": "too-few-public-methods",
+    "ocorrencias": 51
+  },
+  {
+    "simbolo": "too-many-branches",
+    "ocorrencias": 25
+  },
+  {
+    "simbolo": "duplicate-code",
+    "ocorrencias": 23
+  },
+  {
+    "simbolo": "too-many-instance-attributes",
+    "ocorrencias": 20
+  },
+  {
+    "simbolo": "too-many-ancestors",
+    "ocorrencias": 17
+  },
+  {
+    "simbolo": "too-many-statements",
+    "ocorrencias": 15
+  },
+  {
+    "simbolo": "too-many-return-statements",
+    "ocorrencias": 14
+  },
+  {
+    "simbolo": "too-many-public-methods",
+    "ocorrencias": 11
+  },
+  {
+    "simbolo": "inconsistent-return-statements",
+    "ocorrencias": 9
+  },
+  {
+    "simbolo": "cyclic-import",
+    "ocorrencias": 6
+  },
+  {
+    "simbolo": "no-else-raise",
+    "ocorrencias": 2
+  },
+  {
+    "simbolo": "consider-using-generator",
+    "ocorrencias": 2
+  },
+  {
+    "simbolo": "simplifiable-if-statement",
+    "ocorrencias": 1
+  },
+  {
+    "simbolo": "chained-comparison",
+    "ocorrencias": 1
+  },
+  {
+    "simbolo": "too-many-boolean-expressions",
+    "ocorrencias": 1
+  },
+  {
+    "simbolo": "consider-using-with",
+    "ocorrencias": 1
+  },
+  {
+    "simbolo": "consider-merging-isinstance",
+    "ocorrencias": 1
+  }
+]

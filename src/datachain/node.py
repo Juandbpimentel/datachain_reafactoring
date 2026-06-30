@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
 import attrs
-from transformers import dataclass
+from dataclasses import dataclass
 
 from datachain.dataset import StorageURI
 from datachain.lib.file import File

@@ -1,0 +1,3809 @@
+{
+  "extract_metrics_before_codecarbon.py": {
+    "loc": 67,
+    "lloc": 29,
+    "sloc": 38,
+    "comments": 16,
+    "multi": 0,
+    "blank": 14,
+    "single_comments": 15
+  },
+  "extract_metrics_before_pylint.py": {
+    "loc": 112,
+    "lloc": 65,
+    "sloc": 88,
+    "comments": 10,
+    "multi": 0,
+    "blank": 16,
+    "single_comments": 8
+  },
+  "extract_metrics_before_pytest.py": {
+    "loc": 68,
+    "lloc": 32,
+    "sloc": 49,
+    "comments": 7,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 7
+  },
+  "extract_metrics_before_radon.py": {
+    "loc": 180,
+    "lloc": 124,
+    "sloc": 148,
+    "comments": 7,
+    "multi": 0,
+    "blank": 25,
+    "single_comments": 7
+  },
+  "extract_score_before_pylint.py": {
+    "loc": 23,
+    "lloc": 13,
+    "sloc": 18,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "noxfile.py": {
+    "loc": 116,
+    "lloc": 57,
+    "sloc": 86,
+    "comments": 6,
+    "multi": 0,
+    "blank": 23,
+    "single_comments": 7
+  },
+  "docs\\api_hooks.py": {
+    "loc": 42,
+    "lloc": 13,
+    "sloc": 32,
+    "comments": 6,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 5
+  },
+  "examples\\computer_vision\\iptc_exif_xmp_lib.py": {
+    "loc": 78,
+    "lloc": 47,
+    "sloc": 59,
+    "comments": 2,
+    "multi": 4,
+    "blank": 15,
+    "single_comments": 0
+  },
+  "examples\\computer_vision\\llava2_image_desc_lib.py": {
+    "loc": 71,
+    "lloc": 28,
+    "sloc": 43,
+    "comments": 9,
+    "multi": 4,
+    "blank": 15,
+    "single_comments": 9
+  },
+  "examples\\computer_vision\\openimage-detect.py": {
+    "loc": 55,
+    "lloc": 23,
+    "sloc": 41,
+    "comments": 2,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 2
+  },
+  "examples\\computer_vision\\ultralytics-bbox.py": {
+    "loc": 19,
+    "lloc": 8,
+    "sloc": 14,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "examples\\computer_vision\\ultralytics-pose.py": {
+    "loc": 19,
+    "lloc": 8,
+    "sloc": 14,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "examples\\computer_vision\\ultralytics-segment.py": {
+    "loc": 19,
+    "lloc": 8,
+    "sloc": 14,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "examples\\get_started\\common_sql_functions.py": {
+    "loc": 50,
+    "lloc": 12,
+    "sloc": 38,
+    "comments": 0,
+    "multi": 5,
+    "blank": 7,
+    "single_comments": 0
+  },
+  "examples\\get_started\\json-csv-reader.py": {
+    "loc": 76,
+    "lloc": 48,
+    "sloc": 49,
+    "comments": 10,
+    "multi": 0,
+    "blank": 17,
+    "single_comments": 10
+  },
+  "examples\\get_started\\nested_datamodel.py": {
+    "loc": 66,
+    "lloc": 28,
+    "sloc": 31,
+    "comments": 1,
+    "multi": 13,
+    "blank": 21,
+    "single_comments": 1
+  },
+  "examples\\get_started\\torch-loader.py": {
+    "loc": 96,
+    "lloc": 47,
+    "sloc": 68,
+    "comments": 5,
+    "multi": 4,
+    "blank": 19,
+    "single_comments": 5
+  },
+  "examples\\get_started\\udfs\\parallel.py": {
+    "loc": 39,
+    "lloc": 12,
+    "sloc": 17,
+    "comments": 6,
+    "multi": 8,
+    "blank": 9,
+    "single_comments": 5
+  },
+  "examples\\get_started\\udfs\\simple.py": {
+    "loc": 21,
+    "lloc": 7,
+    "sloc": 11,
+    "comments": 6,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 6
+  },
+  "examples\\get_started\\udfs\\stateful.py": {
+    "loc": 43,
+    "lloc": 19,
+    "sloc": 27,
+    "comments": 0,
+    "multi": 4,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "examples\\incremental_processing\\delta.py": {
+    "loc": 64,
+    "lloc": 27,
+    "sloc": 30,
+    "comments": 5,
+    "multi": 13,
+    "blank": 15,
+    "single_comments": 6
+  },
+  "examples\\incremental_processing\\retry.py": {
+    "loc": 130,
+    "lloc": 50,
+    "sloc": 80,
+    "comments": 14,
+    "multi": 15,
+    "blank": 23,
+    "single_comments": 12
+  },
+  "examples\\incremental_processing\\utils.py": {
+    "loc": 41,
+    "lloc": 20,
+    "sloc": 18,
+    "comments": 1,
+    "multi": 13,
+    "blank": 9,
+    "single_comments": 1
+  },
+  "examples\\llm_and_nlp\\claude-query.py": {
+    "loc": 62,
+    "lloc": 28,
+    "sloc": 50,
+    "comments": 0,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "examples\\llm_and_nlp\\hf-dataset-llm-eval.py": {
+    "loc": 83,
+    "lloc": 35,
+    "sloc": 60,
+    "comments": 8,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 8
+  },
+  "examples\\multimodal\\audio-to-text.py": {
+    "loc": 72,
+    "lloc": 24,
+    "sloc": 42,
+    "comments": 8,
+    "multi": 7,
+    "blank": 16,
+    "single_comments": 7
+  },
+  "examples\\multimodal\\clip_inference.py": {
+    "loc": 62,
+    "lloc": 27,
+    "sloc": 41,
+    "comments": 0,
+    "multi": 7,
+    "blank": 14,
+    "single_comments": 0
+  },
+  "examples\\multimodal\\hf_pipeline.py": {
+    "loc": 121,
+    "lloc": 48,
+    "sloc": 94,
+    "comments": 2,
+    "multi": 6,
+    "blank": 20,
+    "single_comments": 1
+  },
+  "examples\\multimodal\\openai_image_desc_lib.py": {
+    "loc": 59,
+    "lloc": 25,
+    "sloc": 47,
+    "comments": 0,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "examples\\multimodal\\wds.py": {
+    "loc": 54,
+    "lloc": 17,
+    "sloc": 43,
+    "comments": 0,
+    "multi": 0,
+    "blank": 11,
+    "single_comments": 0
+  },
+  "examples\\multimodal\\wds_filtered.py": {
+    "loc": 50,
+    "lloc": 18,
+    "sloc": 31,
+    "comments": 4,
+    "multi": 8,
+    "blank": 7,
+    "single_comments": 4
+  },
+  "examples\\multimodal\\zarr-robot-frames.py": {
+    "loc": 72,
+    "lloc": 23,
+    "sloc": 34,
+    "comments": 10,
+    "multi": 14,
+    "blank": 15,
+    "single_comments": 9
+  },
+  "src\\datachain\\asyn.py": {
+    "loc": 300,
+    "lloc": 207,
+    "sloc": 216,
+    "comments": 7,
+    "multi": 27,
+    "blank": 50,
+    "single_comments": 7
+  },
+  "src\\datachain\\cache.py": {
+    "loc": 190,
+    "lloc": 115,
+    "sloc": 145,
+    "comments": 4,
+    "multi": 7,
+    "blank": 35,
+    "single_comments": 3
+  },
+  "src\\datachain\\checkpoint.py": {
+    "loc": 91,
+    "lloc": 57,
+    "sloc": 58,
+    "comments": 0,
+    "multi": 11,
+    "blank": 15,
+    "single_comments": 7
+  },
+  "src\\datachain\\checkpoint_event.py": {
+    "loc": 123,
+    "lloc": 76,
+    "sloc": 99,
+    "comments": 1,
+    "multi": 3,
+    "blank": 19,
+    "single_comments": 2
+  },
+  "src\\datachain\\config.py": {
+    "loc": 133,
+    "lloc": 95,
+    "sloc": 101,
+    "comments": 5,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 3
+  },
+  "src\\datachain\\dataset.py": {
+    "loc": 998,
+    "lloc": 518,
+    "sloc": 765,
+    "comments": 27,
+    "multi": 80,
+    "blank": 130,
+    "single_comments": 23
+  },
+  "src\\datachain\\delta.py": {
+    "loc": 462,
+    "lloc": 162,
+    "sloc": 352,
+    "comments": 14,
+    "multi": 24,
+    "blank": 71,
+    "single_comments": 15
+  },
+  "src\\datachain\\error.py": {
+    "loc": 133,
+    "lloc": 64,
+    "sloc": 60,
+    "comments": 1,
+    "multi": 11,
+    "blank": 59,
+    "single_comments": 3
+  },
+  "src\\datachain\\hash_utils.py": {
+    "loc": 219,
+    "lloc": 93,
+    "sloc": 91,
+    "comments": 29,
+    "multi": 68,
+    "blank": 32,
+    "single_comments": 28
+  },
+  "src\\datachain\\job.py": {
+    "loc": 107,
+    "lloc": 65,
+    "sloc": 92,
+    "comments": 1,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 0
+  },
+  "src\\datachain\\json.py": {
+    "loc": 190,
+    "lloc": 102,
+    "sloc": 129,
+    "comments": 2,
+    "multi": 7,
+    "blank": 47,
+    "single_comments": 7
+  },
+  "src\\datachain\\listing.py": {
+    "loc": 247,
+    "lloc": 131,
+    "sloc": 218,
+    "comments": 2,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 0
+  },
+  "src\\datachain\\namespace.py": {
+    "loc": 87,
+    "lloc": 59,
+    "sloc": 61,
+    "comments": 0,
+    "multi": 8,
+    "blank": 15,
+    "single_comments": 3
+  },
+  "src\\datachain\\node.py": {
+    "loc": 203,
+    "lloc": 130,
+    "sloc": 149,
+    "comments": 1,
+    "multi": 16,
+    "blank": 38,
+    "single_comments": 0
+  },
+  "src\\datachain\\nodes_fetcher.py": {
+    "loc": 37,
+    "lloc": 28,
+    "sloc": 28,
+    "comments": 1,
+    "multi": 0,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "src\\datachain\\nodes_thread_pool.py": {
+    "loc": 135,
+    "lloc": 93,
+    "sloc": 109,
+    "comments": 5,
+    "multi": 0,
+    "blank": 22,
+    "single_comments": 4
+  },
+  "src\\datachain\\plugins.py": {
+    "loc": 24,
+    "lloc": 12,
+    "sloc": 11,
+    "comments": 2,
+    "multi": 5,
+    "blank": 7,
+    "single_comments": 1
+  },
+  "src\\datachain\\progress.py": {
+    "loc": 45,
+    "lloc": 25,
+    "sloc": 24,
+    "comments": 3,
+    "multi": 6,
+    "blank": 12,
+    "single_comments": 3
+  },
+  "src\\datachain\\project.py": {
+    "loc": 89,
+    "lloc": 56,
+    "sloc": 73,
+    "comments": 0,
+    "multi": 0,
+    "blank": 13,
+    "single_comments": 3
+  },
+  "src\\datachain\\script_meta.py": {
+    "loc": 147,
+    "lloc": 69,
+    "sloc": 85,
+    "comments": 3,
+    "multi": 43,
+    "blank": 16,
+    "single_comments": 3
+  },
+  "src\\datachain\\semver.py": {
+    "loc": 68,
+    "lloc": 37,
+    "sloc": 39,
+    "comments": 2,
+    "multi": 13,
+    "blank": 12,
+    "single_comments": 4
+  },
+  "src\\datachain\\studio.py": {
+    "loc": 895,
+    "lloc": 483,
+    "sloc": 712,
+    "comments": 14,
+    "multi": 0,
+    "blank": 174,
+    "single_comments": 9
+  },
+  "src\\datachain\\telemetry.py": {
+    "loc": 37,
+    "lloc": 21,
+    "sloc": 20,
+    "comments": 4,
+    "multi": 3,
+    "blank": 10,
+    "single_comments": 4
+  },
+  "src\\datachain\\utils.py": {
+    "loc": 673,
+    "lloc": 402,
+    "sloc": 484,
+    "comments": 26,
+    "multi": 37,
+    "blank": 130,
+    "single_comments": 22
+  },
+  "src\\datachain\\__init__.py": {
+    "loc": 110,
+    "lloc": 14,
+    "sloc": 107,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "src\\datachain\\__main__.py": {
+    "loc": 6,
+    "lloc": 4,
+    "sloc": 4,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 0
+  },
+  "src\\datachain\\catalog\\catalog.py": {
+    "loc": 2253,
+    "lloc": 954,
+    "sloc": 1844,
+    "comments": 75,
+    "multi": 95,
+    "blank": 252,
+    "single_comments": 62
+  },
+  "src\\datachain\\catalog\\datasource.py": {
+    "loc": 43,
+    "lloc": 28,
+    "sloc": 32,
+    "comments": 1,
+    "multi": 0,
+    "blank": 11,
+    "single_comments": 0
+  },
+  "src\\datachain\\catalog\\dependency.py": {
+    "loc": 164,
+    "lloc": 74,
+    "sloc": 108,
+    "comments": 4,
+    "multi": 27,
+    "blank": 25,
+    "single_comments": 4
+  },
+  "src\\datachain\\catalog\\loader.py": {
+    "loc": 157,
+    "lloc": 90,
+    "sloc": 111,
+    "comments": 8,
+    "multi": 10,
+    "blank": 28,
+    "single_comments": 8
+  },
+  "src\\datachain\\catalog\\__init__.py": {
+    "loc": 17,
+    "lloc": 3,
+    "sloc": 16,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\utils.py": {
+    "loc": 85,
+    "lloc": 39,
+    "sloc": 59,
+    "comments": 1,
+    "multi": 6,
+    "blank": 20,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\__init__.py": {
+    "loc": 361,
+    "lloc": 137,
+    "sloc": 296,
+    "comments": 8,
+    "multi": 0,
+    "blank": 59,
+    "single_comments": 6
+  },
+  "src\\datachain\\cli\\commands\\bucket.py": {
+    "loc": 21,
+    "lloc": 13,
+    "sloc": 12,
+    "comments": 0,
+    "multi": 4,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\commands\\datasets.py": {
+    "loc": 215,
+    "lloc": 101,
+    "sloc": 168,
+    "comments": 11,
+    "multi": 0,
+    "blank": 36,
+    "single_comments": 11
+  },
+  "src\\datachain\\cli\\commands\\du.py": {
+    "loc": 14,
+    "lloc": 11,
+    "sloc": 10,
+    "comments": 0,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\commands\\index.py": {
+    "loc": 12,
+    "lloc": 5,
+    "sloc": 9,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\commands\\ls.py": {
+    "loc": 171,
+    "lloc": 115,
+    "sloc": 146,
+    "comments": 5,
+    "multi": 0,
+    "blank": 23,
+    "single_comments": 2
+  },
+  "src\\datachain\\cli\\commands\\misc.py": {
+    "loc": 43,
+    "lloc": 29,
+    "sloc": 32,
+    "comments": 0,
+    "multi": 0,
+    "blank": 11,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\commands\\show.py": {
+    "loc": 48,
+    "lloc": 25,
+    "sloc": 40,
+    "comments": 0,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\commands\\skill.py": {
+    "loc": 286,
+    "lloc": 157,
+    "sloc": 227,
+    "comments": 17,
+    "multi": 6,
+    "blank": 39,
+    "single_comments": 14
+  },
+  "src\\datachain\\cli\\commands\\__init__.py": {
+    "loc": 26,
+    "lloc": 9,
+    "sloc": 25,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\parser\\job.py": {
+    "loc": 228,
+    "lloc": 48,
+    "sloc": 204,
+    "comments": 0,
+    "multi": 0,
+    "blank": 24,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\parser\\pipeline.py": {
+    "loc": 200,
+    "lloc": 39,
+    "sloc": 192,
+    "comments": 0,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\parser\\skill.py": {
+    "loc": 103,
+    "lloc": 22,
+    "sloc": 98,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\cli\\parser\\studio.py": {
+    "loc": 145,
+    "lloc": 30,
+    "sloc": 126,
+    "comments": 4,
+    "multi": 0,
+    "blank": 17,
+    "single_comments": 2
+  },
+  "src\\datachain\\cli\\parser\\utils.py": {
+    "loc": 105,
+    "lloc": 35,
+    "sloc": 84,
+    "comments": 1,
+    "multi": 0,
+    "blank": 20,
+    "single_comments": 1
+  },
+  "src\\datachain\\cli\\parser\\__init__.py": {
+    "loc": 561,
+    "lloc": 128,
+    "sloc": 530,
+    "comments": 4,
+    "multi": 0,
+    "blank": 30,
+    "single_comments": 1
+  },
+  "src\\datachain\\client\\azure.py": {
+    "loc": 166,
+    "lloc": 80,
+    "sloc": 139,
+    "comments": 10,
+    "multi": 3,
+    "blank": 14,
+    "single_comments": 10
+  },
+  "src\\datachain\\client\\fileslice.py": {
+    "loc": 106,
+    "lloc": 74,
+    "sloc": 67,
+    "comments": 0,
+    "multi": 11,
+    "blank": 24,
+    "single_comments": 4
+  },
+  "src\\datachain\\client\\fsspec.py": {
+    "loc": 514,
+    "lloc": 353,
+    "sloc": 382,
+    "comments": 16,
+    "multi": 32,
+    "blank": 82,
+    "single_comments": 18
+  },
+  "src\\datachain\\client\\gcs.py": {
+    "loc": 277,
+    "lloc": 160,
+    "sloc": 229,
+    "comments": 16,
+    "multi": 9,
+    "blank": 27,
+    "single_comments": 12
+  },
+  "src\\datachain\\client\\hf.py": {
+    "loc": 103,
+    "lloc": 52,
+    "sloc": 65,
+    "comments": 7,
+    "multi": 8,
+    "blank": 25,
+    "single_comments": 5
+  },
+  "src\\datachain\\client\\http.py": {
+    "loc": 182,
+    "lloc": 116,
+    "sloc": 137,
+    "comments": 4,
+    "multi": 4,
+    "blank": 36,
+    "single_comments": 5
+  },
+  "src\\datachain\\client\\local.py": {
+    "loc": 233,
+    "lloc": 121,
+    "sloc": 164,
+    "comments": 14,
+    "multi": 14,
+    "blank": 41,
+    "single_comments": 14
+  },
+  "src\\datachain\\client\\s3.py": {
+    "loc": 255,
+    "lloc": 154,
+    "sloc": 212,
+    "comments": 14,
+    "multi": 3,
+    "blank": 27,
+    "single_comments": 13
+  },
+  "src\\datachain\\client\\__init__.py": {
+    "loc": 24,
+    "lloc": 9,
+    "sloc": 8,
+    "comments": 0,
+    "multi": 10,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "src\\datachain\\data_storage\\buffer.py": {
+    "loc": 96,
+    "lloc": 57,
+    "sloc": 57,
+    "comments": 4,
+    "multi": 18,
+    "blank": 16,
+    "single_comments": 5
+  },
+  "src\\datachain\\data_storage\\db_engine.py": {
+    "loc": 146,
+    "lloc": 98,
+    "sloc": 89,
+    "comments": 2,
+    "multi": 23,
+    "blank": 31,
+    "single_comments": 3
+  },
+  "src\\datachain\\data_storage\\job.py": {
+    "loc": 26,
+    "lloc": 21,
+    "sloc": 21,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\data_storage\\metastore.py": {
+    "loc": 2957,
+    "lloc": 1096,
+    "sloc": 2262,
+    "comments": 139,
+    "multi": 157,
+    "blank": 374,
+    "single_comments": 164
+  },
+  "src\\datachain\\data_storage\\schema.py": {
+    "loc": 332,
+    "lloc": 143,
+    "sloc": 240,
+    "comments": 4,
+    "multi": 28,
+    "blank": 60,
+    "single_comments": 4
+  },
+  "src\\datachain\\data_storage\\serializer.py": {
+    "loc": 119,
+    "lloc": 71,
+    "sloc": 84,
+    "comments": 4,
+    "multi": 5,
+    "blank": 23,
+    "single_comments": 7
+  },
+  "src\\datachain\\data_storage\\sqlite.py": {
+    "loc": 998,
+    "lloc": 527,
+    "sloc": 723,
+    "comments": 38,
+    "multi": 71,
+    "blank": 156,
+    "single_comments": 48
+  },
+  "src\\datachain\\data_storage\\warehouse.py": {
+    "loc": 1195,
+    "lloc": 579,
+    "sloc": 838,
+    "comments": 35,
+    "multi": 144,
+    "blank": 159,
+    "single_comments": 54
+  },
+  "src\\datachain\\data_storage\\__init__.py": {
+    "loc": 11,
+    "lloc": 4,
+    "sloc": 10,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\diff\\__init__.py": {
+    "loc": 252,
+    "lloc": 99,
+    "sloc": 163,
+    "comments": 24,
+    "multi": 44,
+    "blank": 33,
+    "single_comments": 12
+  },
+  "src\\datachain\\fs\\reference.py": {
+    "loc": 21,
+    "lloc": 13,
+    "sloc": 13,
+    "comments": 5,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 4
+  },
+  "src\\datachain\\fs\\utils.py": {
+    "loc": 109,
+    "lloc": 48,
+    "sloc": 51,
+    "comments": 2,
+    "multi": 31,
+    "blank": 24,
+    "single_comments": 3
+  },
+  "src\\datachain\\fs\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\aggregate.py": {
+    "loc": 420,
+    "lloc": 46,
+    "sloc": 38,
+    "comments": 0,
+    "multi": 290,
+    "blank": 92,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\array.py": {
+    "loc": 428,
+    "lloc": 119,
+    "sloc": 152,
+    "comments": 3,
+    "multi": 200,
+    "blank": 74,
+    "single_comments": 2
+  },
+  "src\\datachain\\func\\base.py": {
+    "loc": 26,
+    "lloc": 18,
+    "sloc": 20,
+    "comments": 0,
+    "multi": 0,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\conditional.py": {
+    "loc": 319,
+    "lloc": 88,
+    "sloc": 93,
+    "comments": 4,
+    "multi": 152,
+    "blank": 70,
+    "single_comments": 4
+  },
+  "src\\datachain\\func\\func.py": {
+    "loc": 672,
+    "lloc": 344,
+    "sloc": 529,
+    "comments": 11,
+    "multi": 39,
+    "blank": 95,
+    "single_comments": 9
+  },
+  "src\\datachain\\func\\numeric.py": {
+    "loc": 225,
+    "lloc": 55,
+    "sloc": 76,
+    "comments": 0,
+    "multi": 108,
+    "blank": 41,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\path.py": {
+    "loc": 122,
+    "lloc": 14,
+    "sloc": 10,
+    "comments": 0,
+    "multi": 84,
+    "blank": 28,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\random.py": {
+    "loc": 23,
+    "lloc": 5,
+    "sloc": 4,
+    "comments": 0,
+    "multi": 13,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\string.py": {
+    "loc": 262,
+    "lloc": 57,
+    "sloc": 66,
+    "comments": 0,
+    "multi": 144,
+    "blank": 52,
+    "single_comments": 0
+  },
+  "src\\datachain\\func\\window.py": {
+    "loc": 56,
+    "lloc": 14,
+    "sloc": 21,
+    "comments": 0,
+    "multi": 24,
+    "blank": 10,
+    "single_comments": 1
+  },
+  "src\\datachain\\func\\__init__.py": {
+    "loc": 74,
+    "lloc": 12,
+    "sloc": 72,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\arrow.py": {
+    "loc": 299,
+    "lloc": 185,
+    "sloc": 228,
+    "comments": 16,
+    "multi": 16,
+    "blank": 48,
+    "single_comments": 7
+  },
+  "src\\datachain\\lib\\audio.py": {
+    "loc": 259,
+    "lloc": 114,
+    "sloc": 166,
+    "comments": 13,
+    "multi": 29,
+    "blank": 50,
+    "single_comments": 14
+  },
+  "src\\datachain\\lib\\clip.py": {
+    "loc": 181,
+    "lloc": 54,
+    "sloc": 73,
+    "comments": 8,
+    "multi": 78,
+    "blank": 28,
+    "single_comments": 2
+  },
+  "src\\datachain\\lib\\dataset_info.py": {
+    "loc": 118,
+    "lloc": 88,
+    "sloc": 103,
+    "comments": 2,
+    "multi": 0,
+    "blank": 14,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\data_model.py": {
+    "loc": 173,
+    "lloc": 97,
+    "sloc": 129,
+    "comments": 5,
+    "multi": 7,
+    "blank": 29,
+    "single_comments": 8
+  },
+  "src\\datachain\\lib\\file.py": {
+    "loc": 1805,
+    "lloc": 808,
+    "sloc": 934,
+    "comments": 42,
+    "multi": 497,
+    "blank": 322,
+    "single_comments": 52
+  },
+  "src\\datachain\\lib\\hf.py": {
+    "loc": 212,
+    "lloc": 139,
+    "sloc": 165,
+    "comments": 11,
+    "multi": 15,
+    "blank": 31,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\image.py": {
+    "loc": 106,
+    "lloc": 43,
+    "sloc": 60,
+    "comments": 5,
+    "multi": 28,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\listing.py": {
+    "loc": 307,
+    "lloc": 157,
+    "sloc": 165,
+    "comments": 26,
+    "multi": 54,
+    "blank": 65,
+    "single_comments": 23
+  },
+  "src\\datachain\\lib\\listing_info.py": {
+    "loc": 29,
+    "lloc": 21,
+    "sloc": 20,
+    "comments": 1,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 2
+  },
+  "src\\datachain\\lib\\meta_formats.py": {
+    "loc": 229,
+    "lloc": 138,
+    "sloc": 178,
+    "comments": 23,
+    "multi": 4,
+    "blank": 36,
+    "single_comments": 11
+  },
+  "src\\datachain\\lib\\model_store.py": {
+    "loc": 138,
+    "lloc": 94,
+    "sloc": 96,
+    "comments": 15,
+    "multi": 5,
+    "blank": 23,
+    "single_comments": 14
+  },
+  "src\\datachain\\lib\\namespaces.py": {
+    "loc": 125,
+    "lloc": 35,
+    "sloc": 43,
+    "comments": 0,
+    "multi": 53,
+    "blank": 29,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\projects.py": {
+    "loc": 130,
+    "lloc": 34,
+    "sloc": 42,
+    "comments": 0,
+    "multi": 59,
+    "blank": 29,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\pytorch.py": {
+    "loc": 219,
+    "lloc": 142,
+    "sloc": 166,
+    "comments": 8,
+    "multi": 14,
+    "blank": 31,
+    "single_comments": 8
+  },
+  "src\\datachain\\lib\\settings.py": {
+    "loc": 233,
+    "lloc": 164,
+    "sloc": 205,
+    "comments": 2,
+    "multi": 0,
+    "blank": 27,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\signal_schema.py": {
+    "loc": 1415,
+    "lloc": 816,
+    "sloc": 1080,
+    "comments": 56,
+    "multi": 86,
+    "blank": 212,
+    "single_comments": 37
+  },
+  "src\\datachain\\lib\\tar.py": {
+    "loc": 33,
+    "lloc": 15,
+    "sloc": 28,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\text.py": {
+    "loc": 44,
+    "lloc": 21,
+    "sloc": 26,
+    "comments": 0,
+    "multi": 9,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\udf.py": {
+    "loc": 617,
+    "lloc": 322,
+    "sloc": 436,
+    "comments": 17,
+    "multi": 54,
+    "blank": 104,
+    "single_comments": 23
+  },
+  "src\\datachain\\lib\\udf_signature.py": {
+    "loc": 236,
+    "lloc": 123,
+    "sloc": 202,
+    "comments": 10,
+    "multi": 0,
+    "blank": 27,
+    "single_comments": 7
+  },
+  "src\\datachain\\lib\\utils.py": {
+    "loc": 289,
+    "lloc": 158,
+    "sloc": 217,
+    "comments": 13,
+    "multi": 13,
+    "blank": 45,
+    "single_comments": 14
+  },
+  "src\\datachain\\lib\\video.py": {
+    "loc": 611,
+    "lloc": 307,
+    "sloc": 461,
+    "comments": 1,
+    "multi": 43,
+    "blank": 105,
+    "single_comments": 2
+  },
+  "src\\datachain\\lib\\webdataset.py": {
+    "loc": 225,
+    "lloc": 156,
+    "sloc": 179,
+    "comments": 6,
+    "multi": 0,
+    "blank": 42,
+    "single_comments": 4
+  },
+  "src\\datachain\\lib\\webdataset_laion.py": {
+    "loc": 76,
+    "lloc": 67,
+    "sloc": 59,
+    "comments": 5,
+    "multi": 0,
+    "blank": 13,
+    "single_comments": 4
+  },
+  "src\\datachain\\lib\\zarr.py": {
+    "loc": 257,
+    "lloc": 154,
+    "sloc": 149,
+    "comments": 14,
+    "multi": 40,
+    "blank": 48,
+    "single_comments": 20
+  },
+  "src\\datachain\\lib\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\convert\\flatten.py": {
+    "loc": 48,
+    "lloc": 29,
+    "sloc": 35,
+    "comments": 1,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\convert\\python_to_sql.py": {
+    "loc": 113,
+    "lloc": 67,
+    "sloc": 88,
+    "comments": 7,
+    "multi": 0,
+    "blank": 22,
+    "single_comments": 3
+  },
+  "src\\datachain\\lib\\convert\\sql_to_python.py": {
+    "loc": 22,
+    "lloc": 17,
+    "sloc": 19,
+    "comments": 1,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\convert\\unflatten.py": {
+    "loc": 68,
+    "lloc": 45,
+    "sloc": 52,
+    "comments": 0,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\convert\\values_to_tuples.py": {
+    "loc": 217,
+    "lloc": 122,
+    "sloc": 149,
+    "comments": 30,
+    "multi": 5,
+    "blank": 45,
+    "single_comments": 18
+  },
+  "src\\datachain\\lib\\convert\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\dc\\csv.py": {
+    "loc": 124,
+    "lloc": 46,
+    "sloc": 77,
+    "comments": 1,
+    "multi": 33,
+    "blank": 14,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\dc\\database.py": {
+    "loc": 394,
+    "lloc": 189,
+    "sloc": 257,
+    "comments": 16,
+    "multi": 65,
+    "blank": 61,
+    "single_comments": 11
+  },
+  "src\\datachain\\lib\\dc\\datachain.py": {
+    "loc": 3108,
+    "lloc": 973,
+    "sloc": 1555,
+    "comments": 77,
+    "multi": 1030,
+    "blank": 442,
+    "single_comments": 81
+  },
+  "src\\datachain\\lib\\dc\\datasets.py": {
+    "loc": 462,
+    "lloc": 109,
+    "sloc": 223,
+    "comments": 17,
+    "multi": 162,
+    "blank": 65,
+    "single_comments": 12
+  },
+  "src\\datachain\\lib\\dc\\hf.py": {
+    "loc": 87,
+    "lloc": 29,
+    "sloc": 34,
+    "comments": 0,
+    "multi": 37,
+    "blank": 16,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\dc\\json.py": {
+    "loc": 89,
+    "lloc": 31,
+    "sloc": 49,
+    "comments": 3,
+    "multi": 24,
+    "blank": 15,
+    "single_comments": 1
+  },
+  "src\\datachain\\lib\\dc\\listings.py": {
+    "loc": 151,
+    "lloc": 59,
+    "sloc": 84,
+    "comments": 5,
+    "multi": 33,
+    "blank": 29,
+    "single_comments": 5
+  },
+  "src\\datachain\\lib\\dc\\pandas.py": {
+    "loc": 60,
+    "lloc": 21,
+    "sloc": 36,
+    "comments": 3,
+    "multi": 9,
+    "blank": 13,
+    "single_comments": 2
+  },
+  "src\\datachain\\lib\\dc\\parquet.py": {
+    "loc": 77,
+    "lloc": 13,
+    "sloc": 29,
+    "comments": 0,
+    "multi": 36,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "src\\datachain\\lib\\dc\\records.py": {
+    "loc": 231,
+    "lloc": 86,
+    "sloc": 117,
+    "comments": 6,
+    "multi": 69,
+    "blank": 40,
+    "single_comments": 5
+  },
+  "src\\datachain\\lib\\dc\\storage.py": {
+    "loc": 329,
+    "lloc": 116,
+    "sloc": 185,
+    "comments": 27,
+    "multi": 73,
+    "blank": 43,
+    "single_comments": 28
+  },
+  "src\\datachain\\lib\\dc\\storage_pattern.py": {
+    "loc": 253,
+    "lloc": 174,
+    "sloc": 162,
+    "comments": 9,
+    "multi": 17,
+    "blank": 62,
+    "single_comments": 12
+  },
+  "src\\datachain\\lib\\dc\\utils.py": {
+    "loc": 189,
+    "lloc": 104,
+    "sloc": 120,
+    "comments": 4,
+    "multi": 12,
+    "blank": 45,
+    "single_comments": 12
+  },
+  "src\\datachain\\lib\\dc\\values.py": {
+    "loc": 56,
+    "lloc": 23,
+    "sloc": 35,
+    "comments": 6,
+    "multi": 7,
+    "blank": 10,
+    "single_comments": 4
+  },
+  "src\\datachain\\lib\\dc\\zarr.py": {
+    "loc": 73,
+    "lloc": 20,
+    "sloc": 35,
+    "comments": 6,
+    "multi": 21,
+    "blank": 11,
+    "single_comments": 6
+  },
+  "src\\datachain\\lib\\dc\\__init__.py": {
+    "loc": 44,
+    "lloc": 16,
+    "sloc": 41,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 1
+  },
+  "src\\datachain\\model\\bbox.py": {
+    "loc": 255,
+    "lloc": 86,
+    "sloc": 92,
+    "comments": 0,
+    "multi": 111,
+    "blank": 51,
+    "single_comments": 1
+  },
+  "src\\datachain\\model\\pose.py": {
+    "loc": 100,
+    "lloc": 57,
+    "sloc": 67,
+    "comments": 0,
+    "multi": 17,
+    "blank": 16,
+    "single_comments": 0
+  },
+  "src\\datachain\\model\\segment.py": {
+    "loc": 51,
+    "lloc": 31,
+    "sloc": 33,
+    "comments": 0,
+    "multi": 9,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "src\\datachain\\model\\utils.py": {
+    "loc": 191,
+    "lloc": 66,
+    "sloc": 139,
+    "comments": 0,
+    "multi": 26,
+    "blank": 21,
+    "single_comments": 5
+  },
+  "src\\datachain\\model\\__init__.py": {
+    "loc": 6,
+    "lloc": 5,
+    "sloc": 5,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\model\\ultralytics\\bbox.py": {
+    "loc": 151,
+    "lloc": 96,
+    "sloc": 96,
+    "comments": 0,
+    "multi": 32,
+    "blank": 23,
+    "single_comments": 0
+  },
+  "src\\datachain\\model\\ultralytics\\pose.py": {
+    "loc": 117,
+    "lloc": 83,
+    "sloc": 82,
+    "comments": 0,
+    "multi": 18,
+    "blank": 16,
+    "single_comments": 1
+  },
+  "src\\datachain\\model\\ultralytics\\segment.py": {
+    "loc": 95,
+    "lloc": 64,
+    "sloc": 64,
+    "comments": 0,
+    "multi": 18,
+    "blank": 13,
+    "single_comments": 0
+  },
+  "src\\datachain\\model\\ultralytics\\__init__.py": {
+    "loc": 27,
+    "lloc": 5,
+    "sloc": 13,
+    "comments": 0,
+    "multi": 10,
+    "blank": 4,
+    "single_comments": 0
+  },
+  "src\\datachain\\query\\batch.py": {
+    "loc": 139,
+    "lloc": 76,
+    "sloc": 90,
+    "comments": 2,
+    "multi": 13,
+    "blank": 32,
+    "single_comments": 4
+  },
+  "src\\datachain\\query\\dataset.py": {
+    "loc": 3485,
+    "lloc": 1652,
+    "sloc": 2560,
+    "comments": 158,
+    "multi": 254,
+    "blank": 511,
+    "single_comments": 160
+  },
+  "src\\datachain\\query\\dispatch.py": {
+    "loc": 468,
+    "lloc": 294,
+    "sloc": 396,
+    "comments": 17,
+    "multi": 0,
+    "blank": 60,
+    "single_comments": 12
+  },
+  "src\\datachain\\query\\metrics.py": {
+    "loc": 25,
+    "lloc": 19,
+    "sloc": 16,
+    "comments": 1,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 2
+  },
+  "src\\datachain\\query\\params.py": {
+    "loc": 26,
+    "lloc": 22,
+    "sloc": 20,
+    "comments": 1,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 1
+  },
+  "src\\datachain\\query\\queue.py": {
+    "loc": 42,
+    "lloc": 19,
+    "sloc": 17,
+    "comments": 7,
+    "multi": 12,
+    "blank": 6,
+    "single_comments": 7
+  },
+  "src\\datachain\\query\\schema.py": {
+    "loc": 249,
+    "lloc": 129,
+    "sloc": 179,
+    "comments": 7,
+    "multi": 13,
+    "blank": 49,
+    "single_comments": 8
+  },
+  "src\\datachain\\query\\session.py": {
+    "loc": 408,
+    "lloc": 221,
+    "sloc": 274,
+    "comments": 24,
+    "multi": 48,
+    "blank": 64,
+    "single_comments": 22
+  },
+  "src\\datachain\\query\\udf.py": {
+    "loc": 56,
+    "lloc": 45,
+    "sloc": 48,
+    "comments": 1,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 0
+  },
+  "src\\datachain\\query\\__init__.py": {
+    "loc": 14,
+    "lloc": 5,
+    "sloc": 13,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\remote\\studio.py": {
+    "loc": 566,
+    "lloc": 277,
+    "sloc": 460,
+    "comments": 18,
+    "multi": 20,
+    "blank": 78,
+    "single_comments": 8
+  },
+  "src\\datachain\\remote\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\jobs\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\jobs\\scripts\\jobs.py": {
+    "loc": 377,
+    "lloc": 201,
+    "sloc": 292,
+    "comments": 20,
+    "multi": 7,
+    "blank": 56,
+    "single_comments": 22
+  },
+  "src\\datachain\\skill\\jobs\\scripts\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\knowledge\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\bucket_overview.py": {
+    "loc": 122,
+    "lloc": 83,
+    "sloc": 85,
+    "comments": 0,
+    "multi": 11,
+    "blank": 26,
+    "single_comments": 0
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\bucket_scan.py": {
+    "loc": 559,
+    "lloc": 322,
+    "sloc": 419,
+    "comments": 33,
+    "multi": 13,
+    "blank": 102,
+    "single_comments": 25
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\changes.py": {
+    "loc": 108,
+    "lloc": 62,
+    "sloc": 81,
+    "comments": 2,
+    "multi": 7,
+    "blank": 16,
+    "single_comments": 4
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\cleanup_json.py": {
+    "loc": 63,
+    "lloc": 40,
+    "sloc": 42,
+    "comments": 0,
+    "multi": 6,
+    "blank": 14,
+    "single_comments": 1
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\dataset.py": {
+    "loc": 217,
+    "lloc": 133,
+    "sloc": 177,
+    "comments": 20,
+    "multi": 4,
+    "blank": 24,
+    "single_comments": 12
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\dataset_all.py": {
+    "loc": 341,
+    "lloc": 205,
+    "sloc": 279,
+    "comments": 25,
+    "multi": 4,
+    "blank": 40,
+    "single_comments": 18
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\db_mtime.py": {
+    "loc": 27,
+    "lloc": 18,
+    "sloc": 17,
+    "comments": 3,
+    "multi": 0,
+    "blank": 6,
+    "single_comments": 4
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\list_datasets.py": {
+    "loc": 43,
+    "lloc": 29,
+    "sloc": 31,
+    "comments": 1,
+    "multi": 0,
+    "blank": 11,
+    "single_comments": 1
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\plan.py": {
+    "loc": 266,
+    "lloc": 146,
+    "sloc": 203,
+    "comments": 17,
+    "multi": 0,
+    "blank": 43,
+    "single_comments": 20
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\render_index.py": {
+    "loc": 385,
+    "lloc": 237,
+    "sloc": 286,
+    "comments": 8,
+    "multi": 24,
+    "blank": 62,
+    "single_comments": 13
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\schema.py": {
+    "loc": 110,
+    "lloc": 82,
+    "sloc": 77,
+    "comments": 4,
+    "multi": 7,
+    "blank": 20,
+    "single_comments": 6
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\summary.py": {
+    "loc": 714,
+    "lloc": 432,
+    "sloc": 500,
+    "comments": 38,
+    "multi": 18,
+    "blank": 145,
+    "single_comments": 51
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\utils.py": {
+    "loc": 428,
+    "lloc": 267,
+    "sloc": 268,
+    "comments": 19,
+    "multi": 58,
+    "blank": 75,
+    "single_comments": 27
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\postgresql_dialect.py": {
+    "loc": 9,
+    "lloc": 4,
+    "sloc": 3,
+    "comments": 1,
+    "multi": 3,
+    "blank": 2,
+    "single_comments": 1
+  },
+  "src\\datachain\\sql\\postgresql_types.py": {
+    "loc": 21,
+    "lloc": 11,
+    "sloc": 7,
+    "comments": 0,
+    "multi": 4,
+    "blank": 7,
+    "single_comments": 3
+  },
+  "src\\datachain\\sql\\selectable.py": {
+    "loc": 56,
+    "lloc": 32,
+    "sloc": 42,
+    "comments": 1,
+    "multi": 0,
+    "blank": 14,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\types.py": {
+    "loc": 712,
+    "lloc": 463,
+    "sloc": 494,
+    "comments": 8,
+    "multi": 10,
+    "blank": 201,
+    "single_comments": 7
+  },
+  "src\\datachain\\sql\\utils.py": {
+    "loc": 23,
+    "lloc": 15,
+    "sloc": 19,
+    "comments": 0,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\__init__.py": {
+    "loc": 16,
+    "lloc": 7,
+    "sloc": 12,
+    "comments": 2,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 1
+  },
+  "src\\datachain\\sql\\default\\base.py": {
+    "loc": 25,
+    "lloc": 12,
+    "sloc": 20,
+    "comments": 1,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\default\\__init__.py": {
+    "loc": 3,
+    "lloc": 2,
+    "sloc": 2,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\aggregate.py": {
+    "loc": 60,
+    "lloc": 31,
+    "sloc": 26,
+    "comments": 5,
+    "multi": 16,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\array.py": {
+    "loc": 98,
+    "lloc": 55,
+    "sloc": 47,
+    "comments": 8,
+    "multi": 24,
+    "blank": 27,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\conditional.py": {
+    "loc": 9,
+    "lloc": 5,
+    "sloc": 5,
+    "comments": 2,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\conversion.py": {
+    "loc": 31,
+    "lloc": 18,
+    "sloc": 26,
+    "comments": 1,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\numeric.py": {
+    "loc": 55,
+    "lloc": 32,
+    "sloc": 30,
+    "comments": 7,
+    "multi": 6,
+    "blank": 19,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\path.py": {
+    "loc": 61,
+    "lloc": 32,
+    "sloc": 27,
+    "comments": 4,
+    "multi": 17,
+    "blank": 17,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\random.py": {
+    "loc": 12,
+    "lloc": 7,
+    "sloc": 7,
+    "comments": 1,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\string.py": {
+    "loc": 78,
+    "lloc": 45,
+    "sloc": 39,
+    "comments": 6,
+    "multi": 18,
+    "blank": 21,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\functions\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\sqlite\\base.py": {
+    "loc": 750,
+    "lloc": 432,
+    "sloc": 515,
+    "comments": 19,
+    "multi": 23,
+    "blank": 189,
+    "single_comments": 23
+  },
+  "src\\datachain\\sql\\sqlite\\types.py": {
+    "loc": 84,
+    "lloc": 54,
+    "sloc": 54,
+    "comments": 2,
+    "multi": 0,
+    "blank": 28,
+    "single_comments": 2
+  },
+  "src\\datachain\\sql\\sqlite\\vector.py": {
+    "loc": 23,
+    "lloc": 18,
+    "sloc": 14,
+    "comments": 0,
+    "multi": 0,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "src\\datachain\\sql\\sqlite\\__init__.py": {
+    "loc": 11,
+    "lloc": 2,
+    "sloc": 10,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\toolkit\\split.py": {
+    "loc": 105,
+    "lloc": 40,
+    "sloc": 41,
+    "comments": 4,
+    "multi": 45,
+    "blank": 19,
+    "single_comments": 0
+  },
+  "src\\datachain\\toolkit\\__init__.py": {
+    "loc": 3,
+    "lloc": 2,
+    "sloc": 2,
+    "comments": 0,
+    "multi": 0,
+    "blank": 1,
+    "single_comments": 0
+  },
+  "src\\datachain\\torch\\__init__.py": {
+    "loc": 21,
+    "lloc": 8,
+    "sloc": 19,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 0
+  },
+  "tests\\conftest.py": {
+    "loc": 1360,
+    "lloc": 589,
+    "sloc": 1071,
+    "comments": 43,
+    "multi": 32,
+    "blank": 212,
+    "single_comments": 45
+  },
+  "tests\\data.py": {
+    "loc": 96,
+    "lloc": 6,
+    "sloc": 88,
+    "comments": 4,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 4
+  },
+  "tests\\test_atomicity.py": {
+    "loc": 196,
+    "lloc": 90,
+    "sloc": 155,
+    "comments": 7,
+    "multi": 0,
+    "blank": 34,
+    "single_comments": 7
+  },
+  "tests\\test_cli_e2e.py": {
+    "loc": 269,
+    "lloc": 61,
+    "sloc": 246,
+    "comments": 2,
+    "multi": 0,
+    "blank": 18,
+    "single_comments": 5
+  },
+  "tests\\test_cli_studio.py": {
+    "loc": 1594,
+    "lloc": 762,
+    "sloc": 1271,
+    "comments": 29,
+    "multi": 0,
+    "blank": 307,
+    "single_comments": 16
+  },
+  "tests\\test_import_time.py": {
+    "loc": 84,
+    "lloc": 37,
+    "sloc": 61,
+    "comments": 5,
+    "multi": 5,
+    "blank": 13,
+    "single_comments": 5
+  },
+  "tests\\test_job_management_e2e.py": {
+    "loc": 158,
+    "lloc": 66,
+    "sloc": 113,
+    "comments": 10,
+    "multi": 10,
+    "blank": 26,
+    "single_comments": 9
+  },
+  "tests\\test_query_e2e.py": {
+    "loc": 267,
+    "lloc": 110,
+    "sloc": 228,
+    "comments": 9,
+    "multi": 0,
+    "blank": 30,
+    "single_comments": 9
+  },
+  "tests\\test_telemetry.py": {
+    "loc": 20,
+    "lloc": 14,
+    "sloc": 13,
+    "comments": 0,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 0
+  },
+  "tests\\utils.py": {
+    "loc": 355,
+    "lloc": 194,
+    "sloc": 246,
+    "comments": 22,
+    "multi": 20,
+    "blank": 65,
+    "single_comments": 24
+  },
+  "tests\\__init__.py": {
+    "loc": 1,
+    "lloc": 1,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 1
+  },
+  "tests\\benchmarks\\conftest.py": {
+    "loc": 8,
+    "lloc": 5,
+    "sloc": 5,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\benchmarks\\test_datachain.py": {
+    "loc": 22,
+    "lloc": 9,
+    "sloc": 19,
+    "comments": 3,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\benchmarks\\test_ls.py": {
+    "loc": 9,
+    "lloc": 5,
+    "sloc": 6,
+    "comments": 1,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 1
+  },
+  "tests\\benchmarks\\test_version.py": {
+    "loc": 7,
+    "lloc": 5,
+    "sloc": 5,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 0
+  },
+  "tests\\benchmarks\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\examples\\test_examples.py": {
+    "loc": 93,
+    "lloc": 52,
+    "sloc": 74,
+    "comments": 3,
+    "multi": 0,
+    "blank": 19,
+    "single_comments": 0
+  },
+  "tests\\examples\\test_wds_e2e.py": {
+    "loc": 131,
+    "lloc": 80,
+    "sloc": 90,
+    "comments": 5,
+    "multi": 9,
+    "blank": 28,
+    "single_comments": 4
+  },
+  "tests\\examples\\wds_data.py": {
+    "loc": 155,
+    "lloc": 4,
+    "sloc": 149,
+    "comments": 4,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 4
+  },
+  "tests\\examples\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\func\\test_audio.py": {
+    "loc": 116,
+    "lloc": 67,
+    "sloc": 77,
+    "comments": 16,
+    "multi": 0,
+    "blank": 25,
+    "single_comments": 14
+  },
+  "tests\\func\\test_bucket_status.py": {
+    "loc": 22,
+    "lloc": 17,
+    "sloc": 17,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "tests\\func\\test_catalog.py": {
+    "loc": 775,
+    "lloc": 443,
+    "sloc": 603,
+    "comments": 20,
+    "multi": 0,
+    "blank": 152,
+    "single_comments": 20
+  },
+  "tests\\func\\test_client.py": {
+    "loc": 623,
+    "lloc": 289,
+    "sloc": 498,
+    "comments": 11,
+    "multi": 0,
+    "blank": 123,
+    "single_comments": 2
+  },
+  "tests\\func\\test_cli_show.py": {
+    "loc": 66,
+    "lloc": 44,
+    "sloc": 48,
+    "comments": 0,
+    "multi": 0,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "tests\\func\\test_datachain.py": {
+    "loc": 1709,
+    "lloc": 770,
+    "sloc": 1402,
+    "comments": 30,
+    "multi": 0,
+    "blank": 283,
+    "single_comments": 24
+  },
+  "tests\\func\\test_datachain_merge.py": {
+    "loc": 134,
+    "lloc": 65,
+    "sloc": 104,
+    "comments": 1,
+    "multi": 4,
+    "blank": 25,
+    "single_comments": 1
+  },
+  "tests\\func\\test_datasets.py": {
+    "loc": 907,
+    "lloc": 422,
+    "sloc": 719,
+    "comments": 18,
+    "multi": 0,
+    "blank": 173,
+    "single_comments": 15
+  },
+  "tests\\func\\test_dataset_query.py": {
+    "loc": 1267,
+    "lloc": 551,
+    "sloc": 1077,
+    "comments": 13,
+    "multi": 0,
+    "blank": 178,
+    "single_comments": 12
+  },
+  "tests\\func\\test_data_storage.py": {
+    "loc": 216,
+    "lloc": 116,
+    "sloc": 168,
+    "comments": 17,
+    "multi": 0,
+    "blank": 31,
+    "single_comments": 17
+  },
+  "tests\\func\\test_delta.py": {
+    "loc": 1396,
+    "lloc": 511,
+    "sloc": 1125,
+    "comments": 41,
+    "multi": 0,
+    "blank": 234,
+    "single_comments": 37
+  },
+  "tests\\func\\test_feature_pickling.py": {
+    "loc": 362,
+    "lloc": 191,
+    "sloc": 288,
+    "comments": 13,
+    "multi": 0,
+    "blank": 66,
+    "single_comments": 8
+  },
+  "tests\\func\\test_file.py": {
+    "loc": 414,
+    "lloc": 245,
+    "sloc": 274,
+    "comments": 25,
+    "multi": 20,
+    "blank": 98,
+    "single_comments": 22
+  },
+  "tests\\func\\test_hf.py": {
+    "loc": 137,
+    "lloc": 86,
+    "sloc": 104,
+    "comments": 2,
+    "multi": 4,
+    "blank": 27,
+    "single_comments": 2
+  },
+  "tests\\func\\test_hidden_field.py": {
+    "loc": 72,
+    "lloc": 45,
+    "sloc": 50,
+    "comments": 0,
+    "multi": 0,
+    "blank": 22,
+    "single_comments": 0
+  },
+  "tests\\func\\test_image.py": {
+    "loc": 139,
+    "lloc": 88,
+    "sloc": 91,
+    "comments": 4,
+    "multi": 4,
+    "blank": 38,
+    "single_comments": 6
+  },
+  "tests\\func\\test_listing.py": {
+    "loc": 290,
+    "lloc": 174,
+    "sloc": 206,
+    "comments": 9,
+    "multi": 6,
+    "blank": 65,
+    "single_comments": 13
+  },
+  "tests\\func\\test_local_db_migration.py": {
+    "loc": 337,
+    "lloc": 128,
+    "sloc": 223,
+    "comments": 27,
+    "multi": 24,
+    "blank": 67,
+    "single_comments": 23
+  },
+  "tests\\func\\test_ls.py": {
+    "loc": 334,
+    "lloc": 131,
+    "sloc": 279,
+    "comments": 4,
+    "multi": 0,
+    "blank": 51,
+    "single_comments": 4
+  },
+  "tests\\func\\test_metastore.py": {
+    "loc": 1184,
+    "lloc": 539,
+    "sloc": 965,
+    "comments": 33,
+    "multi": 0,
+    "blank": 187,
+    "single_comments": 32
+  },
+  "tests\\func\\test_meta_formats.py": {
+    "loc": 85,
+    "lloc": 30,
+    "sloc": 67,
+    "comments": 1,
+    "multi": 0,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "tests\\func\\test_metrics.py": {
+    "loc": 23,
+    "lloc": 17,
+    "sloc": 16,
+    "comments": 0,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 0
+  },
+  "tests\\func\\test_model_store_rebuild.py": {
+    "loc": 83,
+    "lloc": 51,
+    "sloc": 64,
+    "comments": 1,
+    "multi": 0,
+    "blank": 19,
+    "single_comments": 0
+  },
+  "tests\\func\\test_mutate.py": {
+    "loc": 295,
+    "lloc": 153,
+    "sloc": 223,
+    "comments": 6,
+    "multi": 0,
+    "blank": 69,
+    "single_comments": 3
+  },
+  "tests\\func\\test_pull.py": {
+    "loc": 799,
+    "lloc": 261,
+    "sloc": 674,
+    "comments": 8,
+    "multi": 3,
+    "blank": 115,
+    "single_comments": 7
+  },
+  "tests\\func\\test_pytorch.py": {
+    "loc": 146,
+    "lloc": 88,
+    "sloc": 113,
+    "comments": 10,
+    "multi": 0,
+    "blank": 25,
+    "single_comments": 8
+  },
+  "tests\\func\\test_read_csv.py": {
+    "loc": 17,
+    "lloc": 13,
+    "sloc": 11,
+    "comments": 0,
+    "multi": 0,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "tests\\func\\test_read_database.py": {
+    "loc": 192,
+    "lloc": 109,
+    "sloc": 149,
+    "comments": 2,
+    "multi": 4,
+    "blank": 37,
+    "single_comments": 2
+  },
+  "tests\\func\\test_read_dataset_remote.py": {
+    "loc": 1117,
+    "lloc": 369,
+    "sloc": 926,
+    "comments": 19,
+    "multi": 11,
+    "blank": 161,
+    "single_comments": 19
+  },
+  "tests\\func\\test_read_dataset_version_specifiers.py": {
+    "loc": 126,
+    "lloc": 45,
+    "sloc": 92,
+    "comments": 0,
+    "multi": 3,
+    "blank": 26,
+    "single_comments": 5
+  },
+  "tests\\func\\test_retrieval.py": {
+    "loc": 459,
+    "lloc": 295,
+    "sloc": 303,
+    "comments": 30,
+    "multi": 10,
+    "blank": 99,
+    "single_comments": 47
+  },
+  "tests\\func\\test_retry.py": {
+    "loc": 470,
+    "lloc": 171,
+    "sloc": 327,
+    "comments": 49,
+    "multi": 8,
+    "blank": 86,
+    "single_comments": 49
+  },
+  "tests\\func\\test_session.py": {
+    "loc": 28,
+    "lloc": 18,
+    "sloc": 18,
+    "comments": 2,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 2
+  },
+  "tests\\func\\test_signal_schema.py": {
+    "loc": 76,
+    "lloc": 41,
+    "sloc": 44,
+    "comments": 8,
+    "multi": 11,
+    "blank": 13,
+    "single_comments": 8
+  },
+  "tests\\func\\test_similarity_search.py": {
+    "loc": 76,
+    "lloc": 35,
+    "sloc": 60,
+    "comments": 5,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 1
+  },
+  "tests\\func\\test_storage_auto_anon.py": {
+    "loc": 73,
+    "lloc": 31,
+    "sloc": 54,
+    "comments": 4,
+    "multi": 0,
+    "blank": 13,
+    "single_comments": 6
+  },
+  "tests\\func\\test_storage_pattern.py": {
+    "loc": 317,
+    "lloc": 159,
+    "sloc": 240,
+    "comments": 5,
+    "multi": 0,
+    "blank": 74,
+    "single_comments": 3
+  },
+  "tests\\func\\test_studio_datetime_parsing.py": {
+    "loc": 107,
+    "lloc": 59,
+    "sloc": 67,
+    "comments": 7,
+    "multi": 0,
+    "blank": 26,
+    "single_comments": 14
+  },
+  "tests\\func\\test_temp_table_tracking.py": {
+    "loc": 72,
+    "lloc": 50,
+    "sloc": 48,
+    "comments": 0,
+    "multi": 0,
+    "blank": 24,
+    "single_comments": 0
+  },
+  "tests\\func\\test_toolkit.py": {
+    "loc": 81,
+    "lloc": 31,
+    "sloc": 65,
+    "comments": 0,
+    "multi": 0,
+    "blank": 16,
+    "single_comments": 0
+  },
+  "tests\\func\\test_to_csv.py": {
+    "loc": 136,
+    "lloc": 94,
+    "sloc": 96,
+    "comments": 0,
+    "multi": 0,
+    "blank": 40,
+    "single_comments": 0
+  },
+  "tests\\func\\test_to_database.py": {
+    "loc": 1011,
+    "lloc": 488,
+    "sloc": 744,
+    "comments": 75,
+    "multi": 13,
+    "blank": 201,
+    "single_comments": 53
+  },
+  "tests\\func\\test_to_json.py": {
+    "loc": 91,
+    "lloc": 58,
+    "sloc": 70,
+    "comments": 0,
+    "multi": 0,
+    "blank": 21,
+    "single_comments": 0
+  },
+  "tests\\func\\test_to_storage.py": {
+    "loc": 346,
+    "lloc": 170,
+    "sloc": 279,
+    "comments": 1,
+    "multi": 0,
+    "blank": 67,
+    "single_comments": 0
+  },
+  "tests\\func\\test_udf.py": {
+    "loc": 1192,
+    "lloc": 531,
+    "sloc": 910,
+    "comments": 53,
+    "multi": 23,
+    "blank": 212,
+    "single_comments": 47
+  },
+  "tests\\func\\test_union.py": {
+    "loc": 57,
+    "lloc": 32,
+    "sloc": 33,
+    "comments": 8,
+    "multi": 0,
+    "blank": 16,
+    "single_comments": 8
+  },
+  "tests\\func\\test_video.py": {
+    "loc": 1149,
+    "lloc": 641,
+    "sloc": 870,
+    "comments": 2,
+    "multi": 0,
+    "blank": 278,
+    "single_comments": 1
+  },
+  "tests\\func\\test_warehouse.py": {
+    "loc": 169,
+    "lloc": 70,
+    "sloc": 127,
+    "comments": 6,
+    "multi": 0,
+    "blank": 36,
+    "single_comments": 6
+  },
+  "tests\\func\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_cleanup.py": {
+    "loc": 314,
+    "lloc": 198,
+    "sloc": 218,
+    "comments": 18,
+    "multi": 0,
+    "blank": 77,
+    "single_comments": 19
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_concurrency.py": {
+    "loc": 71,
+    "lloc": 50,
+    "sloc": 47,
+    "comments": 0,
+    "multi": 4,
+    "blank": 19,
+    "single_comments": 1
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_events.py": {
+    "loc": 365,
+    "lloc": 224,
+    "sloc": 277,
+    "comments": 0,
+    "multi": 0,
+    "blank": 88,
+    "single_comments": 0
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_invalidation.py": {
+    "loc": 310,
+    "lloc": 156,
+    "sloc": 210,
+    "comments": 40,
+    "multi": 0,
+    "blank": 75,
+    "single_comments": 25
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_job_linking.py": {
+    "loc": 193,
+    "lloc": 103,
+    "sloc": 121,
+    "comments": 21,
+    "multi": 8,
+    "blank": 45,
+    "single_comments": 19
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_parallel.py": {
+    "loc": 171,
+    "lloc": 85,
+    "sloc": 108,
+    "comments": 16,
+    "multi": 6,
+    "blank": 40,
+    "single_comments": 17
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_recovery.py": {
+    "loc": 1024,
+    "lloc": 509,
+    "sloc": 659,
+    "comments": 93,
+    "multi": 48,
+    "blank": 237,
+    "single_comments": 80
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_workflows.py": {
+    "loc": 906,
+    "lloc": 483,
+    "sloc": 625,
+    "comments": 64,
+    "multi": 21,
+    "blank": 198,
+    "single_comments": 62
+  },
+  "tests\\func\\checkpoints\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_aggregate.py": {
+    "loc": 202,
+    "lloc": 69,
+    "sloc": 171,
+    "comments": 2,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 2
+  },
+  "tests\\func\\functions\\test_array.py": {
+    "loc": 546,
+    "lloc": 81,
+    "sloc": 507,
+    "comments": 33,
+    "multi": 0,
+    "blank": 33,
+    "single_comments": 6
+  },
+  "tests\\func\\functions\\test_cast.py": {
+    "loc": 365,
+    "lloc": 61,
+    "sloc": 316,
+    "comments": 1,
+    "multi": 0,
+    "blank": 49,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_conditional.py": {
+    "loc": 189,
+    "lloc": 61,
+    "sloc": 164,
+    "comments": 1,
+    "multi": 0,
+    "blank": 25,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_numeric.py": {
+    "loc": 126,
+    "lloc": 24,
+    "sloc": 114,
+    "comments": 0,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_path.py": {
+    "loc": 106,
+    "lloc": 21,
+    "sloc": 89,
+    "comments": 0,
+    "multi": 0,
+    "blank": 17,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_random.py": {
+    "loc": 17,
+    "lloc": 7,
+    "sloc": 14,
+    "comments": 1,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\test_string.py": {
+    "loc": 236,
+    "lloc": 37,
+    "sloc": 213,
+    "comments": 2,
+    "multi": 0,
+    "blank": 23,
+    "single_comments": 0
+  },
+  "tests\\func\\functions\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\func\\model\\test_yolo.py": {
+    "loc": 2508,
+    "lloc": 167,
+    "sloc": 2458,
+    "comments": 0,
+    "multi": 0,
+    "blank": 50,
+    "single_comments": 0
+  },
+  "tests\\func\\model\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\scripts\\concurrent_save.py": {
+    "loc": 107,
+    "lloc": 52,
+    "sloc": 90,
+    "comments": 1,
+    "multi": 0,
+    "blank": 17,
+    "single_comments": 0
+  },
+  "tests\\scripts\\feature_class.py": {
+    "loc": 19,
+    "lloc": 10,
+    "sloc": 14,
+    "comments": 0,
+    "multi": 0,
+    "blank": 5,
+    "single_comments": 0
+  },
+  "tests\\scripts\\feature_class_exception.py": {
+    "loc": 39,
+    "lloc": 18,
+    "sloc": 22,
+    "comments": 9,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 9
+  },
+  "tests\\scripts\\feature_class_parallel.py": {
+    "loc": 30,
+    "lloc": 18,
+    "sloc": 21,
+    "comments": 1,
+    "multi": 0,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "tests\\scripts\\feature_class_parallel_data_model.py": {
+    "loc": 30,
+    "lloc": 19,
+    "sloc": 22,
+    "comments": 1,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 0
+  },
+  "tests\\scripts\\name_len_slow.py": {
+    "loc": 40,
+    "lloc": 17,
+    "sloc": 21,
+    "comments": 11,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 11
+  },
+  "tests\\unit\\test_asyn.py": {
+    "loc": 256,
+    "lloc": 185,
+    "sloc": 191,
+    "comments": 5,
+    "multi": 4,
+    "blank": 55,
+    "single_comments": 6
+  },
+  "tests\\unit\\test_batching.py": {
+    "loc": 229,
+    "lloc": 131,
+    "sloc": 170,
+    "comments": 4,
+    "multi": 0,
+    "blank": 54,
+    "single_comments": 5
+  },
+  "tests\\unit\\test_batch_size.py": {
+    "loc": 254,
+    "lloc": 156,
+    "sloc": 143,
+    "comments": 19,
+    "multi": 0,
+    "blank": 75,
+    "single_comments": 36
+  },
+  "tests\\unit\\test_batch_size_udf.py": {
+    "loc": 246,
+    "lloc": 100,
+    "sloc": 160,
+    "comments": 13,
+    "multi": 0,
+    "blank": 62,
+    "single_comments": 24
+  },
+  "tests\\unit\\test_cache.py": {
+    "loc": 125,
+    "lloc": 84,
+    "sloc": 92,
+    "comments": 0,
+    "multi": 0,
+    "blank": 33,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_catalog.py": {
+    "loc": 26,
+    "lloc": 5,
+    "sloc": 23,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_catalog_loader.py": {
+    "loc": 170,
+    "lloc": 112,
+    "sloc": 142,
+    "comments": 0,
+    "multi": 0,
+    "blank": 28,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_client.py": {
+    "loc": 33,
+    "lloc": 24,
+    "sloc": 24,
+    "comments": 0,
+    "multi": 0,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_client_azure.py": {
+    "loc": 263,
+    "lloc": 131,
+    "sloc": 221,
+    "comments": 1,
+    "multi": 2,
+    "blank": 39,
+    "single_comments": 1
+  },
+  "tests\\unit\\test_client_bucket_status.py": {
+    "loc": 251,
+    "lloc": 90,
+    "sloc": 222,
+    "comments": 0,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_client_gcs.py": {
+    "loc": 184,
+    "lloc": 90,
+    "sloc": 139,
+    "comments": 7,
+    "multi": 0,
+    "blank": 39,
+    "single_comments": 6
+  },
+  "tests\\unit\\test_client_hf.py": {
+    "loc": 107,
+    "lloc": 56,
+    "sloc": 86,
+    "comments": 0,
+    "multi": 0,
+    "blank": 21,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_client_http.py": {
+    "loc": 184,
+    "lloc": 127,
+    "sloc": 125,
+    "comments": 9,
+    "multi": 0,
+    "blank": 52,
+    "single_comments": 7
+  },
+  "tests\\unit\\test_client_local.py": {
+    "loc": 455,
+    "lloc": 231,
+    "sloc": 324,
+    "comments": 21,
+    "multi": 6,
+    "blank": 117,
+    "single_comments": 8
+  },
+  "tests\\unit\\test_client_s3.py": {
+    "loc": 79,
+    "lloc": 40,
+    "sloc": 55,
+    "comments": 0,
+    "multi": 0,
+    "blank": 24,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_cli_datasets.py": {
+    "loc": 64,
+    "lloc": 29,
+    "sloc": 43,
+    "comments": 0,
+    "multi": 0,
+    "blank": 16,
+    "single_comments": 5
+  },
+  "tests\\unit\\test_cli_parsing.py": {
+    "loc": 97,
+    "lloc": 60,
+    "sloc": 68,
+    "comments": 0,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_cli_skill.py": {
+    "loc": 492,
+    "lloc": 268,
+    "sloc": 302,
+    "comments": 45,
+    "multi": 2,
+    "blank": 133,
+    "single_comments": 55
+  },
+  "tests\\unit\\test_config.py": {
+    "loc": 174,
+    "lloc": 67,
+    "sloc": 126,
+    "comments": 15,
+    "multi": 0,
+    "blank": 35,
+    "single_comments": 13
+  },
+  "tests\\unit\\test_database_engine.py": {
+    "loc": 114,
+    "lloc": 67,
+    "sloc": 91,
+    "comments": 2,
+    "multi": 0,
+    "blank": 21,
+    "single_comments": 2
+  },
+  "tests\\unit\\test_datachain_hash.py": {
+    "loc": 382,
+    "lloc": 198,
+    "sloc": 294,
+    "comments": 2,
+    "multi": 12,
+    "blank": 73,
+    "single_comments": 3
+  },
+  "tests\\unit\\test_dataset.py": {
+    "loc": 493,
+    "lloc": 176,
+    "sloc": 419,
+    "comments": 8,
+    "multi": 0,
+    "blank": 72,
+    "single_comments": 2
+  },
+  "tests\\unit\\test_dataset_status_management.py": {
+    "loc": 413,
+    "lloc": 200,
+    "sloc": 264,
+    "comments": 44,
+    "multi": 4,
+    "blank": 89,
+    "single_comments": 56
+  },
+  "tests\\unit\\test_data_model.py": {
+    "loc": 83,
+    "lloc": 80,
+    "sloc": 58,
+    "comments": 0,
+    "multi": 0,
+    "blank": 25,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_data_storage.py": {
+    "loc": 102,
+    "lloc": 42,
+    "sloc": 84,
+    "comments": 5,
+    "multi": 0,
+    "blank": 16,
+    "single_comments": 2
+  },
+  "tests\\unit\\test_delta.py": {
+    "loc": 69,
+    "lloc": 35,
+    "sloc": 52,
+    "comments": 0,
+    "multi": 0,
+    "blank": 17,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_dispatch.py": {
+    "loc": 38,
+    "lloc": 29,
+    "sloc": 27,
+    "comments": 0,
+    "multi": 0,
+    "blank": 11,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_fileslice.py": {
+    "loc": 64,
+    "lloc": 52,
+    "sloc": 48,
+    "comments": 3,
+    "multi": 0,
+    "blank": 14,
+    "single_comments": 2
+  },
+  "tests\\unit\\test_func.py": {
+    "loc": 1235,
+    "lloc": 646,
+    "sloc": 943,
+    "comments": 7,
+    "multi": 0,
+    "blank": 292,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_hash_utils.py": {
+    "loc": 350,
+    "lloc": 150,
+    "sloc": 261,
+    "comments": 14,
+    "multi": 0,
+    "blank": 71,
+    "single_comments": 18
+  },
+  "tests\\unit\\test_job.py": {
+    "loc": 28,
+    "lloc": 8,
+    "sloc": 24,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 1
+  },
+  "tests\\unit\\test_job_management.py": {
+    "loc": 189,
+    "lloc": 112,
+    "sloc": 124,
+    "comments": 10,
+    "multi": 0,
+    "blank": 51,
+    "single_comments": 14
+  },
+  "tests\\unit\\test_json.py": {
+    "loc": 145,
+    "lloc": 94,
+    "sloc": 106,
+    "comments": 1,
+    "multi": 0,
+    "blank": 39,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_listing.py": {
+    "loc": 321,
+    "lloc": 158,
+    "sloc": 242,
+    "comments": 20,
+    "multi": 0,
+    "blank": 66,
+    "single_comments": 13
+  },
+  "tests\\unit\\test_metastore.py": {
+    "loc": 222,
+    "lloc": 130,
+    "sloc": 165,
+    "comments": 9,
+    "multi": 0,
+    "blank": 48,
+    "single_comments": 9
+  },
+  "tests\\unit\\test_meta_formats.py": {
+    "loc": 67,
+    "lloc": 30,
+    "sloc": 54,
+    "comments": 0,
+    "multi": 0,
+    "blank": 13,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_module_exports.py": {
+    "loc": 96,
+    "lloc": 30,
+    "sloc": 82,
+    "comments": 6,
+    "multi": 0,
+    "blank": 10,
+    "single_comments": 4
+  },
+  "tests\\unit\\test_pytorch.py": {
+    "loc": 88,
+    "lloc": 56,
+    "sloc": 68,
+    "comments": 1,
+    "multi": 0,
+    "blank": 19,
+    "single_comments": 1
+  },
+  "tests\\unit\\test_query_metrics.py": {
+    "loc": 29,
+    "lloc": 20,
+    "sloc": 19,
+    "comments": 0,
+    "multi": 0,
+    "blank": 10,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_query_params.py": {
+    "loc": 39,
+    "lloc": 20,
+    "sloc": 29,
+    "comments": 0,
+    "multi": 0,
+    "blank": 10,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_query_steps_hash.py": {
+    "loc": 490,
+    "lloc": 163,
+    "sloc": 395,
+    "comments": 3,
+    "multi": 4,
+    "blank": 85,
+    "single_comments": 6
+  },
+  "tests\\unit\\test_script_meta.py": {
+    "loc": 119,
+    "lloc": 22,
+    "sloc": 101,
+    "comments": 0,
+    "multi": 0,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_select.py": {
+    "loc": 335,
+    "lloc": 174,
+    "sloc": 245,
+    "comments": 2,
+    "multi": 0,
+    "blank": 88,
+    "single_comments": 2
+  },
+  "tests\\unit\\test_semver.py": {
+    "loc": 135,
+    "lloc": 32,
+    "sloc": 120,
+    "comments": 0,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_serializer.py": {
+    "loc": 218,
+    "lloc": 136,
+    "sloc": 157,
+    "comments": 11,
+    "multi": 0,
+    "blank": 50,
+    "single_comments": 11
+  },
+  "tests\\unit\\test_session.py": {
+    "loc": 193,
+    "lloc": 117,
+    "sloc": 136,
+    "comments": 8,
+    "multi": 0,
+    "blank": 49,
+    "single_comments": 8
+  },
+  "tests\\unit\\test_signal_schema_partials.py": {
+    "loc": 557,
+    "lloc": 434,
+    "sloc": 371,
+    "comments": 11,
+    "multi": 0,
+    "blank": 164,
+    "single_comments": 22
+  },
+  "tests\\unit\\test_skill_jobs_scripts.py": {
+    "loc": 135,
+    "lloc": 67,
+    "sloc": 73,
+    "comments": 19,
+    "multi": 0,
+    "blank": 42,
+    "single_comments": 20
+  },
+  "tests\\unit\\test_skill_knowledge_scripts.py": {
+    "loc": 652,
+    "lloc": 343,
+    "sloc": 449,
+    "comments": 36,
+    "multi": 0,
+    "blank": 171,
+    "single_comments": 32
+  },
+  "tests\\unit\\test_sqlite_add_column.py": {
+    "loc": 105,
+    "lloc": 58,
+    "sloc": 75,
+    "comments": 1,
+    "multi": 0,
+    "blank": 29,
+    "single_comments": 1
+  },
+  "tests\\unit\\test_udf_subprocess_exit_codes.py": {
+    "loc": 130,
+    "lloc": 82,
+    "sloc": 90,
+    "comments": 0,
+    "multi": 0,
+    "blank": 40,
+    "single_comments": 0
+  },
+  "tests\\unit\\test_utils.py": {
+    "loc": 639,
+    "lloc": 285,
+    "sloc": 497,
+    "comments": 12,
+    "multi": 0,
+    "blank": 122,
+    "single_comments": 20
+  },
+  "tests\\unit\\test_warehouse.py": {
+    "loc": 179,
+    "lloc": 101,
+    "sloc": 144,
+    "comments": 6,
+    "multi": 0,
+    "blank": 31,
+    "single_comments": 4
+  },
+  "tests\\unit\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\conftest.py": {
+    "loc": 75,
+    "lloc": 56,
+    "sloc": 57,
+    "comments": 1,
+    "multi": 0,
+    "blank": 18,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_arrow.py": {
+    "loc": 278,
+    "lloc": 149,
+    "sloc": 225,
+    "comments": 0,
+    "multi": 0,
+    "blank": 53,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_audio.py": {
+    "loc": 331,
+    "lloc": 202,
+    "sloc": 240,
+    "comments": 4,
+    "multi": 0,
+    "blank": 91,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_buffer.py": {
+    "loc": 206,
+    "lloc": 128,
+    "sloc": 147,
+    "comments": 0,
+    "multi": 0,
+    "blank": 59,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_clip.py": {
+    "loc": 55,
+    "lloc": 39,
+    "sloc": 48,
+    "comments": 0,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_datachain.py": {
+    "loc": 5447,
+    "lloc": 2620,
+    "sloc": 4196,
+    "comments": 196,
+    "multi": 0,
+    "blank": 1063,
+    "single_comments": 188
+  },
+  "tests\\unit\\lib\\test_datachain_bootstrap.py": {
+    "loc": 139,
+    "lloc": 83,
+    "sloc": 102,
+    "comments": 1,
+    "multi": 0,
+    "blank": 37,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_datachain_merge.py": {
+    "loc": 536,
+    "lloc": 319,
+    "sloc": 409,
+    "comments": 3,
+    "multi": 0,
+    "blank": 124,
+    "single_comments": 3
+  },
+  "tests\\unit\\lib\\test_diff.py": {
+    "loc": 590,
+    "lloc": 188,
+    "sloc": 481,
+    "comments": 2,
+    "multi": 0,
+    "blank": 108,
+    "single_comments": 1
+  },
+  "tests\\unit\\lib\\test_feature.py": {
+    "loc": 369,
+    "lloc": 294,
+    "sloc": 267,
+    "comments": 2,
+    "multi": 0,
+    "blank": 102,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_feature_utils.py": {
+    "loc": 167,
+    "lloc": 106,
+    "sloc": 101,
+    "comments": 7,
+    "multi": 0,
+    "blank": 59,
+    "single_comments": 7
+  },
+  "tests\\unit\\lib\\test_file.py": {
+    "loc": 954,
+    "lloc": 502,
+    "sloc": 714,
+    "comments": 29,
+    "multi": 0,
+    "blank": 227,
+    "single_comments": 13
+  },
+  "tests\\unit\\lib\\test_hf.py": {
+    "loc": 95,
+    "lloc": 73,
+    "sloc": 72,
+    "comments": 3,
+    "multi": 0,
+    "blank": 20,
+    "single_comments": 3
+  },
+  "tests\\unit\\lib\\test_image.py": {
+    "loc": 61,
+    "lloc": 34,
+    "sloc": 47,
+    "comments": 0,
+    "multi": 0,
+    "blank": 14,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_listing_info.py": {
+    "loc": 39,
+    "lloc": 12,
+    "sloc": 33,
+    "comments": 0,
+    "multi": 0,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_namespace.py": {
+    "loc": 137,
+    "lloc": 83,
+    "sloc": 97,
+    "comments": 1,
+    "multi": 0,
+    "blank": 39,
+    "single_comments": 1
+  },
+  "tests\\unit\\lib\\test_partition_by.py": {
+    "loc": 810,
+    "lloc": 315,
+    "sloc": 613,
+    "comments": 76,
+    "multi": 0,
+    "blank": 148,
+    "single_comments": 49
+  },
+  "tests\\unit\\lib\\test_project.py": {
+    "loc": 225,
+    "lloc": 116,
+    "sloc": 168,
+    "comments": 2,
+    "multi": 0,
+    "blank": 55,
+    "single_comments": 2
+  },
+  "tests\\unit\\lib\\test_python_to_sql.py": {
+    "loc": 60,
+    "lloc": 25,
+    "sloc": 45,
+    "comments": 0,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_schema.py": {
+    "loc": 19,
+    "lloc": 6,
+    "sloc": 15,
+    "comments": 0,
+    "multi": 0,
+    "blank": 4,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_settings.py": {
+    "loc": 472,
+    "lloc": 242,
+    "sloc": 300,
+    "comments": 71,
+    "multi": 0,
+    "blank": 109,
+    "single_comments": 63
+  },
+  "tests\\unit\\lib\\test_signal_schema.py": {
+    "loc": 1509,
+    "lloc": 738,
+    "sloc": 1201,
+    "comments": 27,
+    "multi": 0,
+    "blank": 292,
+    "single_comments": 16
+  },
+  "tests\\unit\\lib\\test_sql_to_python.py": {
+    "loc": 24,
+    "lloc": 8,
+    "sloc": 21,
+    "comments": 3,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_storage_pattern.py": {
+    "loc": 187,
+    "lloc": 59,
+    "sloc": 146,
+    "comments": 4,
+    "multi": 0,
+    "blank": 37,
+    "single_comments": 4
+  },
+  "tests\\unit\\lib\\test_subtract.py": {
+    "loc": 225,
+    "lloc": 104,
+    "sloc": 165,
+    "comments": 2,
+    "multi": 0,
+    "blank": 58,
+    "single_comments": 2
+  },
+  "tests\\unit\\lib\\test_text.py": {
+    "loc": 46,
+    "lloc": 31,
+    "sloc": 34,
+    "comments": 0,
+    "multi": 0,
+    "blank": 12,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_udf.py": {
+    "loc": 326,
+    "lloc": 149,
+    "sloc": 232,
+    "comments": 31,
+    "multi": 0,
+    "blank": 67,
+    "single_comments": 27
+  },
+  "tests\\unit\\lib\\test_udf_signature.py": {
+    "loc": 228,
+    "lloc": 165,
+    "sloc": 148,
+    "comments": 0,
+    "multi": 0,
+    "blank": 80,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_utils.py": {
+    "loc": 387,
+    "lloc": 159,
+    "sloc": 287,
+    "comments": 30,
+    "multi": 4,
+    "blank": 89,
+    "single_comments": 7
+  },
+  "tests\\unit\\lib\\test_webdataset.py": {
+    "loc": 152,
+    "lloc": 73,
+    "sloc": 113,
+    "comments": 0,
+    "multi": 0,
+    "blank": 39,
+    "single_comments": 0
+  },
+  "tests\\unit\\lib\\test_zarr.py": {
+    "loc": 206,
+    "lloc": 132,
+    "sloc": 137,
+    "comments": 5,
+    "multi": 0,
+    "blank": 67,
+    "single_comments": 2
+  },
+  "tests\\unit\\lib\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\unit\\model\\test_bbox.py": {
+    "loc": 259,
+    "lloc": 95,
+    "sloc": 216,
+    "comments": 0,
+    "multi": 0,
+    "blank": 43,
+    "single_comments": 0
+  },
+  "tests\\unit\\model\\test_pose.py": {
+    "loc": 163,
+    "lloc": 48,
+    "sloc": 148,
+    "comments": 0,
+    "multi": 0,
+    "blank": 15,
+    "single_comments": 0
+  },
+  "tests\\unit\\model\\test_segment.py": {
+    "loc": 53,
+    "lloc": 15,
+    "sloc": 46,
+    "comments": 0,
+    "multi": 0,
+    "blank": 7,
+    "single_comments": 0
+  },
+  "tests\\unit\\model\\test_utils.py": {
+    "loc": 92,
+    "lloc": 16,
+    "sloc": 77,
+    "comments": 7,
+    "multi": 0,
+    "blank": 8,
+    "single_comments": 7
+  },
+  "tests\\unit\\model\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\test_array.py": {
+    "loc": 222,
+    "lloc": 68,
+    "sloc": 193,
+    "comments": 11,
+    "multi": 0,
+    "blank": 28,
+    "single_comments": 1
+  },
+  "tests\\unit\\sql\\test_conditional.py": {
+    "loc": 203,
+    "lloc": 72,
+    "sloc": 168,
+    "comments": 4,
+    "multi": 0,
+    "blank": 31,
+    "single_comments": 4
+  },
+  "tests\\unit\\sql\\test_path.py": {
+    "loc": 76,
+    "lloc": 46,
+    "sloc": 52,
+    "comments": 0,
+    "multi": 5,
+    "blank": 19,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\test_random.py": {
+    "loc": 8,
+    "lloc": 6,
+    "sloc": 6,
+    "comments": 0,
+    "multi": 0,
+    "blank": 2,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\test_selectable.py": {
+    "loc": 27,
+    "lloc": 12,
+    "sloc": 21,
+    "comments": 0,
+    "multi": 0,
+    "blank": 6,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\test_string.py": {
+    "loc": 63,
+    "lloc": 22,
+    "sloc": 54,
+    "comments": 0,
+    "multi": 0,
+    "blank": 9,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\test_types.py": {
+    "loc": 132,
+    "lloc": 40,
+    "sloc": 105,
+    "comments": 0,
+    "multi": 0,
+    "blank": 27,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\sqlite\\test_types.py": {
+    "loc": 383,
+    "lloc": 108,
+    "sloc": 319,
+    "comments": 0,
+    "multi": 0,
+    "blank": 64,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\sqlite\\test_utils.py": {
+    "loc": 15,
+    "lloc": 5,
+    "sloc": 12,
+    "comments": 0,
+    "multi": 0,
+    "blank": 3,
+    "single_comments": 0
+  },
+  "tests\\unit\\sql\\sqlite\\__init__.py": {
+    "loc": 0,
+    "lloc": 0,
+    "sloc": 0,
+    "comments": 0,
+    "multi": 0,
+    "blank": 0,
+    "single_comments": 0
+  }
+}

@@ -163,8 +163,8 @@ namespaces = false
 
 [tool.pytest.ini_options]
 addopts = "-rfEs -m 'not examples' --benchmark-skip --ignore=local"
-env_override_existing_values = true
-env_files = "local/.env.test"
+# env_override_existing_values = true
+# env_files = "local/.env.test"
 markers = [
   "e2e: End-to-end tests",
   "examples: All examples",
@@ -181,6 +181,7 @@ filterwarnings = [
   "ignore::DeprecationWarning:botocore.auth",
   "ignore::DeprecationWarning:datasets.utils._dill",
   "ignore::DeprecationWarning:librosa.core.intervals",
+  "ignore::DeprecationWarning:dvc_objects.*",
   "ignore::FutureWarning:google.api_core._python_version_support",  # Python 3.10 EOL warning
   # Expected warnings from our code
   "ignore:Field name .* shadows an attribute in parent:UserWarning",  # datachain.lib.feature

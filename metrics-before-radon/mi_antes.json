@@ -1,0 +1,1694 @@
+{
+  "extract_metrics_before_codecarbon.py": {
+    "mi": 87.85370625723101,
+    "rank": "A"
+  },
+  "extract_metrics_before_pylint.py": {
+    "mi": 64.88266166569488,
+    "rank": "A"
+  },
+  "extract_metrics_before_pytest.py": {
+    "mi": 80.27459775715279,
+    "rank": "A"
+  },
+  "extract_metrics_before_radon.py": {
+    "mi": 47.278642893717326,
+    "rank": "A"
+  },
+  "extract_score_before_pylint.py": {
+    "mi": 67.28666784000676,
+    "rank": "A"
+  },
+  "noxfile.py": {
+    "mi": 66.05104254418076,
+    "rank": "A"
+  },
+  "docs\\api_hooks.py": {
+    "mi": 93.40960343939157,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\iptc_exif_xmp_lib.py": {
+    "mi": 65.23807178244274,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\llava2_image_desc_lib.py": {
+    "mi": 86.99771640803976,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\openimage-detect.py": {
+    "mi": 72.5195926077194,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\ultralytics-bbox.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\ultralytics-pose.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\computer_vision\\ultralytics-segment.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\get_started\\common_sql_functions.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\get_started\\json-csv-reader.py": {
+    "mi": 75.22731710948506,
+    "rank": "A"
+  },
+  "examples\\get_started\\nested_datamodel.py": {
+    "mi": 85.5648903693779,
+    "rank": "A"
+  },
+  "examples\\get_started\\torch-loader.py": {
+    "mi": 68.71915265980702,
+    "rank": "A"
+  },
+  "examples\\get_started\\udfs\\parallel.py": {
+    "mi": 92.22900089986074,
+    "rank": "A"
+  },
+  "examples\\get_started\\udfs\\simple.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\get_started\\udfs\\stateful.py": {
+    "mi": 87.88567853742171,
+    "rank": "A"
+  },
+  "examples\\incremental_processing\\delta.py": {
+    "mi": 87.99847776209293,
+    "rank": "A"
+  },
+  "examples\\incremental_processing\\retry.py": {
+    "mi": 75.01421660449184,
+    "rank": "A"
+  },
+  "examples\\incremental_processing\\utils.py": {
+    "mi": 89.90130711529427,
+    "rank": "A"
+  },
+  "examples\\llm_and_nlp\\claude-query.py": {
+    "mi": 66.0549249100877,
+    "rank": "A"
+  },
+  "examples\\llm_and_nlp\\hf-dataset-llm-eval.py": {
+    "mi": 74.91711293944336,
+    "rank": "A"
+  },
+  "examples\\multimodal\\audio-to-text.py": {
+    "mi": 84.1374977125022,
+    "rank": "A"
+  },
+  "examples\\multimodal\\clip_inference.py": {
+    "mi": 79.39401775536999,
+    "rank": "A"
+  },
+  "examples\\multimodal\\hf_pipeline.py": {
+    "mi": 74.26074041764986,
+    "rank": "A"
+  },
+  "examples\\multimodal\\openai_image_desc_lib.py": {
+    "mi": 59.16861504054141,
+    "rank": "A"
+  },
+  "examples\\multimodal\\wds.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "examples\\multimodal\\wds_filtered.py": {
+    "mi": 88.22259894603856,
+    "rank": "A"
+  },
+  "examples\\multimodal\\zarr-robot-frames.py": {
+    "mi": 94.10275051233374,
+    "rank": "A"
+  },
+  "src\\datachain\\asyn.py": {
+    "mi": 46.39240473894798,
+    "rank": "A"
+  },
+  "src\\datachain\\cache.py": {
+    "mi": 52.610958427794884,
+    "rank": "A"
+  },
+  "src\\datachain\\checkpoint.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\checkpoint_event.py": {
+    "mi": 55.23515170540047,
+    "rank": "A"
+  },
+  "src\\datachain\\config.py": {
+    "mi": 50.259722655352356,
+    "rank": "A"
+  },
+  "src\\datachain\\dataset.py": {
+    "mi": 14.565230015623145,
+    "rank": "B"
+  },
+  "src\\datachain\\delta.py": {
+    "mi": 44.82713475244317,
+    "rank": "A"
+  },
+  "src\\datachain\\error.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\hash_utils.py": {
+    "mi": 63.0963965327788,
+    "rank": "A"
+  },
+  "src\\datachain\\job.py": {
+    "mi": 55.705460559659095,
+    "rank": "A"
+  },
+  "src\\datachain\\json.py": {
+    "mi": 49.03459563995666,
+    "rank": "A"
+  },
+  "src\\datachain\\listing.py": {
+    "mi": 35.59972896262791,
+    "rank": "A"
+  },
+  "src\\datachain\\namespace.py": {
+    "mi": 65.20717773812487,
+    "rank": "A"
+  },
+  "src\\datachain\\node.py": {
+    "mi": 51.616794259172224,
+    "rank": "A"
+  },
+  "src\\datachain\\nodes_fetcher.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\nodes_thread_pool.py": {
+    "mi": 48.459421161783695,
+    "rank": "A"
+  },
+  "src\\datachain\\plugins.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\progress.py": {
+    "mi": 86.68234509964164,
+    "rank": "A"
+  },
+  "src\\datachain\\project.py": {
+    "mi": 46.459203132887666,
+    "rank": "A"
+  },
+  "src\\datachain\\script_meta.py": {
+    "mi": 70.83227290992991,
+    "rank": "A"
+  },
+  "src\\datachain\\semver.py": {
+    "mi": 75.27299568401676,
+    "rank": "A"
+  },
+  "src\\datachain\\studio.py": {
+    "mi": 10.761656071116914,
+    "rank": "B"
+  },
+  "src\\datachain\\telemetry.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\utils.py": {
+    "mi": 26.75806972442328,
+    "rank": "A"
+  },
+  "src\\datachain\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\__main__.py": {
+    "mi": 81.85633424453339,
+    "rank": "A"
+  },
+  "src\\datachain\\catalog\\catalog.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "src\\datachain\\catalog\\datasource.py": {
+    "mi": 64.47650372696116,
+    "rank": "A"
+  },
+  "src\\datachain\\catalog\\dependency.py": {
+    "mi": 66.66771320980921,
+    "rank": "A"
+  },
+  "src\\datachain\\catalog\\loader.py": {
+    "mi": 62.00331357570474,
+    "rank": "A"
+  },
+  "src\\datachain\\catalog\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\utils.py": {
+    "mi": 65.26309956868333,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\__init__.py": {
+    "mi": 44.61740043492394,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\bucket.py": {
+    "mi": 97.49999845382878,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\datasets.py": {
+    "mi": 48.99828955015221,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\du.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\index.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\ls.py": {
+    "mi": 42.82517158371657,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\misc.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\show.py": {
+    "mi": 60.28455744703137,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\skill.py": {
+    "mi": 41.60558336545063,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\commands\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\job.py": {
+    "mi": 58.44961627578159,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\pipeline.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\skill.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\studio.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\utils.py": {
+    "mi": 59.48493389734911,
+    "rank": "A"
+  },
+  "src\\datachain\\cli\\parser\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\azure.py": {
+    "mi": 57.879241689511446,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\fileslice.py": {
+    "mi": 62.07476595610916,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\fsspec.py": {
+    "mi": 31.1597455480103,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\gcs.py": {
+    "mi": 45.893026182251965,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\hf.py": {
+    "mi": 77.41689337484907,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\http.py": {
+    "mi": 46.0950098347067,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\local.py": {
+    "mi": 51.70200580237834,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\s3.py": {
+    "mi": 44.86059328143459,
+    "rank": "A"
+  },
+  "src\\datachain\\client\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\buffer.py": {
+    "mi": 73.68873516317532,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\db_engine.py": {
+    "mi": 66.6411283428234,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\job.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\metastore.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "src\\datachain\\data_storage\\schema.py": {
+    "mi": 47.58531127447175,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\serializer.py": {
+    "mi": 67.67766240752181,
+    "rank": "A"
+  },
+  "src\\datachain\\data_storage\\sqlite.py": {
+    "mi": 18.444888203922186,
+    "rank": "B"
+  },
+  "src\\datachain\\data_storage\\warehouse.py": {
+    "mi": 15.072695720388657,
+    "rank": "B"
+  },
+  "src\\datachain\\data_storage\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\diff\\__init__.py": {
+    "mi": 60.63090539714079,
+    "rank": "A"
+  },
+  "src\\datachain\\fs\\reference.py": {
+    "mi": 98.60975370152224,
+    "rank": "A"
+  },
+  "src\\datachain\\fs\\utils.py": {
+    "mi": 70.93937010477815,
+    "rank": "A"
+  },
+  "src\\datachain\\fs\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\aggregate.py": {
+    "mi": 36.74537266088163,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\array.py": {
+    "mi": 54.852353711013585,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\base.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\conditional.py": {
+    "mi": 51.47536955415487,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\func.py": {
+    "mi": 23.24805772356086,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\numeric.py": {
+    "mi": 64.33843990379617,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\path.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\random.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\string.py": {
+    "mi": 49.519326977014515,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\window.py": {
+    "mi": 91.12266491569392,
+    "rank": "A"
+  },
+  "src\\datachain\\func\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\arrow.py": {
+    "mi": 44.45010686981743,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\audio.py": {
+    "mi": 58.16868964038972,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\clip.py": {
+    "mi": 65.06843969298747,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dataset_info.py": {
+    "mi": 46.05948970029604,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\data_model.py": {
+    "mi": 50.447703109522216,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\file.py": {
+    "mi": 14.113416475534109,
+    "rank": "B"
+  },
+  "src\\datachain\\lib\\hf.py": {
+    "mi": 54.59663931013632,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\image.py": {
+    "mi": 86.83145500550178,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\listing.py": {
+    "mi": 58.303885775307336,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\listing_info.py": {
+    "mi": 73.68683747658066,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\meta_formats.py": {
+    "mi": 51.9202122443786,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\model_store.py": {
+    "mi": 58.01903396944761,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\namespaces.py": {
+    "mi": 76.5063124285889,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\projects.py": {
+    "mi": 76.84476646480047,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\pytorch.py": {
+    "mi": 51.41706226357205,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\settings.py": {
+    "mi": 26.3809962673124,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\signal_schema.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "src\\datachain\\lib\\tar.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\text.py": {
+    "mi": 92.04950091887783,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\udf.py": {
+    "mi": 35.733205899715365,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\udf_signature.py": {
+    "mi": 41.47979106505892,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\utils.py": {
+    "mi": 43.38701939896375,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\video.py": {
+    "mi": 26.06362085227801,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\webdataset.py": {
+    "mi": 39.02659430448703,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\webdataset_laion.py": {
+    "mi": 62.42215442891994,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\zarr.py": {
+    "mi": 58.61963568047645,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\flatten.py": {
+    "mi": 68.42380141214697,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\python_to_sql.py": {
+    "mi": 52.21557189204752,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\sql_to_python.py": {
+    "mi": 75.71160893366114,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\unflatten.py": {
+    "mi": 50.15108121620003,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\values_to_tuples.py": {
+    "mi": 55.3778955336973,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\convert\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\csv.py": {
+    "mi": 79.09796114668794,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\database.py": {
+    "mi": 50.60290854645201,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\datachain.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "src\\datachain\\lib\\dc\\datasets.py": {
+    "mi": 62.528694261800005,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\hf.py": {
+    "mi": 80.92354337923119,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\json.py": {
+    "mi": 85.40730345629257,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\listings.py": {
+    "mi": 76.85169349964642,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\pandas.py": {
+    "mi": 95.59020345532083,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\parquet.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\records.py": {
+    "mi": 70.74001032659372,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\storage.py": {
+    "mi": 61.569835032120274,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\storage_pattern.py": {
+    "mi": 41.01324948138318,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\utils.py": {
+    "mi": 57.8131977476235,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\values.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\zarr.py": {
+    "mi": 91.2162810372482,
+    "rank": "A"
+  },
+  "src\\datachain\\lib\\dc\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\bbox.py": {
+    "mi": 59.534268336596675,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\pose.py": {
+    "mi": 66.05353008643391,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\segment.py": {
+    "mi": 77.40564237747171,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\utils.py": {
+    "mi": 55.77939170420124,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\ultralytics\\bbox.py": {
+    "mi": 72.85086238666901,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\ultralytics\\pose.py": {
+    "mi": 73.92920255108608,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\ultralytics\\segment.py": {
+    "mi": 78.30296209254367,
+    "rank": "A"
+  },
+  "src\\datachain\\model\\ultralytics\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\batch.py": {
+    "mi": 61.72648532310011,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\dataset.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "src\\datachain\\query\\dispatch.py": {
+    "mi": 29.529334118275106,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\metrics.py": {
+    "mi": 73.14282827586246,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\params.py": {
+    "mi": 73.31330183194454,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\queue.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\schema.py": {
+    "mi": 52.06685975317057,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\session.py": {
+    "mi": 46.35407113207943,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\udf.py": {
+    "mi": 65.0304113749312,
+    "rank": "A"
+  },
+  "src\\datachain\\query\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\remote\\studio.py": {
+    "mi": 33.114873953566416,
+    "rank": "A"
+  },
+  "src\\datachain\\remote\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\jobs\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\jobs\\scripts\\jobs.py": {
+    "mi": 37.381311538314804,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\jobs\\scripts\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\bucket_overview.py": {
+    "mi": 56.787166830594416,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\bucket_scan.py": {
+    "mi": 27.8968189279451,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\changes.py": {
+    "mi": 60.53408022066672,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\cleanup_json.py": {
+    "mi": 70.72892070764516,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\dataset.py": {
+    "mi": 46.985928393286606,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\dataset_all.py": {
+    "mi": 38.61230403963192,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\db_mtime.py": {
+    "mi": 86.84636884148262,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\list_datasets.py": {
+    "mi": 68.22046287018378,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\plan.py": {
+    "mi": 41.82790152417595,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\render_index.py": {
+    "mi": 40.50854614268805,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\schema.py": {
+    "mi": 59.492489103321965,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\summary.py": {
+    "mi": 18.520603192527652,
+    "rank": "B"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\utils.py": {
+    "mi": 41.753448950450284,
+    "rank": "A"
+  },
+  "src\\datachain\\skill\\knowledge\\scripts\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\postgresql_dialect.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\postgresql_types.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\selectable.py": {
+    "mi": 65.12407994554462,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\types.py": {
+    "mi": 14.228562056392269,
+    "rank": "B"
+  },
+  "src\\datachain\\sql\\utils.py": {
+    "mi": 69.33443681312195,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\default\\base.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\default\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\aggregate.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\array.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\conditional.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\conversion.py": {
+    "mi": 74.01837113758252,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\numeric.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\path.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\random.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\string.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\functions\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\sqlite\\base.py": {
+    "mi": 29.356968655822442,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\sqlite\\types.py": {
+    "mi": 64.3925616530812,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\sqlite\\vector.py": {
+    "mi": 59.394281340284536,
+    "rank": "A"
+  },
+  "src\\datachain\\sql\\sqlite\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\toolkit\\split.py": {
+    "mi": 68.93933707950643,
+    "rank": "A"
+  },
+  "src\\datachain\\toolkit\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "src\\datachain\\torch\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\conftest.py": {
+    "mi": 26.26040635197201,
+    "rank": "A"
+  },
+  "tests\\data.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\test_atomicity.py": {
+    "mi": 45.85879084104524,
+    "rank": "A"
+  },
+  "tests\\test_cli_e2e.py": {
+    "mi": 49.66020021276949,
+    "rank": "A"
+  },
+  "tests\\test_cli_studio.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\test_import_time.py": {
+    "mi": 73.97754092620204,
+    "rank": "A"
+  },
+  "tests\\test_job_management_e2e.py": {
+    "mi": 59.60449187557323,
+    "rank": "A"
+  },
+  "tests\\test_query_e2e.py": {
+    "mi": 46.20607694598507,
+    "rank": "A"
+  },
+  "tests\\test_telemetry.py": {
+    "mi": 63.383263122436986,
+    "rank": "A"
+  },
+  "tests\\utils.py": {
+    "mi": 44.55076222582083,
+    "rank": "A"
+  },
+  "tests\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\benchmarks\\conftest.py": {
+    "mi": 79.87684562974381,
+    "rank": "A"
+  },
+  "tests\\benchmarks\\test_datachain.py": {
+    "mi": 95.61928622349353,
+    "rank": "A"
+  },
+  "tests\\benchmarks\\test_ls.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\benchmarks\\test_version.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\benchmarks\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\examples\\test_examples.py": {
+    "mi": 61.22181633000691,
+    "rank": "A"
+  },
+  "tests\\examples\\test_wds_e2e.py": {
+    "mi": 58.20561228254939,
+    "rank": "A"
+  },
+  "tests\\examples\\wds_data.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\examples\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\func\\test_audio.py": {
+    "mi": 61.819108211833175,
+    "rank": "A"
+  },
+  "tests\\func\\test_bucket_status.py": {
+    "mi": 59.91697212332799,
+    "rank": "A"
+  },
+  "tests\\func\\test_catalog.py": {
+    "mi": 10.88334556590804,
+    "rank": "B"
+  },
+  "tests\\func\\test_client.py": {
+    "mi": 26.499588438649752,
+    "rank": "A"
+  },
+  "tests\\func\\test_cli_show.py": {
+    "mi": 46.08545910006134,
+    "rank": "A"
+  },
+  "tests\\func\\test_datachain.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\func\\test_datachain_merge.py": {
+    "mi": 54.91973010103168,
+    "rank": "A"
+  },
+  "tests\\func\\test_datasets.py": {
+    "mi": 4.063475082279835,
+    "rank": "C"
+  },
+  "tests\\func\\test_dataset_query.py": {
+    "mi": 6.648445289640493,
+    "rank": "C"
+  },
+  "tests\\func\\test_data_storage.py": {
+    "mi": 47.38949847290885,
+    "rank": "A"
+  },
+  "tests\\func\\test_delta.py": {
+    "mi": 16.83176475482183,
+    "rank": "B"
+  },
+  "tests\\func\\test_feature_pickling.py": {
+    "mi": 44.20906039679399,
+    "rank": "A"
+  },
+  "tests\\func\\test_file.py": {
+    "mi": 39.2546773303296,
+    "rank": "A"
+  },
+  "tests\\func\\test_hf.py": {
+    "mi": 50.515747952814834,
+    "rank": "A"
+  },
+  "tests\\func\\test_hidden_field.py": {
+    "mi": 53.040255942421524,
+    "rank": "A"
+  },
+  "tests\\func\\test_image.py": {
+    "mi": 55.36997009424944,
+    "rank": "A"
+  },
+  "tests\\func\\test_listing.py": {
+    "mi": 39.21114584090059,
+    "rank": "A"
+  },
+  "tests\\func\\test_local_db_migration.py": {
+    "mi": 53.602720714084136,
+    "rank": "A"
+  },
+  "tests\\func\\test_ls.py": {
+    "mi": 40.395053373080465,
+    "rank": "A"
+  },
+  "tests\\func\\test_metastore.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\func\\test_meta_formats.py": {
+    "mi": 60.749858751994395,
+    "rank": "A"
+  },
+  "tests\\func\\test_metrics.py": {
+    "mi": 60.12657926089052,
+    "rank": "A"
+  },
+  "tests\\func\\test_model_store_rebuild.py": {
+    "mi": 54.05211636370196,
+    "rank": "A"
+  },
+  "tests\\func\\test_mutate.py": {
+    "mi": 33.956253201497326,
+    "rank": "A"
+  },
+  "tests\\func\\test_pull.py": {
+    "mi": 26.727267076218517,
+    "rank": "A"
+  },
+  "tests\\func\\test_pytorch.py": {
+    "mi": 55.44442146375137,
+    "rank": "A"
+  },
+  "tests\\func\\test_read_csv.py": {
+    "mi": 66.96033565031739,
+    "rank": "A"
+  },
+  "tests\\func\\test_read_database.py": {
+    "mi": 47.32051989075012,
+    "rank": "A"
+  },
+  "tests\\func\\test_read_dataset_remote.py": {
+    "mi": 23.557488058092737,
+    "rank": "A"
+  },
+  "tests\\func\\test_read_dataset_version_specifiers.py": {
+    "mi": 57.052896861332925,
+    "rank": "A"
+  },
+  "tests\\func\\test_retrieval.py": {
+    "mi": 25.74497931896235,
+    "rank": "A"
+  },
+  "tests\\func\\test_retry.py": {
+    "mi": 46.247373831355496,
+    "rank": "A"
+  },
+  "tests\\func\\test_session.py": {
+    "mi": 80.65187089015909,
+    "rank": "A"
+  },
+  "tests\\func\\test_signal_schema.py": {
+    "mi": 80.9099261076816,
+    "rank": "A"
+  },
+  "tests\\func\\test_similarity_search.py": {
+    "mi": 67.09930206872048,
+    "rank": "A"
+  },
+  "tests\\func\\test_storage_auto_anon.py": {
+    "mi": 68.75321628934005,
+    "rank": "A"
+  },
+  "tests\\func\\test_storage_pattern.py": {
+    "mi": 29.972907225773525,
+    "rank": "A"
+  },
+  "tests\\func\\test_studio_datetime_parsing.py": {
+    "mi": 61.08079382978806,
+    "rank": "A"
+  },
+  "tests\\func\\test_temp_table_tracking.py": {
+    "mi": 45.62344697687422,
+    "rank": "A"
+  },
+  "tests\\func\\test_toolkit.py": {
+    "mi": 51.62927301795704,
+    "rank": "A"
+  },
+  "tests\\func\\test_to_csv.py": {
+    "mi": 35.354892730179344,
+    "rank": "A"
+  },
+  "tests\\func\\test_to_database.py": {
+    "mi": 18.78768015967467,
+    "rank": "B"
+  },
+  "tests\\func\\test_to_json.py": {
+    "mi": 41.68775040658496,
+    "rank": "A"
+  },
+  "tests\\func\\test_to_storage.py": {
+    "mi": 29.45936611837034,
+    "rank": "A"
+  },
+  "tests\\func\\test_udf.py": {
+    "mi": 18.484603278209903,
+    "rank": "B"
+  },
+  "tests\\func\\test_union.py": {
+    "mi": 74.66453833096972,
+    "rank": "A"
+  },
+  "tests\\func\\test_video.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\func\\test_warehouse.py": {
+    "mi": 53.198386994386794,
+    "rank": "A"
+  },
+  "tests\\func\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_cleanup.py": {
+    "mi": 40.75070952242091,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_concurrency.py": {
+    "mi": 71.14305917657735,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_events.py": {
+    "mi": 14.409917794307919,
+    "rank": "B"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_invalidation.py": {
+    "mi": 51.16366491775557,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_job_linking.py": {
+    "mi": 59.93398341239349,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_parallel.py": {
+    "mi": 61.84828999154818,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_recovery.py": {
+    "mi": 29.23104285635889,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\test_checkpoint_workflows.py": {
+    "mi": 21.489220743577793,
+    "rank": "A"
+  },
+  "tests\\func\\checkpoints\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_aggregate.py": {
+    "mi": 48.1616285457095,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_array.py": {
+    "mi": 50.966270080252194,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_cast.py": {
+    "mi": 45.244667000812235,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_conditional.py": {
+    "mi": 46.9396717740115,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_numeric.py": {
+    "mi": 56.34904335057299,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_path.py": {
+    "mi": 59.41984836283026,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_random.py": {
+    "mi": 88.84813512271299,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\test_string.py": {
+    "mi": 57.912972498204354,
+    "rank": "A"
+  },
+  "tests\\func\\functions\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\func\\model\\test_yolo.py": {
+    "mi": 22.81264398661377,
+    "rank": "A"
+  },
+  "tests\\func\\model\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\scripts\\concurrent_save.py": {
+    "mi": 51.88211886375545,
+    "rank": "A"
+  },
+  "tests\\scripts\\feature_class.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\scripts\\feature_class_exception.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\scripts\\feature_class_parallel.py": {
+    "mi": 80.382432911186,
+    "rank": "A"
+  },
+  "tests\\scripts\\feature_class_parallel_data_model.py": {
+    "mi": 79.59610425649342,
+    "rank": "A"
+  },
+  "tests\\scripts\\name_len_slow.py": {
+    "mi": 92.73046450001411,
+    "rank": "A"
+  },
+  "tests\\unit\\test_asyn.py": {
+    "mi": 42.87948404332758,
+    "rank": "A"
+  },
+  "tests\\unit\\test_batching.py": {
+    "mi": 35.879056013268894,
+    "rank": "A"
+  },
+  "tests\\unit\\test_batch_size.py": {
+    "mi": 49.184561854438265,
+    "rank": "A"
+  },
+  "tests\\unit\\test_batch_size_udf.py": {
+    "mi": 52.60949741769062,
+    "rank": "A"
+  },
+  "tests\\unit\\test_cache.py": {
+    "mi": 38.460260682617154,
+    "rank": "A"
+  },
+  "tests\\unit\\test_catalog.py": {
+    "mi": 79.7423427057672,
+    "rank": "A"
+  },
+  "tests\\unit\\test_catalog_loader.py": {
+    "mi": 33.433868445748956,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client.py": {
+    "mi": 53.38143057555445,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_azure.py": {
+    "mi": 40.08498642485528,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_bucket_status.py": {
+    "mi": 40.82368326096435,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_gcs.py": {
+    "mi": 53.52884721840703,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_hf.py": {
+    "mi": 46.099127814227224,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_http.py": {
+    "mi": 46.15854108778783,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_local.py": {
+    "mi": 33.44631829021774,
+    "rank": "A"
+  },
+  "tests\\unit\\test_client_s3.py": {
+    "mi": 47.68274607229532,
+    "rank": "A"
+  },
+  "tests\\unit\\test_cli_datasets.py": {
+    "mi": 55.28316031009344,
+    "rank": "A"
+  },
+  "tests\\unit\\test_cli_parsing.py": {
+    "mi": 40.1799298702771,
+    "rank": "A"
+  },
+  "tests\\unit\\test_cli_skill.py": {
+    "mi": 31.1895666468801,
+    "rank": "A"
+  },
+  "tests\\unit\\test_config.py": {
+    "mi": 62.01945351531794,
+    "rank": "A"
+  },
+  "tests\\unit\\test_database_engine.py": {
+    "mi": 47.62217445719617,
+    "rank": "A"
+  },
+  "tests\\unit\\test_datachain_hash.py": {
+    "mi": 37.788475149862144,
+    "rank": "A"
+  },
+  "tests\\unit\\test_dataset.py": {
+    "mi": 31.004152559951027,
+    "rank": "A"
+  },
+  "tests\\unit\\test_dataset_status_management.py": {
+    "mi": 46.37378902438853,
+    "rank": "A"
+  },
+  "tests\\unit\\test_data_model.py": {
+    "mi": 44.22081367979788,
+    "rank": "A"
+  },
+  "tests\\unit\\test_data_storage.py": {
+    "mi": 66.47529507151988,
+    "rank": "A"
+  },
+  "tests\\unit\\test_delta.py": {
+    "mi": 52.5697886492907,
+    "rank": "A"
+  },
+  "tests\\unit\\test_dispatch.py": {
+    "mi": 53.74920686276937,
+    "rank": "A"
+  },
+  "tests\\unit\\test_fileslice.py": {
+    "mi": 56.95144759385778,
+    "rank": "A"
+  },
+  "tests\\unit\\test_func.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\unit\\test_hash_utils.py": {
+    "mi": 38.06308814975863,
+    "rank": "A"
+  },
+  "tests\\unit\\test_job.py": {
+    "mi": 68.42029037635967,
+    "rank": "A"
+  },
+  "tests\\unit\\test_job_management.py": {
+    "mi": 48.495672369157695,
+    "rank": "A"
+  },
+  "tests\\unit\\test_json.py": {
+    "mi": 46.52581746659682,
+    "rank": "A"
+  },
+  "tests\\unit\\test_listing.py": {
+    "mi": 40.927831709550034,
+    "rank": "A"
+  },
+  "tests\\unit\\test_metastore.py": {
+    "mi": 43.67761294288766,
+    "rank": "A"
+  },
+  "tests\\unit\\test_meta_formats.py": {
+    "mi": 54.98810040866506,
+    "rank": "A"
+  },
+  "tests\\unit\\test_module_exports.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\test_pytorch.py": {
+    "mi": 52.47616743879711,
+    "rank": "A"
+  },
+  "tests\\unit\\test_query_metrics.py": {
+    "mi": 63.20556652965721,
+    "rank": "A"
+  },
+  "tests\\unit\\test_query_params.py": {
+    "mi": 66.60902770568403,
+    "rank": "A"
+  },
+  "tests\\unit\\test_query_steps_hash.py": {
+    "mi": 34.219226190401564,
+    "rank": "A"
+  },
+  "tests\\unit\\test_script_meta.py": {
+    "mi": 56.91995243559548,
+    "rank": "A"
+  },
+  "tests\\unit\\test_select.py": {
+    "mi": 31.892351669787423,
+    "rank": "A"
+  },
+  "tests\\unit\\test_semver.py": {
+    "mi": 52.55397910415833,
+    "rank": "A"
+  },
+  "tests\\unit\\test_serializer.py": {
+    "mi": 46.523259957342155,
+    "rank": "A"
+  },
+  "tests\\unit\\test_session.py": {
+    "mi": 48.825152262285194,
+    "rank": "A"
+  },
+  "tests\\unit\\test_signal_schema_partials.py": {
+    "mi": 11.110146918170514,
+    "rank": "B"
+  },
+  "tests\\unit\\test_skill_jobs_scripts.py": {
+    "mi": 61.81534708854764,
+    "rank": "A"
+  },
+  "tests\\unit\\test_skill_knowledge_scripts.py": {
+    "mi": 15.823150676123516,
+    "rank": "B"
+  },
+  "tests\\unit\\test_sqlite_add_column.py": {
+    "mi": 56.31333841789927,
+    "rank": "A"
+  },
+  "tests\\unit\\test_udf_subprocess_exit_codes.py": {
+    "mi": 47.49001063750822,
+    "rank": "A"
+  },
+  "tests\\unit\\test_utils.py": {
+    "mi": 22.36196659763335,
+    "rank": "A"
+  },
+  "tests\\unit\\test_warehouse.py": {
+    "mi": 42.150370440132264,
+    "rank": "A"
+  },
+  "tests\\unit\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\conftest.py": {
+    "mi": 67.54735960128349,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_arrow.py": {
+    "mi": 28.16659302786478,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_audio.py": {
+    "mi": 27.727782705503216,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_buffer.py": {
+    "mi": 29.016173447094214,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_clip.py": {
+    "mi": 48.155142195775845,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_datachain.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\unit\\lib\\test_datachain_bootstrap.py": {
+    "mi": 46.83391738339327,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_datachain_merge.py": {
+    "mi": 12.489481088448256,
+    "rank": "B"
+  },
+  "tests\\unit\\lib\\test_diff.py": {
+    "mi": 31.203195487789944,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_feature.py": {
+    "mi": 27.488115237961264,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_feature_utils.py": {
+    "mi": 45.01962149753601,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_file.py": {
+    "mi": 13.180998239474121,
+    "rank": "B"
+  },
+  "tests\\unit\\lib\\test_hf.py": {
+    "mi": 52.97543726071244,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_image.py": {
+    "mi": 53.64172870015136,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_listing_info.py": {
+    "mi": 68.49882906113262,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_namespace.py": {
+    "mi": 46.18184750939731,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_partition_by.py": {
+    "mi": 31.44096559499568,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_project.py": {
+    "mi": 39.56831320632671,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_python_to_sql.py": {
+    "mi": 53.11594237611913,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_schema.py": {
+    "mi": 77.88058292795313,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_settings.py": {
+    "mi": 37.12436259598007,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_signal_schema.py": {
+    "mi": 0.0,
+    "rank": "C"
+  },
+  "tests\\unit\\lib\\test_sql_to_python.py": {
+    "mi": 95.91923751683345,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_storage_pattern.py": {
+    "mi": 44.62211587077263,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_subtract.py": {
+    "mi": 40.84047356973399,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_text.py": {
+    "mi": 54.408454133967716,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_udf.py": {
+    "mi": 44.953095917501116,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_udf_signature.py": {
+    "mi": 28.784032531250446,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_utils.py": {
+    "mi": 44.77938498429144,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_webdataset.py": {
+    "mi": 39.977836600793324,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\test_zarr.py": {
+    "mi": 40.13969967265678,
+    "rank": "A"
+  },
+  "tests\\unit\\lib\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\model\\test_bbox.py": {
+    "mi": 37.15322086418119,
+    "rank": "A"
+  },
+  "tests\\unit\\model\\test_pose.py": {
+    "mi": 43.06086587490345,
+    "rank": "A"
+  },
+  "tests\\unit\\model\\test_segment.py": {
+    "mi": 69.33443681312195,
+    "rank": "A"
+  },
+  "tests\\unit\\model\\test_utils.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\model\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_array.py": {
+    "mi": 53.84201448338797,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_conditional.py": {
+    "mi": 48.50608255294101,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_path.py": {
+    "mi": 69.51235528378966,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_random.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_selectable.py": {
+    "mi": 68.04496717586133,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_string.py": {
+    "mi": 58.97913242523653,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\test_types.py": {
+    "mi": 52.128188377250524,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\sqlite\\test_types.py": {
+    "mi": 34.1558292129565,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\sqlite\\test_utils.py": {
+    "mi": 79.7423427057672,
+    "rank": "A"
+  },
+  "tests\\unit\\sql\\sqlite\\__init__.py": {
+    "mi": 100.0,
+    "rank": "A"
+  }
+}
